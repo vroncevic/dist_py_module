@@ -43,6 +43,7 @@ class GenSetup(ReadTemplate, WriteTemplate):
 	def gen_setup(self, package_name):
 		"""
 		@summary: Generate setup.py by template and parameters
+		@param package_name: Parameter package name
 		@return: Success return true, else return false
 		"""
 		status = False

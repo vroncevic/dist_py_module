@@ -44,6 +44,8 @@ class WriteTemplate:
 	def write(self, setup_content, package_name):
 		"""
 		@summary: Write template content with parameters to file setup.py
+		@param setup_content: Template content
+		@param package_name: Parameter package name
 		@return: Success return true, else return false
 		"""
 		cdir = getcwd()
