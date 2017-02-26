@@ -22,16 +22,16 @@ Usage:
 from os import getcwd
 from string import Template
 
-class WriteTemplate:
+class WriteTemplate(object):
 	"""
 	Define class WriteTemplate with atribute(s) and method(s).
 	Write template content with parameters to a file setup.py.
 	It defines:
 		attribute:
-			__SETUP_FILE - file name for setup file
+			__SETUP_FILE - File name for setup file
 		method:
-			__init__ - create and initial instance
-			write - write a template content with parameters to a file setup.py
+			__init__ - Create and initial instance
+			write - Write a template content with parameters to a file setup.py
 	"""
 
 	__SETUP_FILE = "setup.py"

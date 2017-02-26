@@ -20,17 +20,17 @@ Usage:
 
 from os.path import dirname, realpath
 
-class ReadTemplate:
+class ReadTemplate(object):
 	"""
 	Define class ReadTemplate with atribute(s) and method(s).
 	Read a template file (setup.template) and return a string representation.
 	It defines:
 		attribute:
-			__TEMPLATE - template file path
-			__template - absolute template file path
+			__TEMPLATE - Template file path
+			__template - Absolute template file path
 		method:
-			__init__ - create and initial instance
-			read - read a template and return a string representation
+			__init__ - Create and initial instance
+			read - Read a template and return a string representation
 	"""
 
 	__TEMPLATE = "/../../conf/template/setup.template"
@@ -45,7 +45,7 @@ class ReadTemplate:
 	def read(self):
 		"""
 		@summary: Read a template file and return a content
-		@return: string text code
+		@return: String text code
 		"""
 		try:
 			tfile = open(self.__template, "r")

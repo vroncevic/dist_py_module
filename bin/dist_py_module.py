@@ -19,15 +19,15 @@ Usage:
 from settings import Settings
 from cli_options import CLI
 
-class DistPyModule:
+class DistPyModule(object):
 	"""
 	Define class DistPyModule with atribute(s) and method(s).
 	Load a settings, create a CL interface and run operation.
 	It defines:
 		attribute:
-			__app_cli - command line interface parser
+			__app_cli - Command line interface parser
 		method:
-			__init__ - create and initial instance
+			__init__ - Create and initial instance
 			run - Run tool
 	"""
 
@@ -36,7 +36,6 @@ class DistPyModule:
 		@summary: Basic constructor
 		"""
 		config_reader = Settings()
-		print("Loading configuration")
 		config = config_reader.get_configuration()
 		if config != None:
 			self.__app_cli = CLI(config)

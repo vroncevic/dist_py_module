@@ -28,10 +28,10 @@ class CLI(AppOptionParser, AppInfo, GenSetup):
 	Define options, process arguments and do operation.
 	It defines:
 		attribute:
-			__OPS - tool options
+			__OPS - Tool options
 		method:
-			__init__ - create and initial instance
-			process - procesing arguments and do operation
+			__init__ - Create and initial instance
+			process - Procesing arguments and do operation
 	"""
 
 	__OPS = ["-g", "--gen", "-h", "--version"]
@@ -39,14 +39,12 @@ class CLI(AppOptionParser, AppInfo, GenSetup):
 	def __init__(self, config):
 		"""
 		@summary: Basic Constructor
-		@param config: configuration object (dictionary)
+		@param config: Configuration object (dictionary)
 		"""
 		AppInfo.__init__(self, config)
 		AppOptionParser.__init__(
-			self, "{0} {1}".format(
-				AppInfo.get_version(self), AppInfo.get_build_date(self)
-			),
-			AppInfo.get_name(self), AppInfo.get_license(self)
+			self, "{0} {1}".format(self.get_version(), self.get_build_date()),
+			self.get_name(), self.get_license()
 		)
 		AppOptionParser.add_option(
 			self, CLI.__OPS[0], CLI.__OPS[1], dest="mod",
@@ -66,11 +64,10 @@ class CLI(AppOptionParser, AppInfo, GenSetup):
 				sys.argv.append("-h")
 		else:
 			sys.argv.append("-h")
-		opts, args = AppOptionParser.parse_args(self, sys.argv)
+		opts, args = self.parse_args(sys.argv)
 		if len(args) == 1 and opts.mod:
-			status = GenSetup.gen_setup(self, "{0}".format(opts.mod))
+			status = self.gen_setup("{0}".format(opts.mod))
 			if status == True:
-				print("Done")
-			else:
-				print("Failed to finish operation")
+				return True
+		return False
 

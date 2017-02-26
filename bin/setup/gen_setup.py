@@ -29,8 +29,8 @@ class GenSetup(ReadTemplate, WriteTemplate):
 		attribute:
 			None
 		method:
-			__init__ - create and initial instance
-			gen_setup - generate file setup.py
+			__init__ - Create and initial instance
+			gen_setup - Generate file setup.py
 	"""
 
 	def __init__(self):
@@ -47,10 +47,8 @@ class GenSetup(ReadTemplate, WriteTemplate):
 		@return: Success return true, else return false
 		"""
 		status = False
-		print("Loading setup template file")
-		content = ReadTemplate.read(self)
+		content = self.read()
 		if content != None:
-			print("Writing file setup.py")
-			status = WriteTemplate.write(self, content, package_name)
+			status = self.write(content, package_name)
 		return status
 

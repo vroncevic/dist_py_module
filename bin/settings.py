@@ -29,9 +29,9 @@ class Settings(Cfg2Object):
 	Loading a settings from a configuration file.
 	It defines:
 		attribute:
-			__CONFIG - postfix part of configuration file path
+			__CONFIG - Postfix part of configuration file path
 		method:
-			__init__ - create and initial instance
+			__init__ - Create and initial instance
 	"""
 
 	__CONFIG = "/../conf/dist_py_module.cfg"
