@@ -60,7 +60,7 @@ class CLI(AppOptionParser, AppInfo, GenSetup):
 		if len(sys.argv) > 1:
 			op = sys.argv[1]
 			if op not in CLI.__OPS:
-				sys.argv.clear()
+				sys.argv = []
 				sys.argv.append("-h")
 		else:
 			sys.argv.append("-h")
