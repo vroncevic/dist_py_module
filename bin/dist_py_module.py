@@ -6,7 +6,7 @@ Usage:
 	from dist_py_module import DistPyModule
 
 	tool = DistPyModule()
-	tool.run()
+	tool.process()
 
 @date: Feb 23, 2017
 @author: Vladimir Roncevic
@@ -16,33 +16,58 @@ Usage:
 @deffield: updated: Updated
 """
 
-from settings import Settings
-from cli_options import CLI
+import sys
+from app.base import Base
+from os.path import dirname, realpath
 
-class DistPyModule(object):
+class DistPyModule(Base):
 	"""
 	Define class DistPyModule with atribute(s) and method(s).
-	Load a settings, create a CL interface and run operation.
+	Load a settings, create a CL interface and run operation(s).
 	It defines:
 		attribute:
-			__app_cli - Command line interface parser
+			__CONFIG - Configuration file path
+			__OPS -  Tool options (list)
 		method:
-			__init__ - Create and initial instance
-			run - Run tool
+			__init__ - Initial constructor
+			process - Process and run tool option
 	"""
+
+	__CONFIG = "/../conf/dist_py_module.cfg"
+	__OPS = ["-g", "--gen", "-h", "--version"]
 
 	def __init__(self):
 		"""
 		@summary: Basic constructor
 		"""
-		config_reader = Settings()
-		config = config_reader.get_configuration()
-		if config != None:
-			self.__app_cli = CLI(config)
+		cdir = dirname(realpath(__file__))
+		base_config_file = "{0}{1}".format(cdir, DistPyModule.__CONFIG)
+		Base.__init__(self, base_config_file)
+		if self.get_tool_status():
+			self.add_new_option(
+				DistPyModule.__OPS[0], DistPyModule.__OPS[1], dest="mod",
+				help="Generate setup.py module"
+			)
 
-	def run(self):
+	def process(self):
 		"""
-		@summary: Run command line interface
+		@summary: Process and run tool option
 		"""
-		self.__app_cli.process()
+		if self.get_tool_status():
+			if len(sys.argv) > 1:
+				op = sys.argv[1]
+				if op not in DistPyModule.__OPS:
+					sys.argv = []
+					sys.argv.append("-h")
+			else:
+				sys.argv.append("-h")
+			opts, args = self.parse_args(sys.argv)
+			if len(args) == 1 and opts.mod:
+				status = self.gen_setup("{0}".format(opts.mod))
+				if status == True:
+					print("Done!\n")
+			else:
+				print("Failed to process and run option!\n")
+		else:
+			print("Tool is not operational!\n")
 

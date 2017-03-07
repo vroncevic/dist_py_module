@@ -16,5 +16,5 @@ from dist_py_module import DistPyModule
 if __name__ == '__main__':
 
 	tool = DistPyModule()
-	tool.run()
+	tool.process()
 
