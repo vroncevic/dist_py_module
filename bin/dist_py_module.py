@@ -18,9 +18,10 @@ Usage:
 
 import sys
 from app.base import Base
+from setup.gen_setup import GenSetup
 from os.path import dirname, realpath
 
-class DistPyModule(Base):
+class DistPyModule(Base, GenSetup):
 	"""
 	Define class DistPyModule with atribute(s) and method(s).
 	Load a settings, create a CL interface and run operation(s).
@@ -48,6 +49,7 @@ class DistPyModule(Base):
 				DistPyModule.__OPS[0], DistPyModule.__OPS[1], dest="mod",
 				help="Generate setup.py module"
 			)
+			GenSetup.__init__(self)
 
 	def process(self):
 		"""
