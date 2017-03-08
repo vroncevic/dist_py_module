@@ -19,7 +19,8 @@ Usage:
 import sys
 from app.base import Base
 from setup.gen_setup import GenSetup
-from os.path import dirname, realpath
+from os.path import dirname, realpath, exists
+from datetime import datetime
 
 class DistPyModule(Base, GenSetup):
 	"""
@@ -46,8 +47,8 @@ class DistPyModule(Base, GenSetup):
 		Base.__init__(self, base_config_file)
 		if self.get_tool_status():
 			self.add_new_option(
-				DistPyModule.__OPS[0], DistPyModule.__OPS[1], dest="mod",
-				help="Generate setup.py module"
+				DistPyModule.__OPS[0], DistPyModule.__OPS[1], dest="pkg",
+				help="generate setup.py module"
 			)
 			GenSetup.__init__(self)
 
@@ -55,6 +56,9 @@ class DistPyModule(Base, GenSetup):
 		"""
 		@summary: Process and run tool option
 		"""
+		tool = "[{0}]".format(self.get_name())
+		ver = "version {0}".format(self.get_version())
+		print("\n{0} {1} {2}".format(tool, ver, datetime.now().date()))
 		if self.get_tool_status():
 			if len(sys.argv) > 1:
 				op = sys.argv[1]
@@ -64,12 +68,19 @@ class DistPyModule(Base, GenSetup):
 			else:
 				sys.argv.append("-h")
 			opts, args = self.parse_args(sys.argv)
-			if len(args) == 1 and opts.mod:
-				status = self.gen_setup("{0}".format(opts.mod))
+			if len(args) == 1 and opts.pkg and not exists("setup.py"):
+				op_txt = "generating setup.py for package"
+				print("{0} {1} [{2}]".format(tool, op_txt, opts.pkg))
+				status = self.gen_setup("{0}".format(opts.pkg))
 				if status == True:
-					print("Done!\n")
+					print("{0} {1}".format(tool, "done!\n"))
+				else:
+					op_txt = "failed to process and run option!\n"
+					print("{0} {1}".format(tool, op_txt))
 			else:
-				print("Failed to process and run option!\n")
+				op_txt = "module setup.py already exist in local folder!\n"
+				print("{0} {1}".format(tool, op_txt))
 		else:
-			print("Tool is not operational!\n")
+			op_txt = "tool is not operational!\n"
+			print("{0} {1}".format(tool, op_txt))
 
