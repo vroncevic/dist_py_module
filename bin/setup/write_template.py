@@ -59,9 +59,9 @@ class WriteTemplate(object):
 		except (IOError, KeyError) as e:
 			print("I/O error({0}): {1}".format(e.errno, e.strerror))
 			sfile.close()
-			return False
 		else:
 			sfile.close()
 			chmod(setup_file, 0o666)
 			return True
+		return False
 
