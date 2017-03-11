@@ -19,7 +19,7 @@ Usage:
 @deffield: updated: Updated
 """
 
-from os import getcwd
+from os import getcwd, chmod
 from string import Template
 
 class WriteTemplate(object):
@@ -62,5 +62,6 @@ class WriteTemplate(object):
 			return False
 		else:
 			sfile.close()
+			chmod(setup_file, 0o666)
 			return True
 
