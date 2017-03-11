@@ -24,13 +24,13 @@ from setup.write_template import WriteTemplate
 class GenSetup(ReadTemplate, WriteTemplate):
 	"""
 	Define class GenSetup with atribute(s) and method(s).
-	Generate file setup.py by template and parameters.
+	Generate module file setup.py by template and parameters.
 	It defines:
 		attribute:
 			None
 		method:
-			__init__ - Create and initial instance
-			gen_setup - Generate file setup.py
+			__init__ - Initial constructor
+			gen_setup - Generate module file setup.py
 	"""
 
 	def __init__(self):
@@ -47,8 +47,8 @@ class GenSetup(ReadTemplate, WriteTemplate):
 		@return: Success return true, else return false
 		"""
 		status = False
-		content = self.read()
-		if content != None:
-			status = self.write(content, package_name)
+		setup_content = self.read()
+		if setup_content != None:
+			status = self.write(setup_content, package_name)
 		return status
 

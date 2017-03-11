@@ -6,7 +6,7 @@ Usage:
 	from setup.write_template import WriteTemplate
 
 	template_writter = WriteTemplate()
-	...
+	# ...
 	status = template_writter.write(setup_content, package_name)
 	if status == True:
 		# operation done
@@ -30,7 +30,7 @@ class WriteTemplate(object):
 		attribute:
 			__SETUP_FILE - File name for setup file
 		method:
-			__init__ - Create and initial instance
+			__init__ - Initial constructor
 			write - Write a template content with parameters to a file setup.py
 	"""
 
@@ -40,6 +40,7 @@ class WriteTemplate(object):
 		"""
 		@summary: Basic constructor
 		"""
+		pass
 
 	def write(self, setup_content, package_name):
 		"""
@@ -55,14 +56,11 @@ class WriteTemplate(object):
 			template = Template(setup_content)
 			sfile = open(setup_file, "w")
 			sfile.write(template.substitute(package))
-			sfile.close()
-		except IOError as e:
+		except (IOError, KeyError) as e:
 			print("I/O error({0}): {1}".format(e.errno, e.strerror))
 			sfile.close()
 			return False
-		except KeyError as e2:
-			print("Key error({0}): {1}".format(e2.errno, e2.strerror))
-			return False
 		else:
+			sfile.close()
 			return True
 

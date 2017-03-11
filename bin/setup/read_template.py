@@ -23,13 +23,13 @@ from os.path import dirname, realpath
 class ReadTemplate(object):
 	"""
 	Define class ReadTemplate with atribute(s) and method(s).
-	Read a template file (setup.template) and return a string representation.
+	Read a template file (setup.template) and return a content.
 	It defines:
 		attribute:
 			__TEMPLATE - Template file path
 			__template - Absolute template file path
 		method:
-			__init__ - Create and initial instance
+			__init__ - Initial constructor
 			read - Read a template and return a string representation
 	"""
 
@@ -37,7 +37,7 @@ class ReadTemplate(object):
 
 	def __init__(self):
 		"""
-		@summary: Basic constructor (initial absolute template file path)
+		@summary: Basic constructor
 		"""
 		cdir = dirname(realpath(__file__))
 		self.__template = "{0}{1}".format(cdir, ReadTemplate.__TEMPLATE)
@@ -45,14 +45,15 @@ class ReadTemplate(object):
 	def read(self):
 		"""
 		@summary: Read a template file and return a content
-		@return: String text code
+		@return: Template content or None
 		"""
 		try:
 			tfile = open(self.__template, "r")
 			setup_content = tfile.read()
-			tfile.close()
-			return setup_content
 		except IOError as e:
 			print("I/O error({0}): {1}".format(e.errno, e.strerror))
-			return None
+		else:
+			tfile.close()
+			return setup_content
+		return None
 
