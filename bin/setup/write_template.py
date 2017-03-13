@@ -1,30 +1,19 @@
 # encoding: utf-8
-"""
-setup.write_template - class WriteTemplate
-
-Usage:
-	from setup.write_template import WriteTemplate
-
-	template_writter = WriteTemplate()
-	# ...
-	status = template_writter.write(setup_content, package_name)
-	if status == True:
-		# operation done
-
-@date: Feb 24, 2017
-@author: Vladimir Roncevic
-@contact: <elektron.ronca@gmail.com>
-@copyright: 2017 Free software to use and distributed it.
-@license: GNU General Public License (GPL)
-@deffield: updated: Updated
-"""
+__author__ = "Vladimir Roncevic"
+__copyright__ = "Copyright 2017, Free software to use and distributed it."
+__credits__ = ["Vladimir Roncevic"]
+__license__ = "GNU General Public License (GPL)"
+__version__ = "1.0.0"
+__maintainer__ = "Vladimir Roncevic"
+__email__ = "elektron.ronca@gmail.com"
+__status__ = "Updated"
 
 from os import getcwd, chmod
 from string import Template
 
 class WriteTemplate(object):
 	"""
-	Define class WriteTemplate with atribute(s) and method(s).
+	Define class WriteTemplate with attribute(s) and method(s).
 	Write template content with parameters to a file setup.py.
 	It defines:
 		attribute:
@@ -37,31 +26,29 @@ class WriteTemplate(object):
 	__SETUP_FILE = "setup.py"
 
 	def __init__(self):
-		"""
-		@summary: Basic constructor
-		"""
 		pass
 
 	def write(self, setup_content, package_name):
 		"""
-		@summary: Write template content with parameters to file setup.py
-		@param setup_content: Template content
-		@param package_name: Parameter package name
-		@return: Success return true, else return false
+		:arg: setup_content - Template content
+		:type: str
+		:arg: package_name - Parameter package name
+		:type: str
+		:return Boolean status
+		:rtype: bool
 		"""
-		cdir = getcwd()
-		setup_file = "{0}/{1}".format(cdir, WriteTemplate.__SETUP_FILE)
+		current_dir = getcwd()
+		setup = "{0}/{1}".format(current_dir, WriteTemplate.__SETUP_FILE)
 		package = {"pkg":"{0}".format(package_name)}
 		try:
 			template = Template(setup_content)
-			sfile = open(setup_file, "w")
-			sfile.write(template.substitute(package))
+			setup_file = open(setup, "w")
+			setup_file.write(template.substitute(package))
 		except (IOError, KeyError) as e:
 			print("I/O error({0}): {1}".format(e.errno, e.strerror))
-			sfile.close()
+			setup_file.close()
 		else:
-			sfile.close()
-			chmod(setup_file, 0o666)
+			setup_file.close()
+			chmod(setup, 0o666)
 			return True
 		return False
-
