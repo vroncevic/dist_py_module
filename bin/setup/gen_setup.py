@@ -29,7 +29,7 @@ class GenSetup(ReadTemplate, WriteTemplate):
 
 	def gen_setup(self, package_name):
 		"""
-		:arg: package_name - Parameter package name
+		:param package_name: Parameter package name
 		:return: Boolean status
 		:rtype: bool
 		"""

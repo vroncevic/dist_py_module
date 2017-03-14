@@ -30,9 +30,9 @@ class WriteTemplate(object):
 
 	def write(self, setup_content, package_name):
 		"""
-		:arg: setup_content - Template content
+		:param setup_content: Template content
 		:type: str
-		:arg: package_name - Parameter package name
+		:param package_name: Parameter package name
 		:type: str
 		:return Boolean status
 		:rtype: bool
@@ -46,7 +46,6 @@ class WriteTemplate(object):
 			setup_file.write(template.substitute(package))
 		except (IOError, KeyError) as e:
 			print("I/O error({0}): {1}".format(e.errno, e.strerror))
-			setup_file.close()
 		else:
 			setup_file.close()
 			chmod(setup, 0o666)
