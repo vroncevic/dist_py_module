@@ -1,4 +1,4 @@
-Distributing Python Modules, generate setup.py (Python codes).
+Distributing Python Modules, generate setup.py.
 ================================================================================
 
 The README is used to introduce the modules and provide instructions on
@@ -36,5 +36,5 @@ it under the same terms as Python itself, either Python version 3.4.2 or,
 at your option, any later version of Python 3 you may have available.
 
 ![alt tag](https://raw.githubusercontent.com/vroncevic/dist_py_module/master/python_logo.png)
-![alt tag](https://raw.githubusercontent.com/vroncevic/dist_py_module/master/linux_logo.jpg)
+![alt tag](https://raw.githubusercontent.com/vroncevic/dist_py_module/master/linux_logo.png)
 
