@@ -1,4 +1,4 @@
-Distributing Python Modules, Generate module setup.py.
+Distributing Python Modules, Generate Module setup.py.
 ================================================================================
 
 The README is used to introduce the modules and provide instructions on
