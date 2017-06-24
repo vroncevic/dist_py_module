@@ -1,4 +1,4 @@
-Distributing Python Modules, generate setup.py.
+Distributing Python Modules, Generate module setup.py.
 ================================================================================
 
 The README is used to introduce the modules and provide instructions on
@@ -10,9 +10,7 @@ INSTALLATION
 To install this set of modules type the following:
 
 	cp -R ~/dist_py_module/bin/   /root/scripts/dist_py_module/ver.1.0/
-
 	cp -R ~/dist_py_module/conf/  /root/scripts/dist_py_module/ver.1.0/
-
 	cp -R ~/dist_py_module/log/   /root/scripts/dist_py_module/ver.1.0/
 
 DEPENDENCIES
