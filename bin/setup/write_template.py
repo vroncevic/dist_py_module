@@ -84,9 +84,9 @@ class WriteTemplate(object):
         cls, status = self.__class__, False
         func, current_dir = stack()[0][3], getcwd()
         setup_txt = 'First argument: expected setup_content <str> object'
-        setup_msg = "{0} {1} {2}".format(cls.VERBOSE, func, setup_txt)
+        setup_msg = "{0} {1} {2}".format('def', func, setup_txt)
         package_txt = 'First argument: expected package_name <str> object'
-        package_msg = "{0} {1} {2}".format(cls.VERBOSE, func, package_txt)
+        package_msg = "{0} {1} {2}".format('def', func, package_txt)
         if setup_content is None or not setup_content:
             raise ATSBadCallError(setup_msg)
         if not isinstance(setup_content, str):

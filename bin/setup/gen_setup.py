@@ -80,7 +80,7 @@ class GenSetup(ReadTemplate, WriteTemplate):
         """
         cls, func, status = self.__class__, stack()[0][3], False
         package_txt = 'Argument: expected package_name <str> object'
-        package_msg = "{0} {1} {2}".format(cls.VERBOSE, func, package_txt)
+        package_msg = "{0} {1} {2}".format('def', func, package_txt)
         if package_name is None or not package_name:
             raise ATSBadCallError(package_msg)
         if not isinstance(package_name, str):
