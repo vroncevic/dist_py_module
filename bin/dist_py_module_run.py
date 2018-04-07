@@ -17,7 +17,13 @@
 # with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-from dist_py_module import DistPyModule
+import sys
+
+try:
+    from dist_py_module import DistPyModule
+except ImportError as e:
+    msg = "\n{0}\n{1}\n".format(__file__, e)
+    sys.exit(msg)  # Force close python ATS ###################################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'

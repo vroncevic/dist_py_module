@@ -25,7 +25,6 @@ try:
 
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.console_io.error import error_message
-    from ats_utilities.console_io.success import success_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as e:
@@ -48,7 +47,7 @@ class GenSetup(ReadTemplate, WriteTemplate):
         Generate module file setup.py by template and parameters.
         It defines:
             attribute:
-                VERBOSE - Verbose prefix text
+                VERBOSE - Console text indicator for current process-phase
             method:
                 __init__ - Initial constructor
                 gen_setup - Generate module file setup.py
@@ -62,7 +61,7 @@ class GenSetup(ReadTemplate, WriteTemplate):
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
         """
-        cls = self.__class__
+        cls = GenSetup
         verbose_message(cls.VERBOSE, verbose, 'Initial setup')
         ReadTemplate.__init__(self, verbose=verbose)
         WriteTemplate.__init__(self, verbose=verbose)
@@ -78,7 +77,7 @@ class GenSetup(ReadTemplate, WriteTemplate):
             :rtype: <bool>
             :exceptions: ATSBadCallError | ATSTypeError
         """
-        cls, func, status = self.__class__, stack()[0][3], False
+        cls, func, status = GenSetup, stack()[0][3], False
         package_txt = 'Argument: expected package_name <str> object'
         package_msg = "{0} {1} {2}".format('def', func, package_txt)
         if package_name is None or not package_name:

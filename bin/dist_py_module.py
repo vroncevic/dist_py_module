@@ -65,8 +65,8 @@ class DistPyModule(CfgBase, GenSetup):
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
         """
-        cls = self.__class__
-        verbose_message(cls.VERBOSE, verbose, 'Initial tool configuration')
+        cls = DistPyModule
+        verbose_message(cls.VERBOSE, verbose, 'Initial configuration')
         module_dir = Path(__file__).resolve().parent
         base_config_file = "{0}{1}".format(module_dir, cls.__CONFIG)
         CfgBase.__init__(self, base_config_file, verbose=verbose)
@@ -86,7 +86,7 @@ class DistPyModule(CfgBase, GenSetup):
             :return: True (success) | False
             :rtype: <bool>
         """
-        cls, status = self.__class__, False
+        cls, status = DistPyModule, False
         tool_status = self.get_tool_status(verbose=verbose)
         if tool_status:
             self.show_base_info(verbose=verbose)

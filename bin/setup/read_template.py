@@ -64,7 +64,7 @@ class ReadTemplate(FileChecking):
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
         """
-        cls = self.__class__
+        cls = ReadTemplate
         super(ReadTemplate, self).__init__(verbose=verbose)
         verbose_message(cls.VERBOSE, verbose, 'Initial template')
         module_dir = Path(__file__).resolve().parent
@@ -83,9 +83,9 @@ class ReadTemplate(FileChecking):
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
             :return: Template content for setup module | None
-            :rtype: <str> or <NoneType>
+            :rtype: <str> | <NoneType>
         """
-        cls, setup_content = self.__class__, None
+        cls, setup_content = ReadTemplate, None
         verbose_message(cls.VERBOSE, verbose, 'Loading template')
         try:
             with ConfigFile(self.__template, 'r', cls.__FORMAT) as template:

@@ -64,7 +64,7 @@ class WriteTemplate(object):
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
         """
-        cls = self.__class__
+        cls = WriteTemplate
         verbose_message(cls.VERBOSE, verbose, 'Initial writer')
         pass
 
@@ -81,7 +81,7 @@ class WriteTemplate(object):
             :rtype: <bool>
             :exception: ATSBadCallError | ATSTypeError
         """
-        cls, status = self.__class__, False
+        cls, status = WriteTemplate, False
         func, current_dir = stack()[0][3], getcwd()
         setup_txt = 'First argument: expected setup_content <str> object'
         setup_msg = "{0} {1} {2}".format('def', func, setup_txt)
