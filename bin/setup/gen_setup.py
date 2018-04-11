@@ -20,8 +20,8 @@ import sys
 from inspect import stack
 
 try:
-    from read_template import ReadTemplate
-    from write_template import WriteTemplate
+    from setup.read_template import ReadTemplate
+    from setup.write_template import WriteTemplate
 
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.console_io.error import error_message
@@ -47,12 +47,16 @@ class GenSetup(ReadTemplate, WriteTemplate):
         Generate module file setup.py by template and parameters.
         It defines:
             attribute:
+                __slots__ - Setting class slots
                 VERBOSE - Console text indicator for current process-phase
             method:
                 __init__ - Initial constructor
                 gen_setup - Generate module file setup.py
     """
 
+    __CLASS_SLOTS__ = (
+        'VERBOSE'  # Read-Only
+    )
     VERBOSE = 'SETUP::GEN_SETUP'
 
     def __init__(self, verbose=False):

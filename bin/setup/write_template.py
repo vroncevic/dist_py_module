@@ -22,6 +22,7 @@ from os import getcwd, chmod
 from string import Template
 
 try:
+    from ats_utilities.slots import BaseSlots
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.config.config_context_manager import ConfigFile
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
@@ -40,23 +41,27 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class WriteTemplate(object):
+class WriteTemplate(BaseSlots):
     """
         Define class WriteTemplate with attribute(s) and method(s).
         Write template content with parameters to a file setup.py.
         It defines:
             attribute:
+                __CLASS_SLOTS__ - Setting class slots
+                VERBOSE - Console text indicator for current process-phase
                 __SETUP_FILE - File name for setup file
                 __FORMAT - File format (file extension)
-                VERBOSE - Console text indicator for current process-phase
             method:
                 __init__ - Initial constructor
                 write - Write a template content to a file setup.py
     """
 
+    __CLASS_SLOTS__ = (
+        'VERBOSE', '__SETUP_FILE', '__FORMAT'  # Read-Only
+    )
+    VERBOSE = 'SETUP::WRITE_TEMPLATE'
     __SETUP_FILE = 'setup.py'
     __FORMAT = 'py'
-    VERBOSE = 'SETUP::WRITE_TEMPLATE'
 
     def __init__(self, verbose=False):
         """
@@ -66,6 +71,7 @@ class WriteTemplate(object):
         """
         cls = WriteTemplate
         verbose_message(cls.VERBOSE, verbose, 'Initial writer')
+        BaseSlots.__init__(self)
         pass
 
     def write(self, setup_content, package_name, verbose=False):

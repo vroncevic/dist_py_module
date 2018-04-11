@@ -44,9 +44,10 @@ __status__ = 'Updated'
 class DistPyModule(CfgBase, GenSetup):
     """
         Define class DistPyModule with attribute(s) and method(s).
-        Load a settings, create a CL interface and run operation(s).
+        Load a settings, create an interface and run operation(s).
         It defines:
             attribute:
+                __slots__ - Setting class slots
                 VERBOSE - Console text indicator for current process-phase
                 __CONFIG - Configuration file path
                 __OPS -  Tool options (list)
@@ -55,6 +56,9 @@ class DistPyModule(CfgBase, GenSetup):
                 process - Process and run tool option
     """
 
+    __CLASS_SLOTS__ = (
+        'VERBOSE', '__CONFIG', '__OPS'  # Read-Only
+    )
     VERBOSE = 'DISTRIBUTE_PY_MODULE'
     __CONFIG = '/../conf/dist_py_module.cfg'
     __OPS = ['-g', '--gen', '-h', '--version', '--verbose']
@@ -90,7 +94,8 @@ class DistPyModule(CfgBase, GenSetup):
         tool_status = self.get_tool_status(verbose=verbose)
         if tool_status:
             self.show_base_info(verbose=verbose)
-            if len(sys.argv) > 1:
+            num_of_args_sys = len(sys.argv)
+            if num_of_args_sys > 1:
                 option = sys.argv[1]
                 if option not in cls.__OPS:
                     sys.argv = []
@@ -104,8 +109,7 @@ class DistPyModule(CfgBase, GenSetup):
             if num_of_args == 1 and opts.pkg and not setup_exists:
                 message = "{0} {1} [{2}]".format(
                     "[{0}]".format(self.get_ats_name(verbose=verbose)),
-                    'Generating setup.py for package',
-                    opts.pkg
+                    'Generating setup.py for package', opts.pkg
                 )
                 print(message)
                 gen_process_status = self.gen_setup("{0}".format(opts.pkg))

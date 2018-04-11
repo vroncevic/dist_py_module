@@ -45,18 +45,23 @@ class ReadTemplate(FileChecking):
         Read a template file (setup.template) and return a content.
         It defines:
             attribute:
+                __CLASS_SLOTS__ - Setting class slots
+                VERBOSE - Console text indicator for current process-phase
                 __TEMPLATE - Template file path
                 __FORMAT - File format for template
-                VERBOSE - Console text indicator for current process-phase
                 __template - Absolute template file path
             method:
                 __init__ - Initial constructor
                 read - Read a template and return a string representation
     """
 
+    __CLASS_SLOTS__ = (
+        'VERBOSE', '__TEMPLATE', '__FORMAT',  # Read-Only
+        '__template'
+    )
+    VERBOSE = 'SETUP::READ_TEMPLATE'
     __TEMPLATE = '/../../conf/template/setup.template'
     __FORMAT = 'template'
-    VERBOSE = 'SETUP::READ_TEMPLATE'
 
     def __init__(self, verbose=False):
         """
@@ -65,8 +70,8 @@ class ReadTemplate(FileChecking):
             :type verbose: <bool>
         """
         cls = ReadTemplate
-        super(ReadTemplate, self).__init__(verbose=verbose)
         verbose_message(cls.VERBOSE, verbose, 'Initial template')
+        FileChecking.__init__(self, verbose=verbose)
         module_dir = Path(__file__).resolve().parent
         template_file = "{0}{1}".format(module_dir, cls.__TEMPLATE)
         template_file_exists = self.check_file(
