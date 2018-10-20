@@ -29,7 +29,7 @@ try:
     from ats_utilities.console_io.success import success_message
 except ImportError as e:
     msg = "\n{0}\n{1}\n".format(__file__, e)
-    sys.exit(msg)  # Force close python ATS ###################################
+    sys.exit(msg)  # Force close python ATS ##################################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
@@ -41,7 +41,7 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class DistPyModule(CfgBase, GenSetup):
+class DistPyModule(CfgBase):
     """
         Define class DistPyModule with attribute(s) and method(s).
         Load a settings, create an interface and run operation(s).
@@ -53,12 +53,10 @@ class DistPyModule(CfgBase, GenSetup):
                 __OPS -  Tool options (list)
             method:
                 __init__ - Initial constructor
-                process - Process and run tool option
+                process - Process and generate module setup.py
     """
 
-    __CLASS_SLOTS__ = (
-        'VERBOSE', '__CONFIG', '__OPS'  # Read-Only
-    )
+    __slots__ = ('VERBOSE', '__CONFIG', '__OPS')
     VERBOSE = 'DISTRIBUTE_PY_MODULE'
     __CONFIG = '/../conf/dist_py_module.cfg'
     __OPS = ['-g', '--gen', '-h', '--version', '--verbose']
@@ -68,19 +66,17 @@ class DistPyModule(CfgBase, GenSetup):
             Loading configuration and setting argument options.
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
+            :exceptions: None
         """
-        cls = DistPyModule
-        verbose_message(cls.VERBOSE, verbose, 'Initial configuration')
+        verbose_message(DistPyModule.VERBOSE, verbose, 'Initial configuration')
         module_dir = Path(__file__).resolve().parent
-        base_config_file = "{0}{1}".format(module_dir, cls.__CONFIG)
+        base_config_file = "{0}{1}".format(module_dir, DistPyModule.__CONFIG)
         CfgBase.__init__(self, base_config_file, verbose=verbose)
-        tool_status = self.get_tool_status(verbose=verbose)
-        if tool_status:
+        if self.tool_status:
             self.add_new_option(
-                cls.__OPS[0], cls.__OPS[1], dest='pkg',
-                help='generate setup.py module'
+                DistPyModule.__OPS[0], DistPyModule.__OPS[1], dest='pkg',
+                help='generate module setup.py'
             )
-            GenSetup.__init__(self, verbose=verbose)
 
     def process(self, verbose=False):
         """
@@ -89,15 +85,14 @@ class DistPyModule(CfgBase, GenSetup):
             :type verbose: <bool>
             :return: True (success) | False
             :rtype: <bool>
+            :exceptions: None
         """
-        cls, status = DistPyModule, False
-        tool_status = self.get_tool_status(verbose=verbose)
-        if tool_status:
-            self.show_base_info(verbose=verbose)
+        status = False
+        if self.tool_status:
             num_of_args_sys = len(sys.argv)
             if num_of_args_sys > 1:
                 option = sys.argv[1]
-                if option not in cls.__OPS:
+                if option not in DistPyModule.__OPS:
                     sys.argv = []
                     sys.argv.append('-h')
             else:
@@ -107,27 +102,21 @@ class DistPyModule(CfgBase, GenSetup):
             setup_path = "{0}/{1}".format(current_dir, 'setup.py')
             setup_exists = Path(setup_path).exists()
             if num_of_args == 1 and opts.pkg and not setup_exists:
+                generator, gen_status = GenSetup(verbose=verbose), False
                 message = "{0} {1} [{2}]".format(
                     "[{0}]".format(self.get_ats_name(verbose=verbose)),
                     'Generating setup.py for package', opts.pkg
                 )
                 print(message)
-                gen_process_status = self.gen_setup("{0}".format(opts.pkg))
-                if gen_process_status:
-                    success_message(
-                        self.get_ats_name(verbose=verbose), 'Done\n'
-                    )
+                gen_status = generator.gen_setup("{0}".format(opts.pkg))
+                if gen_status:
+                    success_message(self.name, 'Done\n')
                     status = True
                 else:
-                    error_message(
-                        self.get_ats_name(verbose=verbose),
-                        'Failed to process and run option'
-                    )
+                    error_message(self.name, 'Failed to generate setup.py')
             else:
-                error_message(
-                    self.get_ats_name(verbose=verbose),
-                    'setup.py already exist in current directory'
-                )
+                error_message(self.name, 'setup.py already exist !')
         else:
             error_message('[dist_py_module]', 'Tool is not operational')
         return True if status else False
+

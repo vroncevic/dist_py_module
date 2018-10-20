@@ -29,7 +29,7 @@ try:
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as e:
     msg = "\n{0}\n{1}\n".format(__file__, e)
-    sys.exit(msg)  # Force close python ATS ###################################
+    sys.exit(msg)  # Force close python ATS ##################################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
@@ -41,7 +41,7 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class GenSetup(ReadTemplate, WriteTemplate):
+class GenSetup(object):
     """
         Define class GenSetup with attribute(s) and method(s).
         Generate module file setup.py by template and parameters.
@@ -49,14 +49,14 @@ class GenSetup(ReadTemplate, WriteTemplate):
             attribute:
                 __slots__ - Setting class slots
                 VERBOSE - Console text indicator for current process-phase
+                __reader - 
+                __writter - 
             method:
                 __init__ - Initial constructor
                 gen_setup - Generate module file setup.py
     """
 
-    __CLASS_SLOTS__ = (
-        'VERBOSE'  # Read-Only
-    )
+    __slots__ = ('VERBOSE', '__reader', '__writter')
     VERBOSE = 'SETUP::GEN_SETUP'
 
     def __init__(self, verbose=False):
@@ -64,11 +64,11 @@ class GenSetup(ReadTemplate, WriteTemplate):
             Initial constructor
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
+            :exceptions: None
         """
-        cls = GenSetup
-        verbose_message(cls.VERBOSE, verbose, 'Initial setup')
-        ReadTemplate.__init__(self, verbose=verbose)
-        WriteTemplate.__init__(self, verbose=verbose)
+        verbose_message(GenSetup.VERBOSE, verbose, 'Initial setup')
+        self.__reader = ReadTemplate(verbose=verbose)
+        self.__writter = WriteTemplate(verbose=verbose)
 
     def gen_setup(self, package_name, verbose=False):
         """
@@ -81,7 +81,7 @@ class GenSetup(ReadTemplate, WriteTemplate):
             :rtype: <bool>
             :exceptions: ATSBadCallError | ATSTypeError
         """
-        cls, func, status = GenSetup, stack()[0][3], False
+        func, status = stack()[0][3], False
         package_txt = 'Argument: expected package_name <str> object'
         package_msg = "{0} {1} {2}".format('def', func, package_txt)
         if package_name is None or not package_name:
@@ -89,12 +89,12 @@ class GenSetup(ReadTemplate, WriteTemplate):
         if not isinstance(package_name, str):
             raise ATSTypeError(package_msg)
         verbose_message(
-            cls.VERBOSE, verbose, 'Generating package', package_name
+            GenSetup.VERBOSE, verbose, 'Generating package', package_name
         )
-        setup_content = self.read(verbose=verbose)  # Load template
+        setup_content = self.__reader.read(verbose=verbose)
         if setup_content:
-            # Generate setup.py
-            status = self.write(setup_content, package_name, verbose=verbose)
-            if not status:
-                error_message(cls.VERBOSE, 'Failed to generate')
+            status = self.__writter.write(
+                setup_content, package_name, verbose=verbose
+            )
         return True if status else False
+

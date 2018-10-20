@@ -27,7 +27,7 @@ try:
     from ats_utilities.console_io.verbose import verbose_message
 except ImportError as e:
     msg = "\n{0}\n{1}\n".format(__file__, e)
-    sys.exit(msg)  # Force close python ATS ###################################
+    sys.exit(msg)  # Force close python ATS ##################################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
@@ -45,20 +45,17 @@ class ReadTemplate(FileChecking):
         Read a template file (setup.template) and return a content.
         It defines:
             attribute:
-                __CLASS_SLOTS__ - Setting class slots
+                __slots__ - Setting class slots
                 VERBOSE - Console text indicator for current process-phase
                 __TEMPLATE - Template file path
                 __FORMAT - File format for template
-                __template - Absolute template file path
+                __tmpl - Absolute template file path
             method:
                 __init__ - Initial constructor
                 read - Read a template and return a string representation
     """
 
-    __CLASS_SLOTS__ = (
-        'VERBOSE', '__TEMPLATE', '__FORMAT',  # Read-Only
-        '__template'
-    )
+    __slots__ = ('VERBOSE', '__TEMPLATE', '__FORMAT', '__tmpl')
     VERBOSE = 'SETUP::READ_TEMPLATE'
     __TEMPLATE = '/../../conf/template/setup.template'
     __FORMAT = 'template'
@@ -68,19 +65,19 @@ class ReadTemplate(FileChecking):
             Setting template file from configuration directory.
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
+            :exceptions: None
         """
-        cls = ReadTemplate
-        verbose_message(cls.VERBOSE, verbose, 'Initial template')
+        verbose_message(ReadTemplate.VERBOSE, verbose, 'Initial template')
         FileChecking.__init__(self, verbose=verbose)
         module_dir = Path(__file__).resolve().parent
-        template_file = "{0}{1}".format(module_dir, cls.__TEMPLATE)
+        template_file = "{0}{1}".format(module_dir, ReadTemplate.__TEMPLATE)
         template_file_exists = self.check_file(
             file_path=template_file, verbose=verbose
         )
         if template_file_exists:
-            self.__template = template_file
+            self.__tmpl = template_file
         else:
-            self.__template = None
+            self.__tmpl = None
 
     def read(self, verbose=False):
         """
@@ -89,12 +86,14 @@ class ReadTemplate(FileChecking):
             :type verbose: <bool>
             :return: Template content for setup module | None
             :rtype: <str> | <NoneType>
+            :exceptions: None
         """
-        cls, setup_content = ReadTemplate, None
-        verbose_message(cls.VERBOSE, verbose, 'Loading template')
+        setup_content = None
+        verbose_message(ReadTemplate.VERBOSE, verbose, 'Loading template')
         try:
-            with ConfigFile(self.__template, 'r', cls.__FORMAT) as template:
-                setup_content = template.read()
+            with ConfigFile(self.__tmpl, 'r', ReadTemplate.__FORMAT) as tmpl:
+                setup_content = tmpl.read()
         except AttributeError:
             pass
         return setup_content
+
