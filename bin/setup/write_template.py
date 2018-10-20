@@ -22,14 +22,13 @@ from os import getcwd, chmod
 from string import Template
 
 try:
-    from ats_utilities.slots import BaseSlots
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.config.config_context_manager import ConfigFile
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as e:
     msg = "\n{0}\n{1}\n".format(__file__, e)
-    sys.exit(msg)  # Force close python ATS ###################################
+    sys.exit(msg)  # Force close python ATS ##################################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
@@ -41,13 +40,13 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class WriteTemplate(BaseSlots):
+class WriteTemplate(object):
     """
         Define class WriteTemplate with attribute(s) and method(s).
         Write template content with parameters to a file setup.py.
         It defines:
             attribute:
-                __CLASS_SLOTS__ - Setting class slots
+                __slots__ - Setting class slots
                 VERBOSE - Console text indicator for current process-phase
                 __SETUP_FILE - File name for setup file
                 __FORMAT - File format (file extension)
@@ -56,9 +55,7 @@ class WriteTemplate(BaseSlots):
                 write - Write a template content to a file setup.py
     """
 
-    __CLASS_SLOTS__ = (
-        'VERBOSE', '__SETUP_FILE', '__FORMAT'  # Read-Only
-    )
+    __slots__ = ('VERBOSE', '__SETUP_FILE', '__FORMAT')
     VERBOSE = 'SETUP::WRITE_TEMPLATE'
     __SETUP_FILE = 'setup.py'
     __FORMAT = 'py'
@@ -68,11 +65,9 @@ class WriteTemplate(BaseSlots):
             Initial constructor
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
+            :exceptions: None
         """
-        cls = WriteTemplate
-        verbose_message(cls.VERBOSE, verbose, 'Initial writer')
-        BaseSlots.__init__(self)
-        pass
+        verbose_message(WriteTemplate.VERBOSE, verbose, 'Initial writer')
 
     def write(self, setup_content, package_name, verbose=False):
         """
@@ -87,7 +82,7 @@ class WriteTemplate(BaseSlots):
             :rtype: <bool>
             :exception: ATSBadCallError | ATSTypeError
         """
-        cls, status = WriteTemplate, False
+        status = False
         func, current_dir = stack()[0][3], getcwd()
         setup_txt = 'First argument: expected setup_content <str> object'
         setup_msg = "{0} {1} {2}".format('def', func, setup_txt)
@@ -101,8 +96,8 @@ class WriteTemplate(BaseSlots):
             raise ATSBadCallError(package_msg)
         if not isinstance(package_name, str):
             raise ATSTypeError(package_msg)
-        setup = "{0}/{1}".format(current_dir, cls.__SETUP_FILE)
-        verbose_message(cls.VERBOSE, verbose, 'Write setup file')
+        setup = "{0}/{1}".format(current_dir, WriteTemplate.__SETUP_FILE)
+        verbose_message(WriteTemplate.VERBOSE, verbose, 'Write setup.py')
         package = {'pkg': "{0}".format(package_name)}
         template = Template(setup_content)
         try:
@@ -113,3 +108,4 @@ class WriteTemplate(BaseSlots):
         except AttributeError:
             pass
         return True if status else False
+
