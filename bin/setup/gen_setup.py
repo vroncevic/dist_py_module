@@ -49,8 +49,8 @@ class GenSetup(object):
             attribute:
                 __slots__ - Setting class slots
                 VERBOSE - Console text indicator for current process-phase
-                __reader - 
-                __writter - 
+                __reader - Reader API
+                __writter - Writer API
             method:
                 __init__ - Initial constructor
                 gen_setup - Generate module file setup.py
