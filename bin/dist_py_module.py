@@ -104,7 +104,7 @@ class DistPyModule(CfgBase):
             if num_of_args == 1 and opts.pkg and not setup_exists:
                 generator, gen_status = GenSetup(verbose=verbose), False
                 message = "{0} {1} [{2}]".format(
-                    "[{0}]".format(self.get_ats_name(verbose=verbose)),
+                    "[{0}]".format(self.name),
                     'Generating setup.py for package', opts.pkg
                 )
                 print(message)
