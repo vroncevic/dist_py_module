@@ -117,6 +117,6 @@ class DistPyModule(CfgBase):
             else:
                 error_message(self.name, 'setup.py already exist !')
         else:
-            error_message('[dist_py_module]', 'Tool is not operational')
+            error_message('dist_py_module', 'Tool is not operational')
         return True if status else False
 
