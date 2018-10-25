@@ -50,13 +50,13 @@ class GenSetup(object):
                 __slots__ - Setting class slots
                 VERBOSE - Console text indicator for current process-phase
                 __reader - Reader API
-                __writter - Writer API
+                __writer - Writer API
             method:
                 __init__ - Initial constructor
                 gen_setup - Generate module file setup.py
     """
 
-    __slots__ = ('VERBOSE', '__reader', '__writter')
+    __slots__ = ('VERBOSE', '__reader', '__writer')
     VERBOSE = 'SETUP::GEN_SETUP'
 
     def __init__(self, verbose=False):
@@ -68,7 +68,7 @@ class GenSetup(object):
         """
         verbose_message(GenSetup.VERBOSE, verbose, 'Initial setup')
         self.__reader = ReadTemplate(verbose=verbose)
-        self.__writter = WriteTemplate(verbose=verbose)
+        self.__writer = WriteTemplate(verbose=verbose)
 
     def gen_setup(self, package_name, verbose=False):
         """
@@ -93,7 +93,7 @@ class GenSetup(object):
         )
         setup_content = self.__reader.read(verbose=verbose)
         if setup_content:
-            status = self.__writter.write(
+            status = self.__writer.write(
                 setup_content, package_name, verbose=verbose
             )
         return True if status else False
