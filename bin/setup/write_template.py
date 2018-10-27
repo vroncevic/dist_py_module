@@ -56,7 +56,7 @@ class WriteTemplate(object):
     """
 
     __slots__ = ('VERBOSE', '__SETUP_FILE', '__FORMAT')
-    VERBOSE = 'SETUP::WRITE_TEMPLATE'
+    VERBOSE = 'DIST_PY_MODULE::SETUP::WRITE_TEMPLATE'
     __SETUP_FILE = 'setup.py'
     __FORMAT = 'py'
 
@@ -82,7 +82,7 @@ class WriteTemplate(object):
             :rtype: <bool>
             :exception: ATSBadCallError | ATSTypeError
         """
-        status = False
+        status, template = False, None
         func, current_dir = stack()[0][3], getcwd()
         setup_txt = 'First argument: expected setup_content <str> object'
         setup_msg = "{0} {1} {2}".format('def', func, setup_txt)
@@ -100,12 +100,10 @@ class WriteTemplate(object):
         verbose_message(WriteTemplate.VERBOSE, verbose, 'Write setup.py')
         package = {'pkg': "{0}".format(package_name)}
         template = Template(setup_content)
-        try:
+        if template:
             with open(setup, 'w') as setup_file:
                 setup_file.write(template.substitute(package))
                 chmod(setup, 0o666)
                 status = True
-        except AttributeError:
-            pass
         return True if status else False
 

@@ -57,7 +57,7 @@ class GenSetup(object):
     """
 
     __slots__ = ('VERBOSE', '__reader', '__writer')
-    VERBOSE = 'SETUP::GEN_SETUP'
+    VERBOSE = 'DIST_PY_MODULE::SETUP::GEN_SETUP'
 
     def __init__(self, verbose=False):
         """
@@ -81,7 +81,7 @@ class GenSetup(object):
             :rtype: <bool>
             :exceptions: ATSBadCallError | ATSTypeError
         """
-        func, status = stack()[0][3], False
+        func, status, setup_content = stack()[0][3], False, None
         package_txt = 'Argument: expected package_name <str> object'
         package_msg = "{0} {1} {2}".format('def', func, package_txt)
         if package_name is None or not package_name:
