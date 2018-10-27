@@ -56,8 +56,12 @@ class DistPyModule(CfgBase):
                 process - Process and generate module setup.py
     """
 
-    __slots__ = ('VERBOSE', '__CONFIG', '__OPS')
-    VERBOSE = 'DISTRIBUTE_PY_MODULE'
+    __slots__ = (
+        'VERBOSE',
+        '__CONFIG',
+        '__OPS'
+    )
+    VERBOSE = 'DIST_PY_MODULE'
     __CONFIG = '/../conf/dist_py_module.cfg'
     __OPS = ['-g', '--gen', '-h', '--version', '--verbose']
 

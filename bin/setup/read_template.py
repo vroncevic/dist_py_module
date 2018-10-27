@@ -17,13 +17,12 @@
 #
 
 import sys
+from os.path import isdir
 
 try:
     from pathlib import Path
 
     from ats_utilities.config.file_checking import FileChecking
-    from ats_utilities.exceptions.ats_file_error import ATSFileError
-    from ats_utilities.config.config_context_manager import ConfigFile
     from ats_utilities.console_io.verbose import verbose_message
 except ImportError as e:
     msg = "\n{0}\n{1}\n".format(__file__, e)
@@ -47,37 +46,49 @@ class ReadTemplate(FileChecking):
             attribute:
                 __slots__ - Setting class slots
                 VERBOSE - Console text indicator for current process-phase
-                __TEMPLATE - Template file path
+                __TEMPLATE_DIR - Template dir path
+                __TEMPLATES - Types of templates
                 __FORMAT - File format for template
-                __tmpl - Absolute template file path
+                __template_dir - Absolute file path of template dir
             method:
                 __init__ - Initial constructor
                 read - Read a template and return a string representation
     """
 
-    __slots__ = ('VERBOSE', '__TEMPLATE', '__FORMAT', '__tmpl')
-    VERBOSE = 'SETUP::READ_TEMPLATE'
-    __TEMPLATE = '/../../conf/template/setup.template'
+    __slots__ = (
+        'VERBOSE',
+        '__TEMPLATE_DIR',
+        '__TEMPLATES',
+        '__FORMAT',
+        '__template_dir'
+    )
+    VERBOSE = 'DIST_PY_MODULE::SETUP::READ_TEMPLATE'
+    __TEMPLATE_DIR = '/../../conf/template/'
+    __TEMPLATES = {
+        1:'setup.template'
+    }
     __FORMAT = 'template'
 
     def __init__(self, verbose=False):
         """
-            Setting template file from configuration directory.
+            Setting template dir from configuration directory.
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
             :exceptions: None
         """
-        verbose_message(ReadTemplate.VERBOSE, verbose, 'Initial template')
-        FileChecking.__init__(self, verbose=verbose)
-        module_dir = Path(__file__).resolve().parent
-        template_file = "{0}{1}".format(module_dir, ReadTemplate.__TEMPLATE)
-        template_file_exists = self.check_file(
-            file_path=template_file, verbose=verbose
+        verbose_message(
+            ReadTemplate.VERBOSE, verbose, 'Initial reader'
         )
-        if template_file_exists:
-            self.__tmpl = template_file
+        FileChecking.__init__(self, verbose=verbose)
+        current_dir = Path(__file__).parent
+        template_dir = "{0}{1}".format(
+            current_dir, ReadTemplate.__TEMPLATE_DIR
+        )
+        check_template_dir = isdir(template_dir)
+        if check_template_dir:
+            self.__template_dir = template_dir
         else:
-            self.__tmpl = None
+            self.__template_dir = None
 
     def read(self, verbose=False):
         """
@@ -88,12 +99,16 @@ class ReadTemplate(FileChecking):
             :rtype: <str> | <NoneType>
             :exceptions: None
         """
-        setup_content = None
+        template_file_exists, setup_content, template_file = False, None, None
         verbose_message(ReadTemplate.VERBOSE, verbose, 'Loading template')
-        try:
-            with ConfigFile(self.__tmpl, 'r', ReadTemplate.__FORMAT) as tmpl:
+        template_file = "{0}{1}".format(
+            self.__template_dir, ReadTemplate.__TEMPLATES[1]
+        )
+        template_file_exists = self.check_file(
+            file_path=template_file, verbose=verbose
+        )
+        if template_file_exists:
+            with open(template_file, 'r') as tmpl:
                 setup_content = tmpl.read()
-        except AttributeError:
-            pass
         return setup_content
 
