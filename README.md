@@ -22,7 +22,7 @@ This module requires these other modules and libraries:
 
 ### Tool structure
 
-![alt tag](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/python-tool-docs/python_setup.png)
+![alt tag](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/python-tool-docs/python_setup.png =250x250)
 
 ```
 .
