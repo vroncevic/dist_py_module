@@ -73,8 +73,8 @@ class DistPyModule(CfgBase):
             :exceptions: None
         """
         verbose_message(DistPyModule.VERBOSE, verbose, 'Initial configuration')
-        module_dir = Path(__file__).resolve().parent
-        base_config_file = "{0}{1}".format(module_dir, DistPyModule.__CONFIG)
+        current_dir = Path(__file__).resolve().parent
+        base_config_file = "{0}{1}".format(current_dir, DistPyModule.__CONFIG)
         CfgBase.__init__(self, base_config_file, verbose=verbose)
         if self.tool_status:
             self.add_new_option(
