@@ -28,7 +28,7 @@ This module requires these other modules and libraries:
 
 Base flow of generation process:
 
-![alt tag](https://raw.githubusercontent.com/vroncevic/gen_avr8/dev/python-tool-docs/python_setup_flow.png)
+![alt tag](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/python-tool-docs/python_setup_flow.png)
 
 ### TOOL STRUCTURE
 
