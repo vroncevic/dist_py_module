@@ -1,5 +1,9 @@
 # Distributing Python Modules, Generate Module setup.py.
 
+dist_py_module is toolset for generating setup.py for pyp.
+
+Developed in python code: 100%.
+
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
@@ -20,9 +24,19 @@ This module requires these other modules and libraries:
 
 * ats_utilities https://vroncevic.github.io/ats_utilities
 
-### Tool structure
+### GENERATION FLOW OF PYP SETUP
+
+Base flow of generation process:
+
+![alt tag](https://raw.githubusercontent.com/vroncevic/gen_avr8/dev/python-tool-docs/python_setup_flow.png)
+
+### TOOL STRUCTURE
+
+dist_py_module is based on Template mechanism:
 
 ![alt tag](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/python-tool-docs/python_setup.png)
+
+Generator structure:
 
 ```
 .
