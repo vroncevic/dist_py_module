@@ -8,14 +8,19 @@ The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
+![Python package](https://github.com/vroncevic/dist_py_module/workflows/Python%20package/badge.svg)
+
 ### INSTALLATION
+Navigate to release [page](https://github.com/vroncevic/dist_py_module/releases/tag/v1.0) download and extract release archive.
 
 To install this set of modules type the following:
 
 ```
-cp -R ~/dist_py_module/bin/   /root/scripts/dist_py_module/ver.1.0/
-cp -R ~/dist_py_module/conf/  /root/scripts/dist_py_module/ver.1.0/
-cp -R ~/dist_py_module/log/   /root/scripts/dist_py_module/ver.1.0/
+tar xvzf dist_py_module-1.0.tar.gz
+cd dist_py_module-1.0/python-tool
+cp -R ~/bin/   /root/scripts/dist_py_module/
+cp -R ~/conf/  /root/scripts/dist_py_module/
+cp -R ~/log/   /root/scripts/dist_py_module/
 ```
 
 ### DEPENDENCIES

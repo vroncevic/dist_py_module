@@ -1,20 +1,24 @@
 # -*- coding: UTF-8 -*-
-# write_template.py
-# Copyright (C) 2018 Vladimir Roncevic <elektron.ronca@gmail.com>
-#
-# dist_py_module is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License as published by the
-# Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# dist_py_module is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along
-# with this program. If not, see <http://www.gnu.org/licenses/>.
-#
+
+"""
+ Module
+     write_template.py
+ Copyright
+     Copyright (C) 2018 Vladimir Roncevic <elektron.ronca@gmail.com>
+     dist_py_module is free software: you can redistribute it and/or modify it
+     under the terms of the GNU General Public License as published by the
+     Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+     dist_py_module is distributed in the hope that it will be useful, but
+     WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+     See the GNU General Public License for more details.
+     You should have received a copy of the GNU General Public License along
+     with this program. If not, see <http://www.gnu.org/licenses/>.
+ Info
+     Define class WriteTemplate with attribute(s) and method(s).
+     Write template content with parameters to a file setup.py.
+"""
 
 import sys
 from inspect import stack
@@ -23,12 +27,11 @@ from string import Template
 
 try:
     from ats_utilities.console_io.verbose import verbose_message
-    from ats_utilities.config.config_context_manager import ConfigFile
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
-except ImportError as e:
-    msg = "\n{0}\n{1}\n".format(__file__, e)
-    sys.exit(msg)  # Force close python ATS ##################################
+except ImportError as error:
+    MESSAGE = "\n{0}\n{1}\n".format(__file__, error)
+    sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
@@ -52,10 +55,11 @@ class WriteTemplate(object):
                 __FORMAT - File format (file extension)
             method:
                 __init__ - Initial constructor
+                get_setup - Getter for setup file object
                 write - Write a template content to a file setup.py
     """
 
-    __slots__ = ('VERBOSE', '__SETUP_FILE', '__FORMAT')
+    __slots__ = ('VERBOSE', '__SETUP_FILE', '__FORMAT', '__setup')
     VERBOSE = 'DIST_PY_MODULE::SETUP::WRITE_TEMPLATE'
     __SETUP_FILE = 'setup.py'
     __FORMAT = 'py'
@@ -68,6 +72,15 @@ class WriteTemplate(object):
             :exceptions: None
         """
         verbose_message(WriteTemplate.VERBOSE, verbose, 'Initial writer')
+        self.__setup = None
+
+    def get_setup(self):
+        """
+            Getter for setup file object
+            :return: Setup file path
+            :rtype: <str>
+        """
+        return self.__setup
 
     def write(self, setup_content, package_name, verbose=False):
         """
@@ -96,14 +109,15 @@ class WriteTemplate(object):
             raise ATSBadCallError(package_msg)
         if not isinstance(package_name, str):
             raise ATSTypeError(package_msg)
-        setup = "{0}/{1}".format(current_dir, WriteTemplate.__SETUP_FILE)
+        self.__setup = "{0}/{1}".format(
+            current_dir, WriteTemplate.__SETUP_FILE
+        )
         verbose_message(WriteTemplate.VERBOSE, verbose, 'Write setup.py')
         package = {'pkg': "{0}".format(package_name)}
         template = Template(setup_content)
         if template:
-            with open(setup, 'w') as setup_file:
+            with open(self.__setup, 'w') as setup_file:
                 setup_file.write(template.substitute(package))
-                chmod(setup, 0o666)
+                chmod(self.__setup, 0o666)
                 status = True
         return True if status else False
-
