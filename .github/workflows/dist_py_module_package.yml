@@ -1,4 +1,4 @@
-name: Python package
+name: Python package dist_py_module
 
 on: [push]
 
