@@ -47,17 +47,18 @@ class ReadTemplate(FileChecking):
         Define class ReadTemplate with attribute(s) and method(s).
         Read a template file (setup.template) and return a content.
         It defines:
-            attribute:
-                __slots__ - Setting class slots
-                VERBOSE - Console text indicator for current process-phase
-                __TEMPLATE_DIR - Template dir path
-                __TEMPLATES - Types of templates
-                __FORMAT - File format for template
-                __template_dir - Absolute file path of template dir
-            method:
-                __init__ - Initial constructor
-                get_tempalte_dir - Getter for template directory object
-                read - Read a template and return a string representation
+
+            :attributes:
+                | __slots__ - Setting class slots
+                | VERBOSE - Console text indicator for current process-phase
+                | __TEMPLATE_DIR - Template dir path
+                | __TEMPLATES - Types of templates
+                | __FORMAT - File format for template
+                | __template_dir - Absolute file path of template dir
+            :methods:
+                | __init__ - Initial constructor
+                | get_tempalte_dir - Getter for template directory object
+                | read - Read a template and return a string representation
     """
 
     __slots__ = (
@@ -68,15 +69,14 @@ class ReadTemplate(FileChecking):
         '__template_dir'
     )
     VERBOSE = 'DIST_PY_MODULE::SETUP::READ_TEMPLATE'
-    __TEMPLATE_DIR = '/../../conf/template/'
-    __TEMPLATES = {
-        1:'setup.template'
-    }
+    __TEMPLATE_DIR = '/../conf/template/'
+    __TEMPLATES = {1:'setup.template'}
     __FORMAT = 'template'
 
     def __init__(self, verbose=False):
         """
-            Setting template dir from configuration directory.
+            Setting template dir from configuration directory
+
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
             :exceptions: None
@@ -98,6 +98,7 @@ class ReadTemplate(FileChecking):
     def get_tempalte_dir(self):
         """
             Getter for template directory
+
             :return: Template directory object
             :rtype: <str>
         """
@@ -105,7 +106,8 @@ class ReadTemplate(FileChecking):
 
     def read(self, verbose=False):
         """
-            Read template structure.
+            Read template structure
+
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
             :return: Template content for setup module | None
