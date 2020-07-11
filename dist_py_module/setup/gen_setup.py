@@ -24,8 +24,8 @@ import sys
 from inspect import stack
 
 try:
-    from setup.read_template import ReadTemplate
-    from setup.write_template import WriteTemplate
+    from dist_py_module.setup.read_template import ReadTemplate
+    from dist_py_module.setup.write_template import WriteTemplate
 
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
@@ -49,16 +49,17 @@ class GenSetup(object):
         Define class GenSetup with attribute(s) and method(s).
         Generate module file setup.py by template and parameters.
         It defines:
-            attribute:
-                __slots__ - Setting class slots
-                VERBOSE - Console text indicator for current process-phase
-                __reader - Reader API
-                __writer - Writer API
-            method:
-                __init__ - Initial constructor
-                get_reader - Getter for template reader
-                get_writer - Getter for template writer
-                gen_setup - Generate module file setup.py
+
+            :attributes:
+                | __slots__ - Setting class slots
+                | VERBOSE - Console text indicator for current process-phase
+                | __reader - Reader API
+                | __writer - Writer API
+            :methods:
+                | __init__ - Initial constructor
+                | get_reader - Getter for template reader
+                | get_writer - Getter for template writer
+                | gen_setup - Generate module file setup.py
     """
 
     __slots__ = ('VERBOSE', '__reader', '__writer')
@@ -67,6 +68,7 @@ class GenSetup(object):
     def __init__(self, verbose=False):
         """
             Initial constructor
+
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
             :exceptions: None
@@ -78,6 +80,7 @@ class GenSetup(object):
     def get_reader(self):
         """
             Getter for template reader
+
             :return: Template reader object
             :rtype: <ReadTemplate>
             :exceptions: None
@@ -87,6 +90,7 @@ class GenSetup(object):
     def get_writer(self):
         """
             Getter for template writer
+
             :return: Template writer object
             :rtype: <WriteTemplate>
             :exceptions: None
@@ -95,7 +99,8 @@ class GenSetup(object):
 
     def gen_setup(self, package_name, verbose=False):
         """
-            Generate setup.py for python package.
+            Generate setup.py for python package
+
             :param package_name: Parameter package name
             :type package_name: <str>
             :param verbose: Enable/disable verbose option

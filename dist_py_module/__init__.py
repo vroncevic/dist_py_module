@@ -2,7 +2,7 @@
 
 """
  Module
-     dist_py_module.py
+     __init__.py
  Copyright
      Copyright (C) 2018 Vladimir Roncevic <elektron.ronca@gmail.com>
      dist_py_module is free software: you can redistribute it and/or modify it
@@ -26,7 +26,7 @@ from os import getcwd
 try:
     from pathlib import Path
 
-    from setup.gen_setup import GenSetup
+    from dist_py_module.setup.gen_setup import GenSetup
     from ats_utilities.cfg_base import CfgBase
     from ats_utilities.console_io.error import error_message
     from ats_utilities.console_io.verbose import verbose_message
@@ -50,28 +50,28 @@ class DistPyModule(CfgBase):
         Define class DistPyModule with attribute(s) and method(s).
         Load a settings, create an interface and run operation(s).
         It defines:
-            attribute:
-                __slots__ - Setting class slots
-                VERBOSE - Console text indicator for current process-phase
-                __CONFIG - Configuration file path
-                __OPS -  Tool options (list)
-            method:
-                __init__ - Initial constructor
-                process - Process and generate module setup.py
+
+            :attributes:
+                | __slots__ - Setting class slots
+                | VERBOSE - Console text indicator for current process-phase
+                | __CONFIG - Configuration file path
+                | __OPS -  Tool options (list)
+            :methods:
+                | __init__ - Initial constructor
+                | process - Process and generate module setup.py
     """
 
     __slots__ = (
-        'VERBOSE',
-        '__CONFIG',
-        '__OPS'
+        'VERBOSE', '__CONFIG', '__OPS'
     )
     VERBOSE = 'DIST_PY_MODULE'
-    __CONFIG = '/../conf/dist_py_module.cfg'
+    __CONFIG = '/conf/dist_py_module.cfg'
     __OPS = ['-g', '--gen', '-h', '--version', '--verbose']
 
     def __init__(self, verbose=False):
         """
             Loading configuration and setting argument options.
+
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
             :exceptions: None
@@ -89,6 +89,7 @@ class DistPyModule(CfgBase):
     def process(self, verbose=False):
         """
             Process and run operation.
+
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
             :return: True (success) | False

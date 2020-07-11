@@ -48,15 +48,16 @@ class WriteTemplate(object):
         Define class WriteTemplate with attribute(s) and method(s).
         Write template content with parameters to a file setup.py.
         It defines:
-            attribute:
-                __slots__ - Setting class slots
-                VERBOSE - Console text indicator for current process-phase
-                __SETUP_FILE - File name for setup file
-                __FORMAT - File format (file extension)
-            method:
-                __init__ - Initial constructor
-                get_setup - Getter for setup file object
-                write - Write a template content to a file setup.py
+
+            :attributes:
+                | __slots__ - Setting class slots
+                | VERBOSE - Console text indicator for current process-phase
+                | __SETUP_FILE - File name for setup file
+                | __FORMAT - File format (file extension)
+            :methods:
+                | __init__ - Initial constructor
+                | get_setup - Getter for setup file object
+                | write - Write a template content to a file setup.py
     """
 
     __slots__ = ('VERBOSE', '__SETUP_FILE', '__FORMAT', '__setup')
@@ -67,6 +68,7 @@ class WriteTemplate(object):
     def __init__(self, verbose=False):
         """
             Initial constructor
+
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
             :exceptions: None
@@ -77,6 +79,7 @@ class WriteTemplate(object):
     def get_setup(self):
         """
             Getter for setup file object
+
             :return: Setup file path
             :rtype: <str>
         """
@@ -84,7 +87,8 @@ class WriteTemplate(object):
 
     def write(self, setup_content, package_name, verbose=False):
         """
-            Write setup content to file.
+            Write setup content to file
+
             :param setup_content: Template content
             :type setup_content: <str>
             :param package_name: Parameter package name
