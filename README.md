@@ -15,6 +15,7 @@ other information that should be provided before the modules are installed.
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
+
 - [Installation](#installation)
     - [Install using setuptools](#install-using-setuptools)
     - [Install using docker](#install-using-docker)
@@ -23,6 +24,7 @@ other information that should be provided before the modules are installed.
 - [Tool structure](#tool-structure)
 - [Docs](#docs)
 - [Copyright and licence](#copyright-and-licence)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ### Installation
