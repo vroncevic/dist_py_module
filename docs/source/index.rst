@@ -27,7 +27,7 @@ other information that should be provided before the tool is installed.
 .. |Documentation Status| image:: https://readthedocs.org/projects/dist_py_module/badge/?version=latest
    :target: https://dist_py_module.readthedocs.io/projects/dist_py_module/en/latest/?badge=latest
 
-INSTALLATION
+Installation
 -------------
 
 Navigate to release `page`_ download and extract release archive.
@@ -40,11 +40,12 @@ To install **dist_py_module** type the following:
 
     tar xvzf dist_py_module-x.y.z.tar.gz
     cd dist_py_module-x.y.z/
+    pip install -r requirements.txt
     python setup.py install_lib
     python setup.py install_data
     python setup.py install_egg_info
 
-DEPENDENCIES
+Dependencies
 -------------
 
 **dist_py_module** requires next modules and libraries:
@@ -57,7 +58,7 @@ Base flow of generation process:
 
 .. image:: https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup_flow.png
 
-TOOL STRUCTURE
+Tool structure
 ---------------
 
 **dist_py_module** is based on Template mechanism:
@@ -85,7 +86,7 @@ Code structure:
    └── log/
         └── dist_py_module.log
 
-COPYRIGHT AND LICENCE
+Copyright and licence
 -----------------------
 
 |License: GPL v3| |License: Apache 2.0|
