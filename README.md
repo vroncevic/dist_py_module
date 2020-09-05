@@ -1,20 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [Distributing Python Modules, Generating Module setup.py.](#distributing-python-modules-generating-module-setuppy)
-    - [TABLE OF CONTENTS](#table-of-contents)
-    - [INSTALLATION](#installation)
-        - [INSTALL USING SETUPTOOLS](#install-using-setuptools)
-        - [INSTALL USING DOCKER](#install-using-docker)
-    - [DEPENDENCIES](#dependencies)
-    - [GENERATION FLOW OF PYP SETUP](#generation-flow-of-pyp-setup)
-    - [TOOL STRUCTURE](#tool-structure)
-    - [DOCS](#docs)
-    - [COPYRIGHT AND LICENCE](#copyright-and-licence)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Distributing Python Modules, Generating Module setup.py.
 
 **dist_py_module** is toolset for generating setup.py for pyp.
@@ -29,19 +12,20 @@ other information that should be provided before the modules are installed.
  [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues)
  [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
 
-### TABLE OF CONTENTS
-
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
 - [Installation](#installation)
-    * [Install using setuptools](#install-using-setuptools)
-    * [Install using Docker](#install-using-docker)
+    - [Install using setuptools](#install-using-setuptools)
+    - [Install using docker](#install-using-docker)
 - [Dependencies](#dependencies)
-- [Usage](#usage)
-- [Generation flow of project setup](#generation-flow-of-project-setup)
+- [Generation flow of pyp setup](#generation-flow-of-pyp-setup)
 - [Tool structure](#tool-structure)
 - [Docs](#docs)
 - [Copyright and licence](#copyright-and-licence)
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-### INSTALLATION
+### Installation
 
 Navigate to release [page](https://github.com/vroncevic/dist_py_module/releases/tag/v1.0) download and extract release archive.
 
@@ -49,35 +33,36 @@ Currently there are two ways to install tool:
 * Install process based on setup.py (setuptools)
 * Install process based on docker mechanism
 
-##### INSTALL USING SETUPTOOLS
+##### Install using setuptools
 
 To install this set of modules type the following:
 ```
 tar xvzf dist_py_module-x.y.z.tar.gz
 cd dist_py_module-x.y.z/
+pip install -r requirements.txt
 python setup.py install_lib
 python setup.py install_data
 python setup.py install_egg_info
 ```
 
-##### INSTALL USING DOCKER
+##### Install using docker
 
 You can use docker to load Dockerfile which contains all the commands
 a user could call on the command line to assemble an image.
 
-### DEPENDENCIES
+### Dependencies
 
 This module requires these other modules and libraries:
 
 * ats_utilities [vroncevic.github.io/ats_utilities](https://vroncevic.github.io/ats_utilities)
 
-### GENERATION FLOW OF PYP SETUP
+### Generation flow of pyp setup
 
 Base flow of generation process:
 
 ![alt tag](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup_flow.png)
 
-### TOOL STRUCTURE
+### Tool structure
 
 **dist_py_module** is based on Template mechanism:
 
@@ -104,7 +89,7 @@ Generator structure:
     └── dist_py_module.log
 ```
 
-### DOCS
+### Docs
 
 [![Documentation Status](https://readthedocs.org/projects/dist_py_module/badge/?version=latest)](https://dist_py_module.readthedocs.io/en/latest/?badge=latest)
 
@@ -112,7 +97,7 @@ More documentation and info at:
 
 * [dist_py_module.readthedocs.io](https://dist_py_module.readthedocs.io/en/latest/)
 
-### COPYRIGHT AND LICENCE
+### Copyright and licence
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
