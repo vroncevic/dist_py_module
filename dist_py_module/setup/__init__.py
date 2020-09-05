@@ -3,4 +3,3 @@
 """
     Generating setup.py
 """
-
