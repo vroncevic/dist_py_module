@@ -1,3 +1,20 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Distributing Python Modules, Generating Module setup.py.](#distributing-python-modules-generating-module-setuppy)
+    - [TABLE OF CONTENTS](#table-of-contents)
+    - [INSTALLATION](#installation)
+        - [INSTALL USING SETUPTOOLS](#install-using-setuptools)
+        - [INSTALL USING DOCKER](#install-using-docker)
+    - [DEPENDENCIES](#dependencies)
+    - [GENERATION FLOW OF PYP SETUP](#generation-flow-of-pyp-setup)
+    - [TOOL STRUCTURE](#tool-structure)
+    - [DOCS](#docs)
+    - [COPYRIGHT AND LICENCE](#copyright-and-licence)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Distributing Python Modules, Generating Module setup.py.
 
 **dist_py_module** is toolset for generating setup.py for pyp.
