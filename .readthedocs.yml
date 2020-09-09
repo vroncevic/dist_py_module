@@ -2,7 +2,9 @@ version: 2
 python:
   version: 2.7
   install:
-    - requirements: requirements.txt
+    - method: pip
+      - requirements: requirements.txt
+    - method: setuptools
 sphinx:
   configuration: docs/source/conf.py
 formats: all
