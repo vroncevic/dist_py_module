@@ -1,5 +1,5 @@
-Distributing Python Modules, Generating Module setup.py.
-=========================================================
+Distributing Python Modules Generating Module setup.py
+=======================================================
 
 .. toctree::
  :hidden:
