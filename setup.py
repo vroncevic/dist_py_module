@@ -59,7 +59,7 @@ setup(
         'dist_py_module.setup',
     ],
     install_requires=[
-        'wheel', 'colorama', 'bs4', 'yaml', 'configparser', 'pathlib'
+        'wheel', 'colorama', 'bs4', 'PyYAML', 'configparser', 'pathlib'
     ],
     data_files=[
         ('/usr/bin/', ['dist_py_module/run/dist_py_module_run.py']),
