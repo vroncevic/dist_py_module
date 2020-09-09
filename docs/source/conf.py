@@ -15,7 +15,8 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../'))
-sys.path.insert(0, os.path.abspath('../../setup/'))
+sys.path.insert(0, os.path.abspath('../../dist_py_module/'))
+sys.path.insert(0, os.path.abspath('../../dist_py_module/setup/'))
 
 
 # -- Project information -----------------------------------------------------
