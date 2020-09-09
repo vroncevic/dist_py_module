@@ -7,5 +7,5 @@
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
-sphinx-apidoc -f -e -a -o source/ ../dist_py_module/
+sphinx-apidoc -P -f -e -a -o source/ ../dist_py_module/
 
