@@ -26,7 +26,6 @@ from inspect import stack
 try:
     from dist_py_module.setup.read_template import ReadTemplate
     from dist_py_module.setup.write_template import WriteTemplate
-
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError

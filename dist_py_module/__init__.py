@@ -25,7 +25,6 @@ from os import getcwd
 
 try:
     from pathlib import Path
-
     from dist_py_module.setup.gen_setup import GenSetup
     from ats_utilities.cfg_base import CfgBase
     from ats_utilities.console_io.error import error_message

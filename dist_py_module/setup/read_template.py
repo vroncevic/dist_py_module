@@ -25,7 +25,6 @@ from os.path import isdir
 
 try:
     from pathlib import Path
-
     from ats_utilities.config.file_checking import FileChecking
     from ats_utilities.console_io.verbose import verbose_message
 except ImportError as error:
