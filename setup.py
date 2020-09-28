@@ -33,7 +33,7 @@ __status__ = 'Updated'
 
 setup(
     name='dist_py_module',
-    version='1.1.0',
+    version='1.0.0',
     description='Python package for generation of setup file',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
