@@ -40,4 +40,4 @@ RUN rm -rf /dist_py_module/
 RUN rm -f setup.py
 RUN chmod -R 755 /usr/local/lib/python2.7/dist-packages/dist_py_module/
 RUN tree /usr/local/lib/python2.7/dist-packages/dist_py_module/
-RUN ln -s /usr/bin/dist_py_module_run.py /usr/bin/dist_py_module
+RUN ln -s /usr/local/bin/dist_py_module_run.py /usr/local/bin/dist_py_module
