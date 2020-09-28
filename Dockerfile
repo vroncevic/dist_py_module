@@ -26,20 +26,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
  python-pip \
  python-wheel \
  libyaml-dev
- 
+
 RUN pip install --upgrade setuptools
-RUN wget https://github.com/vroncevic/ats_utilities/archive/v1.0.2.zip
-RUN unzip v1.0.2.zip
-RUN find /ats_utilities-1.0.2/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
-RUN cd /ats_utilities-1.0.2/ && pip install -r requirements.txt
-RUN cd /ats_utilities-1.0.2/ && python setup.py install_lib && python setup.py install_egg_info
-RUN rm -rf /ats_utilities-1.0.2/ v1.0.2.zip
-RUN mkdir /dist_py_module/
-COPY dist_py_module /dist_py_module/
 COPY requirements.txt /
-COPY setup.py /
 RUN pip install -r requirements.txt
 RUN rm -f requirements.txt
+RUN mkdir /dist_py_module/
+COPY dist_py_module /dist_py_module/
+COPY setup.py /
 RUN find /dist_py_module/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
 RUN python setup.py install_lib && python setup.py install_data && python setup.py install_egg_info
 RUN rm -rf /dist_py_module/

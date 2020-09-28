@@ -48,21 +48,19 @@ setup(
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'License :: OSI Approved :: GPL',
-        'Operating System :: OS Independent',
+        'License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)',
+        'License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)',
+        'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',
+        'License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)',
+        'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)'
     ],
     packages=[
         'dist_py_module',
         'dist_py_module.setup',
     ],
-    install_requires=[
-        'wheel', 'colorama', 'bs4', 'PyYAML', 'configparser', 'pathlib'
-    ],
+    install_requires=['ats-utilities'],
     data_files=[
-        ('/usr/bin/', ['dist_py_module/run/dist_py_module_run.py']),
+        ('/usr/local/bin/', ['dist_py_module/run/dist_py_module_run.py']),
         (
              '/usr/local/lib/python2.7/dist-packages/dist_py_module/conf/',
              ['dist_py_module/conf/dist_py_module.cfg']

@@ -15,9 +15,6 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../'))
-sys.path.insert(0, os.path.abspath('../../dist_py_module/'))
-sys.path.insert(0, os.path.abspath('../../dist_py_module/setup/'))
-
 
 # -- Project information -----------------------------------------------------
 
@@ -26,7 +23,7 @@ copyright = u'2020, Vladimir Roncevic <elektron.ronca@gmail.com>'
 author = u'Vladimir Roncevic <elektron.ronca@gmail.com>'
 
 # The short X.Y version
-version = u''
+version = u'v1.1.0'
 # The full version, including alpha/beta/rc tags
 release = u'https://github.com/vroncevic/dist_py_module/releases'
 
