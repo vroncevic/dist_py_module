@@ -1,4 +1,4 @@
-# Distributing Python Modules, generating Module setup.py
+# Generator for distribution module setup.py
 
 **dist_py_module** is toolset for generating setup.py for pyp.
 
@@ -56,9 +56,9 @@ a user could call on the command line to assemble an image.
 
 ### Dependencies
 
-This module requires these other modules and libraries:
+**dist_py_module** requires next modules and libraries:
 
-* ats_utilities [vroncevic.github.io/ats_utilities](https://vroncevic.github.io/ats_utilities)
+* [ats-utilities - Python App/Tool/Script Utilities](https://vroncevic.github.io/ats_utilities)
 
 ### Generation flow of pyp setup
 
