@@ -98,6 +98,7 @@ Generator structure:
 More documentation and info at:
 
 * [dist_py_module.readthedocs.io](https://dist_py_module.readthedocs.io/en/latest/)
+* [www.python.org](https://www.python.org/)
 
 ### Copyright and licence
 
