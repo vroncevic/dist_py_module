@@ -1,7 +1,7 @@
-Distributing Python Modules Generating Module setup.py
-=======================================================
+Generator for distribution module setup.py
+===========================================
 
-**dist_py_module** is toolset for generating setup.py for pyp.
+**dist_py_module** is toolset for generating setup.py.
 
 Developed in `python <https://www.python.org/>`_ code: **100%**.
 
@@ -9,7 +9,10 @@ The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.
 
-|GitHub issues| |Documentation Status| |GitHub contributors|
+|Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
+
+.. |Python package| image:: https://github.com/vroncevic/dist_py_module/workflows/Python%20package/badge.svg
+   :target: https://github.com/vroncevic/dist_py_module/workflows/Python%20package/badge.svg?branch=master
 
 .. |GitHub issues| image:: https://img.shields.io/github/issues/vroncevic/dist_py_module.svg
    :target: https://github.com/vroncevic/dist_py_module/issues
