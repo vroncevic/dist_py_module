@@ -21,10 +21,11 @@ other information that should be provided before the tool is installed.
    :target: https://dist_py_module.readthedocs.io/projects/dist_py_module/en/latest/?badge=latest
 
 .. toctree::
- :hidden:
+   :maxdepth: 4
+   :caption: Contents:
 
- modules
- self
+   modules
+   self
 
 Installation
 -------------
@@ -113,10 +114,17 @@ Lets help and support PSF.
 
 |Python Software Foundation|
 
-.. |Python Software Foundation| IMAGE:: https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/psf-logo-alpha.png
+.. |Python Software Foundation| image:: https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/psf-logo-alpha.png
    :target: https://www.python.org/psf/
 
 |Donate|
 
 .. |Donate| image:: https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif
    :target: https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
