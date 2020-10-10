@@ -1,16 +1,9 @@
 Distributing Python Modules Generating Module setup.py
 =======================================================
 
-.. toctree::
- :hidden:
-
- modules
- self
-
-
 **dist_py_module** is toolset for generating setup.py for pyp.
 
-Developed in python code: **100%**.
+Developed in `python <https://www.python.org/>`_ code: **100%**.
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
@@ -26,6 +19,12 @@ other information that should be provided before the tool is installed.
 
 .. |Documentation Status| image:: https://readthedocs.org/projects/dist_py_module/badge/?version=latest
    :target: https://dist_py_module.readthedocs.io/projects/dist_py_module/en/latest/?badge=latest
+
+.. toctree::
+ :hidden:
+
+ modules
+ self
 
 Installation
 -------------
@@ -45,14 +44,21 @@ To install **dist_py_module** type the following:
     python setup.py install_data
     python setup.py install_egg_info
 
+You can use Docker to create image/container.
+
+|GitHub docker checker|
+
+.. |GitHub docker checker| image:: https://github.com/vroncevic/dist_py_module/workflows/dist_py_module%20docker%20checker/badge.svg
+   :target: https://github.com/vroncevic/dist_py_module/actions?query=workflow%3A%22dist_py_module+docker+checker%22
+
 Dependencies
 -------------
 
 **dist_py_module** requires next modules and libraries:
     sh_util `https://github.com/vroncevic/sh_util <https://github.com/vroncevic/sh_util>`_
 
-GENERATION FLOW OF PROJECT SETUP
-----------------------------------
+Generation flow of project setup
+---------------------------------
 
 Base flow of generation process:
 
@@ -99,7 +105,18 @@ Copyright and licence
 
 Copyright (C) 2018 by `vroncevic.github.io/dist_py_module <https://vroncevic.github.io/dist_py_module>`_
 
-This tool is free software; you can redistribute it and/or modify
+**dist_py_module** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 2.x/3.x or,
 at your option, any later version of Python 3 you may have available.
 
+Lets help and support PSF.
+
+|Python Software Foundation|
+
+.. |Python Software Foundation| IMAGE:: https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/psf-logo-alpha.png
+   :target: https://www.python.org/psf/
+
+|Donate|
+
+.. |Donate| image:: https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif
+   :target: https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2
