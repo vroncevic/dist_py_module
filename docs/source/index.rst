@@ -30,6 +30,14 @@ other information that should be provided before the tool is installed.
 Installation
 -------------
 
+|Install Python2 Package| |Install Python3 Package|
+
+.. |Install Python2 Package| image:: https://github.com/vroncevic/dist_py_module/workflows/Install%20Python2%20Package%20dist_py_module/badge.svg
+   :target: https://github.com/vroncevic/dist_py_module/workflows/Install%20Python2%20Package%20dist_py_module/badge.svg?branch=master
+
+.. |Install Python3 Package| image:: https://github.com/vroncevic/dist_py_module/workflows/Install%20Python3%20Package%20dist_py_module/badge.svg
+   :target: https://github.com/vroncevic/dist_py_module/workflows/Install%20Python3%20Package%20dist_py_module/badge.svg?branch=master
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/dist_py_module/releases
