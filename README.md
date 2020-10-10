@@ -1,16 +1,14 @@
-# Distributing Python Modules, Generating Module setup.py.
+# Distributing Python Modules, generating Module setup.py
 
 **dist_py_module** is toolset for generating setup.py for pyp.
 
-Developed in python code: **100%**.
+Developed in **[python](https://www.python.org/)** code: **100%**.
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-![Python package](https://github.com/vroncevic/dist_py_module/workflows/Python%20package/badge.svg?branch=master)
- [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues)
- [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
+![Python package](https://github.com/vroncevic/dist_py_module/workflows/Python%20package/badge.svg?branch=master) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -51,6 +49,8 @@ python setup.py install_egg_info
 
 You can use docker to load Dockerfile which contains all the commands
 a user could call on the command line to assemble an image.
+
+[![dist_py_module docker checker](https://github.com/vroncevic/dist_py_module/workflows/dist_py_module%20docker%20checker/badge.svg)](https://github.com/vroncevic/dist_py_module/actions?query=workflow%3A%22dist_py_module+docker+checker%22)
 
 ### Dependencies
 
@@ -105,7 +105,12 @@ More documentation and info at:
 
 Copyright (C) 2018 by [vroncevic.github.io/dist_py_module](https://vroncevic.github.io/dist_py_module)
 
-This tool is free software; you can redistribute it and/or modify
+**dist_py_module** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 2.7/3.4 or,
 at your option, any later version of Python 3 you may have available.
 
+Lets help and support PSF.
+
+[![Python Software Foundation](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/psf-logo-alpha.png)](https://www.python.org/psf/)
+
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2)
