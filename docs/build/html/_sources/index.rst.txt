@@ -67,7 +67,7 @@ Dependencies
 -------------
 
 **dist_py_module** requires next modules and libraries:
-    sh_util `https://github.com/vroncevic/sh_util <https://github.com/vroncevic/sh_util>`_
+* `ats-utilities - Python App/Tool/Script Utilities <https://pypi.org/project/ats-utilities/>`_
 
 Generation flow of project setup
 ---------------------------------
