@@ -67,6 +67,7 @@ Dependencies
 -------------
 
 **dist_py_module** requires next modules and libraries:
+
 * `ats-utilities - Python App/Tool/Script Utilities <https://pypi.org/project/ats-utilities/>`_
 
 Generation flow of project setup

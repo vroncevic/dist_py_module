@@ -1,6 +1,6 @@
 # Generator for distribution module setup.py
 
-**dist_py_module** is toolset for generating setup.py for pyp.
+**dist_py_module** is toolset for generating setup.py.
 
 Developed in **[python](https://www.python.org/)** code: **100%**.
 
