@@ -20,6 +20,7 @@
      Define setup for dist_py_module package.
 """
 
+from os.path import abspath, dirname, join
 from setuptools import setup
 
 __author__ = 'Vladimir Roncevic'
@@ -31,6 +32,10 @@ __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
+THIS_DIR, LONG_DESCRIPTION = abspath(dirname(__file__)), None
+with open(join(THIS_DIR, 'README.md'), encoding='utf-8') as readme:
+    LONG_DESCRIPTION = readme.read()
+
 setup(
     name='dist_py_module',
     version='1.0.0',
@@ -39,7 +44,8 @@ setup(
     author_email='elektron.ronca@gmail.com',
     url='https://vroncevic.github.io/dist_py_module/',
     license='GPL 2018 Free software to use and distributed it.',
-    long_description='Package dist_py_module for python App/Tool/Script.',
+    long_description=LONG_DESCRIPTION,
+    long_description_content_type='text/markdown',
     keywords='setup, python, install',
     platforms='POSIX',
     classifiers=[
@@ -62,8 +68,8 @@ setup(
     data_files=[
         ('/usr/local/bin/', ['dist_py_module/run/dist_py_module_run.py']),
         (
-             '/usr/local/lib/python2.7/dist-packages/dist_py_module/conf/',
-             ['dist_py_module/conf/dist_py_module.cfg']
+            '/usr/local/lib/python2.7/dist-packages/dist_py_module/conf/',
+            ['dist_py_module/conf/dist_py_module.cfg']
         ),
         (
             '/usr/local/lib/python2.7/dist-packages/dist_py_module/conf/',
