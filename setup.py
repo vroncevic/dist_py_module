@@ -33,7 +33,7 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 THIS_DIR, LONG_DESCRIPTION = abspath(dirname(__file__)), None
-with open(join(THIS_DIR, 'README.md'), encoding='utf-8') as readme:
+with open(join(THIS_DIR, 'README.md')) as readme:
     LONG_DESCRIPTION = readme.read()
 
 setup(
