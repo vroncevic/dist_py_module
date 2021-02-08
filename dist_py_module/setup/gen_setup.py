@@ -21,23 +21,23 @@
 """
 
 import sys
-from inspect import stack
 
 try:
+    from ats_utilities.checker import ATSChecker
     from dist_py_module.setup.read_template import ReadTemplate
     from dist_py_module.setup.write_template import WriteTemplate
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
-except ImportError as error:
-    MESSAGE = "\n{0}\n{1}\n".format(__file__, error)
+except ImportError as error_message:
+    MESSAGE = "\n{0}\n{1}\n".format(__file__, error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.0.0'
+__version__ = '1.2.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -52,6 +52,7 @@ class GenSetup(object):
             :attributes:
                 | __slots__ - Setting class slots
                 | VERBOSE - Console text indicator for current process-phase
+                | __checker - ATS checker for parameters
                 | __reader - Reader API
                 | __writer - Writer API
             :methods:
@@ -61,7 +62,7 @@ class GenSetup(object):
                 | gen_setup - Generate module file setup.py
     """
 
-    __slots__ = ('VERBOSE', '__reader', '__writer')
+    __slots__ = ('VERBOSE', '__reader', '__writer', '__checker')
     VERBOSE = 'DIST_PY_MODULE::SETUP::GEN_SETUP'
 
     def __init__(self, verbose=False):
@@ -73,6 +74,7 @@ class GenSetup(object):
             :exceptions: None
         """
         verbose_message(GenSetup.VERBOSE, verbose, 'Initial setup')
+        self.__checker = ATSChecker()
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
 
@@ -106,15 +108,14 @@ class GenSetup(object):
             :type verbose: <bool>
             :return: True (success) | False
             :rtype: <bool>
-            :exceptions: ATSBadCallError | ATSTypeError
+            :exceptions: ATSTypeError | ATSBadCallError
         """
-        func, status, setup_content = stack()[0][3], False, None
-        package_txt = 'Argument: expected package_name <str> object'
-        package_msg = "{0} {1} {2}".format('def', func, package_txt)
-        if package_name is None or not package_name:
-            raise ATSBadCallError(package_msg)
-        if not isinstance(package_name, str):
-            raise ATSTypeError(package_msg)
+        error, status = self.__checker.check_params(
+            [('str:package_name', package_name)]
+        )
+        if status == ATSChecker.TYPE_ERROR: raise ATSTypeError(error)
+        if status == ATSChecker.VALUE_ERROR: raise ATSBadCallError(error)
+        status, setup_content = False, None
         verbose_message(
             GenSetup.VERBOSE, verbose, 'Generating package', package_name
         )
