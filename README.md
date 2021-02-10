@@ -1,3 +1,5 @@
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/dist_py_module_logo.png" width="25%">
+
 # Generator for distribution module setup.py
 
 **dist_py_module** is toolset for generating setup.py.
