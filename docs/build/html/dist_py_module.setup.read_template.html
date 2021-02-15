@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="dist_py_module.setup.write_template module" href="dist_py_module.setup.write_template.html" />
-    <link rel="prev" title="dist_py_module.setup.gen_setup module" href="dist_py_module.setup.gen_setup.html" /> 
+    <link rel="prev" title="dist_py_module.setup package" href="dist_py_module.setup.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -99,7 +99,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Generator for distribution module setup.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Generator for setup.py</a></li>
 </ul>
 
             
@@ -195,7 +195,7 @@ Read a template file (setup.template) and return a content.</dd>
 <dl class="class">
 <dt id="dist_py_module.setup.read_template.ReadTemplate">
 <em class="property">class </em><code class="descclassname">dist_py_module.setup.read_template.</code><code class="descname">ReadTemplate</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup/read_template.html#ReadTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.read_template.ReadTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ats_utilities.config.file_checking.FileChecking</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ats_utilities.config_io.base_check.FileChecking</span></code></p>
 <p>Define class ReadTemplate with attribute(s) and method(s).
 Read a template file (setup.template) and return a content.
 It defines:</p>
@@ -205,19 +205,19 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase</div>
-<div class="line">__TEMPLATE_DIR - Template dir path</div>
-<div class="line">__TEMPLATES - Types of templates</div>
-<div class="line">__FORMAT - File format for template</div>
-<div class="line">__template_dir - Absolute file path of template dir</div>
+<div class="line">__slots__ - Setting class slots.</div>
+<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
+<div class="line">__TEMPLATE_DIR - Template dir path.</div>
+<div class="line">__TEMPLATES - Types of templates.</div>
+<div class="line">__FORMAT - File format for template.</div>
+<div class="line">__template_dir - Absolute file path of template dir.</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__init__ - Initial constructor</div>
-<div class="line">get_tempalte_dir - Getter for template directory object</div>
-<div class="line">read - Read a template and return a string representation</div>
+<div class="line">__init__ - Initial constructor.</div>
+<div class="line">get_tempalte_dir - Getter for template directory object.</div>
+<div class="line">read - Read a template and return a string representation.</div>
 </div>
 </td>
 </tr>
@@ -232,12 +232,12 @@ It defines:</p>
 <dl class="method">
 <dt id="dist_py_module.setup.read_template.ReadTemplate.get_tempalte_dir">
 <code class="descname">get_tempalte_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup/read_template.html#ReadTemplate.get_tempalte_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.read_template.ReadTemplate.get_tempalte_dir" title="Permalink to this definition">¶</a></dt>
-<dd><p>Getter for template directory</p>
+<dd><p>Getter for template directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Template directory object</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Template directory object.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;str&gt;</td>
 </tr>
@@ -248,14 +248,14 @@ It defines:</p>
 <dl class="method">
 <dt id="dist_py_module.setup.read_template.ReadTemplate.read">
 <code class="descname">read</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup/read_template.html#ReadTemplate.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.read_template.ReadTemplate.read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read template structure</p>
+<dd><p>Read template structure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Template content for setup module | None</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Template content for setup module | None.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">&lt;str&gt; | &lt;NoneType&gt;</td>
 </tr>
@@ -280,7 +280,7 @@ It defines:</p>
         <a href="dist_py_module.setup.write_template.html" class="btn btn-neutral float-right" title="dist_py_module.setup.write_template module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dist_py_module.setup.gen_setup.html" class="btn btn-neutral float-left" title="dist_py_module.setup.gen_setup module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dist_py_module.setup.html" class="btn btn-neutral float-left" title="dist_py_module.setup package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

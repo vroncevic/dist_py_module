@@ -1,5 +1,5 @@
-Generator for distribution module setup.py
-===========================================
+Generator for setup.py
+-----------------------
 
 **dist_py_module** is toolset for generating setup.py.
 
@@ -56,7 +56,11 @@ To install **dist_py_module** type the following:
     python setup.py install_data
     python setup.py install_egg_info
 
-You can use Docker to create image/container.
+You can use Docker to create image/container, or You can use pip to install:
+
+.. code-block:: bash
+
+    pip install dist-py-module
 
 |GitHub docker checker|
 
@@ -88,22 +92,21 @@ Code structure:
 
 .. code-block:: bash
 
-   .
-   ├── bin/
-   │   ├── dist_py_module.py
-   │   ├── dist_py_module_run.py
-   │   └── setup/
-   │       ├── gen_setup.py
-   │       ├── __init__.py
-   │       ├── read_template.py
-   │       └── write_template.py
-   ├── conf/
-   │   ├── dist_py_module.cfg
-   │   ├── dist_py_module_util.cfg
-   │   └── template/
-   │       └── setup.template
-   └── log/
-        └── dist_py_module.log
+    dist_py_module/
+    ├── conf/
+    │   ├── dist_py_module.cfg
+    │   ├── dist_py_module_util.cfg
+    │   └── template/
+    │       └── setup.template
+    ├── __init__.py
+    ├── log/
+    │   └── dist_py_module.log
+    ├── run/
+    │   └── dist_py_module_run.py
+    └── setup/
+        ├── __init__.py
+        ├── read_template.py
+        └── write_template.py
 
 Copyright and licence
 -----------------------

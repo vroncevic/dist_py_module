@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -99,7 +99,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Generator for distribution module setup.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Generator for setup.py</a></li>
 </ul>
 
             
@@ -175,7 +175,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dist_py_module.setup.html">dist_py_module.setup package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dist_py_module.setup.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dist_py_module.setup.gen_setup.html">dist_py_module.setup.gen_setup module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dist_py_module.setup.read_template.html">dist_py_module.setup.read_template module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dist_py_module.setup.write_template.html">dist_py_module.setup.write_template module</a></li>
 </ul>
@@ -210,7 +209,7 @@ Load a settings, create an interface and run operation(s).</dd>
 <dl class="class">
 <dt id="dist_py_module.DistPyModule">
 <em class="property">class </em><code class="descclassname">dist_py_module.</code><code class="descname">DistPyModule</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module.html#DistPyModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.DistPyModule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ats_utilities.cfg_base.CfgBase</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ats_utilities.cli.cfg_cli.CfgCLI</span></code></p>
 <p>Define class DistPyModule with attribute(s) and method(s).
 Load a settings, create an interface and run operation(s).
 It defines:</p>
@@ -220,16 +219,16 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase</div>
-<div class="line">__CONFIG - Configuration file path</div>
-<div class="line">__OPS -  Tool options (list)</div>
+<div class="line">__slots__ - Setting class slots.</div>
+<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
+<div class="line">__CONFIG - Configuration file path.</div>
+<div class="line">__OPS -  Tool options (list).</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__init__ - Initial constructor</div>
-<div class="line">process - Process and generate module setup.py</div>
+<div class="line">__init__ - Initial constructor.</div>
+<div class="line">process - Process and generate module setup.py.</div>
 </div>
 </td>
 </tr>
@@ -249,9 +248,9 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True (success) | False</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True (success) | False.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">&lt;bool&gt;</td>
 </tr>

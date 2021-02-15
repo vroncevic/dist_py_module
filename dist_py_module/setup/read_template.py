@@ -25,17 +25,17 @@ from os.path import isdir
 
 try:
     from pathlib import Path
-    from ats_utilities.config.file_checking import FileChecking
+    from ats_utilities.config_io.base_check import FileChecking
     from ats_utilities.console_io.verbose import verbose_message
-except ImportError as error:
-    MESSAGE = "\n{0}\n{1}\n".format(__file__, error)
+except ImportError as error_message:
+    MESSAGE = "\n{0}\n{1}\n".format(__file__, error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.0.0'
+__version__ = '1.2.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -48,24 +48,21 @@ class ReadTemplate(FileChecking):
         It defines:
 
             :attributes:
-                | __slots__ - Setting class slots
-                | VERBOSE - Console text indicator for current process-phase
-                | __TEMPLATE_DIR - Template dir path
-                | __TEMPLATES - Types of templates
-                | __FORMAT - File format for template
-                | __template_dir - Absolute file path of template dir
+                | __slots__ - Setting class slots.
+                | VERBOSE - Console text indicator for current process-phase.
+                | __TEMPLATE_DIR - Template dir path.
+                | __TEMPLATES - Types of templates.
+                | __FORMAT - File format for template.
+                | __template_dir - Absolute file path of template dir.
             :methods:
-                | __init__ - Initial constructor
-                | get_tempalte_dir - Getter for template directory object
-                | read - Read a template and return a string representation
+                | __init__ - Initial constructor.
+                | get_tempalte_dir - Getter for template directory object.
+                | read - Read a template and return a string representation.
     """
 
     __slots__ = (
-        'VERBOSE',
-        '__TEMPLATE_DIR',
-        '__TEMPLATES',
-        '__FORMAT',
-        '__template_dir'
+        'VERBOSE', '__TEMPLATE_DIR', '__TEMPLATES',
+        '__FORMAT', '__template_dir'
     )
     VERBOSE = 'DIST_PY_MODULE::SETUP::READ_TEMPLATE'
     __TEMPLATE_DIR = '/../conf/template/'
@@ -74,9 +71,9 @@ class ReadTemplate(FileChecking):
 
     def __init__(self, verbose=False):
         """
-            Setting template dir from configuration directory
+            Initial constructor.
 
-            :param verbose: Enable/disable verbose option
+            :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         """
@@ -96,32 +93,30 @@ class ReadTemplate(FileChecking):
 
     def get_tempalte_dir(self):
         """
-            Getter for template directory
+            Getter for template directory.
 
-            :return: Template directory object
+            :return: Template directory object.
             :rtype: <str>
         """
         return self.__template_dir
 
     def read(self, verbose=False):
         """
-            Read template structure
+            Read template structure.
 
-            :param verbose: Enable/disable verbose option
+            :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
-            :return: Template content for setup module | None
+            :return: Template content for setup module | None.
             :rtype: <str> | <NoneType>
             :exceptions: None
         """
-        template_file_exists, setup_content, template_file = False, None, None
+        setup_content, template_file = None, None
         verbose_message(ReadTemplate.VERBOSE, verbose, 'Loading template')
         template_file = "{0}{1}".format(
             self.__template_dir, ReadTemplate.__TEMPLATES[1]
         )
-        template_file_exists = self.check_file(
-            file_path=template_file, verbose=verbose
-        )
-        if template_file_exists:
+        self.check_path(file_path=template_file, verbose=verbose)
+        if self.file_path_ok:
             with open(template_file, 'r') as tmpl:
                 setup_content = tmpl.read()
         return setup_content

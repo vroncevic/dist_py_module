@@ -36,7 +36,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dist_py_module.setup.gen_setup module" href="dist_py_module.setup.gen_setup.html" />
+    <link rel="next" title="dist_py_module.setup.read_template module" href="dist_py_module.setup.read_template.html" />
     <link rel="prev" title="dist_py_module package" href="dist_py_module.html" /> 
 </head>
 
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                v1.1.0
+                v1.2.0
               </div>
             
           
@@ -99,7 +99,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Generator for distribution module setup.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Generator for setup.py</a></li>
 </ul>
 
             
@@ -175,7 +175,6 @@
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dist_py_module.setup.gen_setup.html">dist_py_module.setup.gen_setup module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dist_py_module.setup.read_template.html">dist_py_module.setup.read_template module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dist_py_module.setup.write_template.html">dist_py_module.setup.write_template module</a></li>
 </ul>
@@ -183,7 +182,126 @@
 </div>
 <div class="section" id="module-dist_py_module.setup">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dist_py_module.setup" title="Permalink to this headline">¶</a></h2>
-<p>Generating setup.py</p>
+<dl class="docutils">
+<dt>Module</dt>
+<dd>__init__.py</dd>
+<dt>Copyright</dt>
+<dd>Copyright (C) 2021 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
+dist_py_module is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+dist_py_module is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along
+with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</dd>
+<dt>Info</dt>
+<dd>Define class GenSetup with attribute(s) and method(s).
+Generate module file setup.py by template and parameters.</dd>
+</dl>
+<dl class="class">
+<dt id="dist_py_module.setup.GenSetup">
+<em class="property">class </em><code class="descclassname">dist_py_module.setup.</code><code class="descname">GenSetup</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup.html#GenSetup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.GenSetup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Define class GenSetup with attribute(s) and method(s).
+Generate module file setup.py by template and parameters.
+It defines:</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
+<div class="line">__slots__ - Setting class slots.</div>
+<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
+<div class="line">__reader - Reader API.</div>
+<div class="line">__writer - Writer API.</div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
+<div class="line">__init__ - Initial constructor.</div>
+<div class="line">get_reader - Getter for template reader.</div>
+<div class="line">get_writer - Getter for template writer.</div>
+<div class="line">gen_setup - Generate module file setup.py.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<dl class="attribute">
+<dt id="dist_py_module.setup.GenSetup.VERBOSE">
+<code class="descname">VERBOSE</code><em class="property"> = 'DIST_PY_MODULE::SETUP::GEN_SETUP'</em><a class="headerlink" href="#dist_py_module.setup.GenSetup.VERBOSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dist_py_module.setup.GenSetup.gen_setup">
+<code class="descname">gen_setup</code><span class="sig-paren">(</span><em>package_name</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup.html#GenSetup.gen_setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.GenSetup.gen_setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate setup.py for python package.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>package_name</strong> (<em>&lt;str&gt;</em>) – Parameter package name.</li>
+<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True (success) | False.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">&lt;bool&gt;</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body"><p class="first last">ATSTypeError | ATSBadCallError</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dist_py_module.setup.GenSetup.get_reader">
+<code class="descname">get_reader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup.html#GenSetup.get_reader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.GenSetup.get_reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for template reader.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Template reader object.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;ReadTemplate&gt;</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Exceptions:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dist_py_module.setup.GenSetup.get_writer">
+<code class="descname">get_writer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup.html#GenSetup.get_writer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.GenSetup.get_writer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for template writer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Template writer object.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;WriteTemplate&gt;</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Exceptions:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -195,7 +313,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dist_py_module.setup.gen_setup.html" class="btn btn-neutral float-right" title="dist_py_module.setup.gen_setup module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dist_py_module.setup.read_template.html" class="btn btn-neutral float-right" title="dist_py_module.setup.read_template module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="dist_py_module.html" class="btn btn-neutral float-left" title="dist_py_module package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

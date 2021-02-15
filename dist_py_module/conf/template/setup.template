@@ -20,6 +20,7 @@
      Define setup for $pkg package.
 """
 
+from os.path import abspath, dirname, join
 from setuptools import setup
 
 __author__ = 'Vladimir Roncevic'
@@ -31,6 +32,10 @@ __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
+THIS_DIR, LONG_DESCRIPTION = abspath(dirname(__file__)), None
+with open(join(THIS_DIR, 'README.md')) as readme:
+    LONG_DESCRIPTION = readme.read()
+
 setup(
     name='$pkg',
     version='1.0.0',
@@ -39,12 +44,25 @@ setup(
     author_email='elektron.ronca@gmail.com',
     url='https://github.com/vroncevic/TODO',
     license='GPL 2018 Free software to use and distributed it.',
-    long_description='$pkg, TODO',
+    long_description=LONG_DESCRIPTION,
+    long_description_content_type='text/markdown',
     keywords='$pkg, TODO',
     platforms='POSIX',
+    classifiers=[
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)',
+        'License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)',
+        'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',
+        'License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)',
+        'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)'
+    ],
     packages=[
         '$pkg'
     ],
-    install_requires=['colorama', 'bs4', 'PyYAML', 'configparser', 'pathlib']
+    install_requires=['ats-utilities']
 )
 
