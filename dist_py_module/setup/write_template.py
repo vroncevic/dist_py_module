@@ -50,23 +50,19 @@ class WriteTemplate(object):
         It defines:
 
             :attributes:
-                | __slots__ - Setting class slots
-                | VERBOSE - Console text indicator for current process-phase
-                | __SETUP_FILE - File name for setup file
-                | __FORMAT - File format (file extension)
-                | __checker - ATS checker for parameters
+                | __slots__ - Setting class slots.
+                | VERBOSE - Console text indicator for current process-phase.
+                | __SETUP_FILE - File name for setup file.
+                | __FORMAT - File format (file extension).
+                | __setup - Setup file path.
             :methods:
-                | __init__ - Initial constructor
-                | get_setup - Getter for setup file object
-                | write - Write a template content to a file setup.py
+                | __init__ - Initial constructor.
+                | get_setup - Getter for setup file object.
+                | write - Write a template content to a file setup.py.
     """
 
     __slots__ = (
-        'VERBOSE',
-        '__SETUP_FILE',
-        '__FORMAT',
-        '__setup',
-        '__checker'
+        'VERBOSE', '__SETUP_FILE', '__FORMAT', '__setup'
     )
     VERBOSE = 'DIST_PY_MODULE::SETUP::WRITE_TEMPLATE'
     __SETUP_FILE = 'setup.py'
@@ -74,40 +70,40 @@ class WriteTemplate(object):
 
     def __init__(self, verbose=False):
         """
-            Initial constructor
+            Initial constructor.
 
-            :param verbose: Enable/disable verbose option
+            :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         """
-        verbose_message(WriteTemplate.VERBOSE, verbose, 'Initial writer')
-        self.__checker = ATSChecker()
+        verbose_message(WriteTemplate.VERBOSE, verbose, 'Initial writer.')
         self.__setup = None
 
     def get_setup(self):
         """
-            Getter for setup file object
+            Getter for setup file object.
 
-            :return: Setup file path
-            :rtype: <str>
+            :return: Setup file path | None.
+            :rtype: <str> | <NoneType>
         """
         return self.__setup
 
     def write(self, setup_content, package_name, verbose=False):
         """
-            Write setup content to file
+            Write setup content to file.
 
-            :param setup_content: Template content
+            :param setup_content: Template content.
             :type setup_content: <str>
-            :param package_name: Parameter package name
+            :param package_name: Parameter package name.
             :type package_name: <str>
-            :param verbose: Enable/disable verbose option
+            :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
-            :return: True (success) | False
+            :return: True (success) | False.
             :rtype: <bool>
             :exception: ATSTypeError | ATSBadCallError
         """
-        error, status = self.__checker.check_params([
+        checker, error, status = ATSChecker(), None, False
+        error, status = checker.check_params([
             ('str:setup_content', setup_content),
             ('str:package_name', package_name)
         ])

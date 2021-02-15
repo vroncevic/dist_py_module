@@ -17,6 +17,7 @@ other information that should be provided before the modules are installed.
 **Table of Contents**
 
 - [Installation](#installation)
+    - [Install using pip](#install-using-pip)
     - [Install using setuptools](#install-using-setuptools)
     - [Install using docker](#install-using-docker)
 - [Dependencies](#dependencies)
@@ -31,15 +32,25 @@ other information that should be provided before the modules are installed.
 
 ![Install Python2 Package](https://github.com/vroncevic/dist_py_module/workflows/Install%20Python2%20Package%20dist_py_module/badge.svg?branch=master) ![Install Python3 Package](https://github.com/vroncevic/dist_py_module/workflows/Install%20Python3%20Package%20dist_py_module/badge.svg?branch=master)
 
-Navigate to release **[page](https://github.com/vroncevic/dist_py_module/releases/tag/v1.0)** download and extract release archive.
-
-Currently there are two ways to install tool:
+Currently there are three ways to install tool:
+* Install process based on pip
 * Install process based on setup.py (setuptools)
 * Install process based on docker mechanism
 
+##### Install using pip
+
+Python package is located at **[pypi.org](https://pypi.org/project/dist-py-module/)**.
+
+You can install by using pip
+```
+pip install dist-py-module
+```
+
 ##### Install using setuptools
 
-To install this set of modules type the following:
+Navigate to release **[page](https://github.com/vroncevic/dist_py_module/releases/)** download and extract release archive.
+
+To install modules, locate and run setup.py with arguments
 ```
 tar xvzf dist_py_module-x.y.z.tar.gz
 cd dist_py_module-x.y.z/
@@ -51,8 +62,7 @@ python setup.py install_egg_info
 
 ##### Install using docker
 
-You can use docker to load Dockerfile which contains all the commands
-a user could call on the command line to assemble an image.
+You can use Dockerfile to create image/container.
 
 [![dist_py_module docker checker](https://github.com/vroncevic/dist_py_module/workflows/dist_py_module%20docker%20checker/badge.svg)](https://github.com/vroncevic/dist_py_module/actions?query=workflow%3A%22dist_py_module+docker+checker%22)
 
@@ -60,7 +70,7 @@ a user could call on the command line to assemble an image.
 
 **dist_py_module** requires next modules and libraries:
 
-* [ats-utilities - Python App/Tool/Script Utilities](https://vroncevic.github.io/ats_utilities)
+* [ats-utilities - Python App/Tool/Script Utilities](https://pypi.org/project/ats-utilities/)
 
 ### Generation flow of pyp setup
 
@@ -77,22 +87,21 @@ Base flow of generation process:
 Generator structure:
 
 ```
-.
-├── bin/
-│   ├── dist_py_module.py
-│   ├── dist_py_module_run.py
-│   └── setup/
-│       ├── gen_setup.py
-│       ├── __init__.py
-│       ├── read_template.py
-│       └── write_template.py
+dist_py_module/
 ├── conf/
 │   ├── dist_py_module.cfg
 │   ├── dist_py_module_util.cfg
 │   └── template/
 │       └── setup.template
-└── log/
-    └── dist_py_module.log
+├── __init__.py
+├── log/
+│   └── dist_py_module.log
+├── run/
+│   └── dist_py_module_run.py
+└── setup/
+    ├── __init__.py
+    ├── read_template.py
+    └── write_template.py
 ```
 
 ### Docs
@@ -111,7 +120,7 @@ More documentation and info at:
 Copyright (C) 2018 by [vroncevic.github.io/dist_py_module](https://vroncevic.github.io/dist_py_module)
 
 **dist_py_module** is free software; you can redistribute it and/or modify
-it under the same terms as Python itself, either Python version 2.7/3.4 or,
+it under the same terms as Python itself, either Python version 2.x/3.x or,
 at your option, any later version of Python 3 you may have available.
 
 Lets help and support PSF.

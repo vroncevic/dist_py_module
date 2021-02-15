@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generator for distribution module setup.py &mdash; dist_py_module https://github.com/vroncevic/dist_py_module/releases documentation</title>
+  <title>Generator for setup.py &mdash; dist_py_module https://github.com/vroncevic/dist_py_module/releases documentation</title>
   
 
   
@@ -88,7 +88,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modules.html">dist_py_module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Generator for distribution module setup.py</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generator for setup.py</a></li>
 </ul>
 
             
@@ -135,7 +135,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Generator for distribution module setup.py</li>
+      <li>Generator for setup.py</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -154,8 +154,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="generator-for-distribution-module-setup-py">
-<h1>Generator for distribution module setup.py<a class="headerlink" href="#generator-for-distribution-module-setup-py" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="generator-for-setup-py">
+<h1>Generator for setup.py<a class="headerlink" href="#generator-for-setup-py" title="Permalink to this headline">¶</a></h1>
 <p><strong>dist_py_module</strong> is toolset for generating setup.py.</p>
 <p>Developed in <a class="reference external" href="https://www.python.org/">python</a> code: <strong>100%</strong>.</p>
 <p>The README is used to introduce the tool and provide instructions on
@@ -176,11 +176,12 @@ other information that should be provided before the tool is installed.</p>
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Generator for distribution module setup.py</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generator for setup.py</a></li>
 </ul>
 </div>
+</div>
 <div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://github.com/vroncevic/dist_py_module/workflows/Install%20Python2%20Package%20dist_py_module/badge.svg?branch=master"><img alt="Install Python2 Package" src="https://github.com/vroncevic/dist_py_module/workflows/Install%20Python2%20Package%20dist_py_module/badge.svg" /></a> <a class="reference external" href="https://github.com/vroncevic/dist_py_module/workflows/Install%20Python3%20Package%20dist_py_module/badge.svg?branch=master"><img alt="Install Python3 Package" src="https://github.com/vroncevic/dist_py_module/workflows/Install%20Python3%20Package%20dist_py_module/badge.svg" /></a></p>
 <p>Navigate to release <a class="reference external" href="https://github.com/vroncevic/dist_py_module/releases">page</a> download and extract release archive.</p>
 <p>To install <strong>dist_py_module</strong> type the following:</p>
@@ -192,47 +193,49 @@ python setup.py install_data
 python setup.py install_egg_info
 </pre></div>
 </div>
-<p>You can use Docker to create image/container.</p>
+<p>You can use Docker to create image/container, or You can use pip to install:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install dist-py-module
+</pre></div>
+</div>
 <p><a class="reference external" href="https://github.com/vroncevic/dist_py_module/actions?query=workflow%3A%22dist_py_module+docker+checker%22"><img alt="GitHub docker checker" src="https://github.com/vroncevic/dist_py_module/workflows/dist_py_module%20docker%20checker/badge.svg" /></a></p>
 </div>
 <div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
 <p><strong>dist_py_module</strong> requires next modules and libraries:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://pypi.org/project/ats-utilities/">ats-utilities - Python App/Tool/Script Utilities</a></li>
 </ul>
 </div>
 <div class="section" id="generation-flow-of-project-setup">
-<h2>Generation flow of project setup<a class="headerlink" href="#generation-flow-of-project-setup" title="Permalink to this headline">¶</a></h2>
+<h1>Generation flow of project setup<a class="headerlink" href="#generation-flow-of-project-setup" title="Permalink to this headline">¶</a></h1>
 <p>Base flow of generation process:</p>
 <img alt="https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup_flow.png" src="https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup_flow.png" />
 </div>
 <div class="section" id="tool-structure">
-<h2>Tool structure<a class="headerlink" href="#tool-structure" title="Permalink to this headline">¶</a></h2>
+<h1>Tool structure<a class="headerlink" href="#tool-structure" title="Permalink to this headline">¶</a></h1>
 <p><strong>dist_py_module</strong> is based on Template mechanism:</p>
 <img alt="https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup.png" src="https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup.png" />
 <p>Code structure:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
-├── bin/
-│   ├── dist_py_module.py
-│   ├── dist_py_module_run.py
-│   └── setup/
-│       ├── gen_setup.py
-│       ├── __init__.py
-│       ├── read_template.py
-│       └── write_template.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dist_py_module/
 ├── conf/
 │   ├── dist_py_module.cfg
 │   ├── dist_py_module_util.cfg
 │   └── template/
 │       └── setup.template
-└── log/
-     └── dist_py_module.log
+├── __init__.py
+├── log/
+│   └── dist_py_module.log
+├── run/
+│   └── dist_py_module_run.py
+└── setup/
+    ├── __init__.py
+    ├── read_template.py
+    └── write_template.py
 </pre></div>
 </div>
 </div>
 <div class="section" id="copyright-and-licence">
-<h2>Copyright and licence<a class="headerlink" href="#copyright-and-licence" title="Permalink to this headline">¶</a></h2>
+<h1>Copyright and licence<a class="headerlink" href="#copyright-and-licence" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0"><img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="License: Apache 2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p>
 <p>Copyright (C) 2018 by <a class="reference external" href="https://vroncevic.github.io/dist_py_module">vroncevic.github.io/dist_py_module</a></p>
 <p><strong>dist_py_module</strong> is free software; you can redistribute it and/or modify
@@ -243,13 +246,12 @@ at your option, any later version of Python 3 you may have available.</p>
 <p><a class="reference external" href="https://psfmember.org/index.php?q=civicrm/contribute/transact&amp;reset=1&amp;id=2"><img alt="Donate" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" /></a></p>
 </div>
 <div class="section" id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
 <li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
 <li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
-</div>
 </div>
 
 

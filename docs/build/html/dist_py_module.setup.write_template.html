@@ -98,7 +98,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Generator for distribution module setup.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Generator for setup.py</a></li>
 </ul>
 
             
@@ -204,18 +204,18 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase</div>
-<div class="line">__SETUP_FILE - File name for setup file</div>
-<div class="line">__FORMAT - File format (file extension)</div>
-<div class="line">__checker - ATS checker for parameters</div>
+<div class="line">__slots__ - Setting class slots.</div>
+<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
+<div class="line">__SETUP_FILE - File name for setup file.</div>
+<div class="line">__FORMAT - File format (file extension).</div>
+<div class="line">__setup - Setup file path.</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__init__ - Initial constructor</div>
-<div class="line">get_setup - Getter for setup file object</div>
-<div class="line">write - Write a template content to a file setup.py</div>
+<div class="line">__init__ - Initial constructor.</div>
+<div class="line">get_setup - Getter for setup file object.</div>
+<div class="line">write - Write a template content to a file setup.py.</div>
 </div>
 </td>
 </tr>
@@ -230,14 +230,14 @@ It defines:</p>
 <dl class="method">
 <dt id="dist_py_module.setup.write_template.WriteTemplate.get_setup">
 <code class="descname">get_setup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup/write_template.html#WriteTemplate.get_setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.write_template.WriteTemplate.get_setup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Getter for setup file object</p>
+<dd><p>Getter for setup file object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Setup file path</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Setup file path | None.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;str&gt;</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;str&gt; | &lt;NoneType&gt;</td>
 </tr>
 </tbody>
 </table>
@@ -246,19 +246,19 @@ It defines:</p>
 <dl class="method">
 <dt id="dist_py_module.setup.write_template.WriteTemplate.write">
 <code class="descname">write</code><span class="sig-paren">(</span><em>setup_content</em>, <em>package_name</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup/write_template.html#WriteTemplate.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.write_template.WriteTemplate.write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write setup content to file</p>
+<dd><p>Write setup content to file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>setup_content</strong> (<em>&lt;str&gt;</em>) – Template content</li>
-<li><strong>package_name</strong> (<em>&lt;str&gt;</em>) – Parameter package name</li>
-<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option</li>
+<li><strong>setup_content</strong> (<em>&lt;str&gt;</em>) – Template content.</li>
+<li><strong>package_name</strong> (<em>&lt;str&gt;</em>) – Parameter package name.</li>
+<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True (success) | False</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True (success) | False.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">&lt;bool&gt;</p>
