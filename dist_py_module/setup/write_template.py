@@ -37,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.2.0'
+__version__ = '1.3.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -61,9 +61,7 @@ class WriteTemplate(object):
                 | write - Write a template content to a file setup.py.
     """
 
-    __slots__ = (
-        'VERBOSE', '__SETUP_FILE', '__FORMAT', '__setup'
-    )
+    __slots__ = ('VERBOSE', '__SETUP_FILE', '__FORMAT', '__setup')
     VERBOSE = 'DIST_PY_MODULE::SETUP::WRITE_TEMPLATE'
     __SETUP_FILE = 'setup.py'
     __FORMAT = 'py'

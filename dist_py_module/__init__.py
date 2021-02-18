@@ -38,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.2.0'
+__version__ = '1.3.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -60,9 +60,7 @@ class DistPyModule(CfgCLI):
                 | process - Process and generate module setup.py.
     """
 
-    __slots__ = (
-        'VERBOSE', '__CONFIG', '__OPS'
-    )
+    __slots__ = ('VERBOSE', '__CONFIG', '__OPS')
     VERBOSE = 'DIST_PY_MODULE'
     __CONFIG = '/conf/dist_py_module.cfg'
     __OPS = ['-g', '--gen', '-h', '--version', '--verbose']
@@ -113,18 +111,25 @@ class DistPyModule(CfgCLI):
                 generator, gen_status = GenSetup(verbose=verbose), False
                 print(
                     "{0} {1} [{2}]".format(
-                        "[{0}]".format(self.name),
+                        "[{0}]".format(DistPyModule.VERBOSE),
                         'Generating setup.py for package', opts.pkg
                     )
                 )
                 gen_status = generator.gen_setup("{0}".format(opts.pkg))
                 if gen_status:
-                    success_message(self.name, 'Done\n')
+                    success_message(DistPyModule.VERBOSE, 'Done\n')
                     status = True
                 else:
-                    error_message(self.name, 'Failed to generate setup.py')
+                    error_message(
+                        DistPyModule.VERBOSE,
+                        'Failed to generate setup.py'
+                    )
             else:
-                error_message(self.name, 'setup.py already exist !')
+                error_message(
+                    DistPyModule.VERBOSE, 'setup.py already exist !'
+                )
         else:
-            error_message('dist_py_module', 'Tool is not operational')
+            error_message(
+                DistPyModule.VERBOSE, 'Tool is not operational'
+            )
         return True if status else False
