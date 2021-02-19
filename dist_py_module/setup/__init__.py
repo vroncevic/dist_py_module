@@ -23,10 +23,12 @@
 import sys
 
 try:
+    from pathlib import Path
     from ats_utilities.checker import ATSChecker
     from dist_py_module.setup.read_template import ReadTemplate
     from ats_utilities.console_io.verbose import verbose_message
     from dist_py_module.setup.write_template import WriteTemplate
+    from ats_utilities.config_io.yaml.yaml2object import Yaml2Object
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as error_message:
@@ -37,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.3.0'
+__version__ = '1.4.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -52,8 +54,10 @@ class GenSetup(object):
             :attributes:
                 | __slots__ - Setting class slots.
                 | VERBOSE - Console text indicator for current process-phase.
+                | __CONFIG - Project configuraiton (template, module).
                 | __reader - Reader API.
                 | __writer - Writer API.
+                | __config - Project setup in yaml format.
             :methods:
                 | __init__ - Initial constructor.
                 | get_reader - Getter for template reader.
@@ -61,8 +65,9 @@ class GenSetup(object):
                 | gen_setup - Generate module file setup.py.
     """
 
-    __slots__ = ('VERBOSE', '__reader', '__writer')
+    __slots__ = ('VERBOSE', '__CONFIG', '__reader', '__writer', '__config')
     VERBOSE = 'DIST_PY_MODULE::SETUP::GEN_SETUP'
+    __CONFIG = '/../conf/project.yaml'
 
     def __init__(self, verbose=False):
         """
@@ -72,9 +77,15 @@ class GenSetup(object):
             :type verbose: <bool>
             :exceptions: None
         """
-        verbose_message(GenSetup.VERBOSE, verbose, 'Initial setup.')
+        verbose_message(GenSetup.VERBOSE, verbose, 'init setup')
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
+        yml2obj = Yaml2Object(
+            "{0}{1}".format(
+                Path(__file__).resolve().parent, GenSetup.__CONFIG
+            )
+        )
+        self.__config = yml2obj.read_configuration()
 
     def get_reader(self):
         """
@@ -116,9 +127,11 @@ class GenSetup(object):
         if status == ATSChecker.VALUE_ERROR: raise ATSBadCallError(error)
         status, setup_content = False, None
         verbose_message(
-            GenSetup.VERBOSE, verbose, 'Generating package', package_name
+            GenSetup.VERBOSE, verbose, 'generating package', package_name
         )
-        setup_content = self.__reader.read(verbose=verbose)
+        setup_content = self.__reader.read(
+            self.__config['template'], verbose=verbose
+        )
         if setup_content:
             status = self.__writer.write(
                 setup_content, package_name, verbose=verbose

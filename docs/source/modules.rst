@@ -5,3 +5,4 @@ dist_py_module
    :maxdepth: 4
 
    dist_py_module
+   setup
