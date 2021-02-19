@@ -1,0 +1,5 @@
+template:
+    setup.template
+
+module:
+    setup.py

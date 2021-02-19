@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                v1.3.0
+                v1.4.0
               </div>
             
           
@@ -97,6 +97,7 @@
 <li class="toctree-l3"><a class="reference internal" href="dist_py_module.html#module-dist_py_module">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Generator for setup.py</a></li>
@@ -208,15 +209,13 @@ It defines:</p>
 <div class="line">__slots__ - Setting class slots.</div>
 <div class="line">VERBOSE - Console text indicator for current process-phase.</div>
 <div class="line">__TEMPLATE_DIR - Template dir path.</div>
-<div class="line">__TEMPLATES - Types of templates.</div>
-<div class="line">__FORMAT - File format for template.</div>
 <div class="line">__template_dir - Absolute file path of template dir.</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
 <div class="line">__init__ - Initial constructor.</div>
-<div class="line">get_tempalte_dir - Getter for template directory object.</div>
+<div class="line">get_template_dir - Getter for template directory object.</div>
 <div class="line">read - Read a template and return a string representation.</div>
 </div>
 </td>
@@ -230,8 +229,8 @@ It defines:</p>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="dist_py_module.setup.read_template.ReadTemplate.get_tempalte_dir">
-<code class="descname">get_tempalte_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup/read_template.html#ReadTemplate.get_tempalte_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.read_template.ReadTemplate.get_tempalte_dir" title="Permalink to this definition">¶</a></dt>
+<dt id="dist_py_module.setup.read_template.ReadTemplate.get_template_dir">
+<code class="descname">get_template_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup/read_template.html#ReadTemplate.get_template_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.read_template.ReadTemplate.get_template_dir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Getter for template directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -247,19 +246,26 @@ It defines:</p>
 
 <dl class="method">
 <dt id="dist_py_module.setup.read_template.ReadTemplate.read">
-<code class="descname">read</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup/read_template.html#ReadTemplate.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.read_template.ReadTemplate.read" title="Permalink to this definition">¶</a></dt>
+<code class="descname">read</code><span class="sig-paren">(</span><em>template_module</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup/read_template.html#ReadTemplate.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.read_template.ReadTemplate.read" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read template structure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>template_module</strong> (<em>&lt;str&gt;</em>) – Template module name.</li>
+<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Template content for setup module | None.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Template content for setup module | None.</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">&lt;str&gt; | &lt;NoneType&gt;</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">&lt;str&gt; | &lt;NoneType&gt;</p>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body">None</td>
+<tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body"><p class="first last">None</p>
+</td>
 </tr>
 </tbody>
 </table>

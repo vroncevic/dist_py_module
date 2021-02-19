@@ -37,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.3.0'
+__version__ = '1.4.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -53,7 +53,6 @@ class WriteTemplate(object):
                 | __slots__ - Setting class slots.
                 | VERBOSE - Console text indicator for current process-phase.
                 | __SETUP_FILE - File name for setup file.
-                | __FORMAT - File format (file extension).
                 | __setup - Setup file path.
             :methods:
                 | __init__ - Initial constructor.
@@ -61,10 +60,9 @@ class WriteTemplate(object):
                 | write - Write a template content to a file setup.py.
     """
 
-    __slots__ = ('VERBOSE', '__SETUP_FILE', '__FORMAT', '__setup')
+    __slots__ = ('VERBOSE', '__SETUP_FILE', '__setup')
     VERBOSE = 'DIST_PY_MODULE::SETUP::WRITE_TEMPLATE'
     __SETUP_FILE = 'setup.py'
-    __FORMAT = 'py'
 
     def __init__(self, verbose=False):
         """
@@ -74,7 +72,7 @@ class WriteTemplate(object):
             :type verbose: <bool>
             :exceptions: None
         """
-        verbose_message(WriteTemplate.VERBOSE, verbose, 'Initial writer.')
+        verbose_message(WriteTemplate.VERBOSE, verbose, 'init writer')
         self.__setup = None
 
     def get_setup(self):
@@ -111,7 +109,7 @@ class WriteTemplate(object):
         self.__setup = "{0}/{1}".format(
             current_dir, WriteTemplate.__SETUP_FILE
         )
-        verbose_message(WriteTemplate.VERBOSE, verbose, 'Write setup.py')
+        verbose_message(WriteTemplate.VERBOSE, verbose, 'write setup.py')
         package = {'pkg': "{0}".format(package_name)}
         template = Template(setup_content)
         if template:

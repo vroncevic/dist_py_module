@@ -17,7 +17,7 @@
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
      Define class DistPyModule with attribute(s) and method(s).
-     Load a settings, create an interface and run operation(s).
+     Load a base info, create an CLI interface and run operation(s).
 """
 
 import sys
@@ -38,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.3.0'
+__version__ = '1.4.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -47,14 +47,14 @@ __status__ = 'Updated'
 class DistPyModule(CfgCLI):
     """
         Define class DistPyModule with attribute(s) and method(s).
-        Load a settings, create an interface and run operation(s).
+        Load a base info, create an CLI interface and run operation(s).
         It defines:
 
             :attributes:
                 | __slots__ - Setting class slots.
                 | VERBOSE - Console text indicator for current process-phase.
-                | __CONFIG - Configuration file path.
-                | __OPS -  Tool options (list).
+                | __CONFIG - Tool info file path.
+                | __OPS -  List of tool options.
             :methods:
                 | __init__ - Initial constructor.
                 | process - Process and generate module setup.py.
@@ -63,7 +63,7 @@ class DistPyModule(CfgCLI):
     __slots__ = ('VERBOSE', '__CONFIG', '__OPS')
     VERBOSE = 'DIST_PY_MODULE'
     __CONFIG = '/conf/dist_py_module.cfg'
-    __OPS = ['-g', '--gen', '-h', '--version', '--verbose']
+    __OPS = ['-g', '--gen', '-v']
 
     def __init__(self, verbose=False):
         """
@@ -73,14 +73,18 @@ class DistPyModule(CfgCLI):
             :type verbose: <bool>
             :exceptions: None
         """
-        verbose_message(DistPyModule.VERBOSE, verbose, 'Initial configuration')
+        verbose_message(DistPyModule.VERBOSE, verbose, 'init tool info')
         current_dir = Path(__file__).resolve().parent
-        base_config_file = "{0}{1}".format(current_dir, DistPyModule.__CONFIG)
-        CfgCLI.__init__(self, base_config_file, verbose=verbose)
+        base_info = "{0}{1}".format(current_dir, DistPyModule.__CONFIG)
+        CfgCLI.__init__(self, base_info, verbose=verbose)
         if self.tool_operational:
             self.add_new_option(
                 DistPyModule.__OPS[0], DistPyModule.__OPS[1], dest='pkg',
                 help='generate module setup.py'
+            )
+            self.add_new_option(
+                DistPyModule.__OPS[2], action="store_true", default=False,
+                help='activate verbose mode for generation'
             )
 
     def process(self, verbose=False):
@@ -96,7 +100,7 @@ class DistPyModule(CfgCLI):
         status = False
         if self.tool_operational:
             num_of_args_sys = len(sys.argv)
-            if num_of_args_sys > 1:
+            if num_of_args_sys >= 1:
                 operation = sys.argv[1]
                 if operation not in DistPyModule.__OPS:
                     sys.argv = []
@@ -104,32 +108,37 @@ class DistPyModule(CfgCLI):
             else:
                 sys.argv.append('-h')
             opts, args = self.parse_args(sys.argv)
-            num_of_args, current_dir = len(args), getcwd()
-            setup_path = "{0}/{1}".format(current_dir, 'setup.py')
-            setup_exists = Path(setup_path).exists()
-            if num_of_args == 1 and opts.pkg and not setup_exists:
-                generator, gen_status = GenSetup(verbose=verbose), False
-                print(
-                    "{0} {1} [{2}]".format(
-                        "[{0}]".format(DistPyModule.VERBOSE),
-                        'Generating setup.py for package', opts.pkg
+            num_of_args, setup_exists = len(args), Path(
+                "{0}/{1}".format(getcwd(), 'setup.py')
+            ).exists()
+            if not setup_exists:
+                if num_of_args >= 1 and bool(opts.pkg):
+                    print(
+                        "{0} {1} [{2}]".format(
+                            "[{0}]".format(DistPyModule.VERBOSE.lower()),
+                            'generating setup.py for package', opts.pkg
+                        )
                     )
-                )
-                gen_status = generator.gen_setup("{0}".format(opts.pkg))
-                if gen_status:
-                    success_message(DistPyModule.VERBOSE, 'Done\n')
-                    status = True
+                    generator = GenSetup(verbose=opts.v or verbose)
+                    status = generator.gen_setup(
+                        "{0}".format(opts.pkg), verbose=opts.v or verbose
+                    )
+                    if status:
+                        success_message(DistPyModule.VERBOSE, 'done\n')
+                    else:
+                        error_message(
+                            DistPyModule.VERBOSE, 'generation failed'
+                        )
                 else:
                     error_message(
-                        DistPyModule.VERBOSE,
-                        'Failed to generate setup.py'
+                        DistPyModule.VERBOSE, 'provide package name'
                     )
             else:
                 error_message(
-                    DistPyModule.VERBOSE, 'setup.py already exist !'
+                    DistPyModule.VERBOSE, 'setup.py already exist'
                 )
         else:
             error_message(
-                DistPyModule.VERBOSE, 'Tool is not operational'
+                DistPyModule.VERBOSE, 'tool is not operational'
             )
         return True if status else False

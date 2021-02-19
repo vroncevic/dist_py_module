@@ -25,8 +25,11 @@ from os.path import isdir
 
 try:
     from pathlib import Path
+    from ats_utilities.checker import ATSChecker
     from ats_utilities.config_io.base_check import FileChecking
     from ats_utilities.console_io.verbose import verbose_message
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
+    from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as error_message:
     MESSAGE = "\n{0}\n{1}\n".format(__file__, error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
@@ -35,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.3.0'
+__version__ = '1.4.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -51,23 +54,16 @@ class ReadTemplate(FileChecking):
                 | __slots__ - Setting class slots.
                 | VERBOSE - Console text indicator for current process-phase.
                 | __TEMPLATE_DIR - Template dir path.
-                | __TEMPLATES - Types of templates.
-                | __FORMAT - File format for template.
                 | __template_dir - Absolute file path of template dir.
             :methods:
                 | __init__ - Initial constructor.
-                | get_tempalte_dir - Getter for template directory object.
+                | get_template_dir - Getter for template directory object.
                 | read - Read a template and return a string representation.
     """
 
-    __slots__ = (
-        'VERBOSE', '__TEMPLATE_DIR', '__TEMPLATES',
-        '__FORMAT', '__template_dir'
-    )
+    __slots__ = ('VERBOSE', '__TEMPLATE_DIR', '__template_dir')
     VERBOSE = 'DIST_PY_MODULE::SETUP::READ_TEMPLATE'
     __TEMPLATE_DIR = '/../conf/template/'
-    __TEMPLATES = {1:'setup.template'}
-    __FORMAT = 'template'
 
     def __init__(self, verbose=False):
         """
@@ -77,9 +73,7 @@ class ReadTemplate(FileChecking):
             :type verbose: <bool>
             :exceptions: None
         """
-        verbose_message(
-            ReadTemplate.VERBOSE, verbose, 'Initial reader'
-        )
+        verbose_message(ReadTemplate.VERBOSE, verbose, 'init reader')
         FileChecking.__init__(self, verbose=verbose)
         current_dir = Path(__file__).parent
         template_dir = "{0}{1}".format(
@@ -91,7 +85,7 @@ class ReadTemplate(FileChecking):
         else:
             self.__template_dir = None
 
-    def get_tempalte_dir(self):
+    def get_template_dir(self):
         """
             Getter for template directory.
 
@@ -100,21 +94,27 @@ class ReadTemplate(FileChecking):
         """
         return self.__template_dir
 
-    def read(self, verbose=False):
+    def read(self, template_module, verbose=False):
         """
             Read template structure.
 
+            :param template_module: Template module name.
+            :type template_module: <str>
             :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :return: Template content for setup module | None.
             :rtype: <str> | <NoneType>
             :exceptions: None
         """
-        setup_content, template_file = None, None
-        verbose_message(ReadTemplate.VERBOSE, verbose, 'Loading template')
-        template_file = "{0}{1}".format(
-            self.__template_dir, ReadTemplate.__TEMPLATES[1]
+        checker, error, status = ATSChecker(), None, False
+        error, status = checker.check_params(
+            [('str:template_module', template_module)]
         )
+        if status == ATSChecker.TYPE_ERROR: raise ATSTypeError(error)
+        if status == ATSChecker.VALUE_ERROR: raise ATSBadCallError(error)
+        setup_content, template_file = None, None
+        verbose_message(ReadTemplate.VERBOSE, verbose, 'load template')
+        template_file = "{0}{1}".format(self.__template_dir, template_module)
         self.check_path(file_path=template_file, verbose=verbose)
         if self.file_path_ok:
             with open(template_file, 'r') as tmpl:
