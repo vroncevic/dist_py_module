@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                v1.4.0
+                v1.5.0
               </div>
             
           
@@ -97,7 +97,6 @@
 <li class="toctree-l3"><a class="reference internal" href="dist_py_module.html#module-dist_py_module">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Generator for setup.py</a></li>
@@ -205,7 +204,7 @@ Generate module file setup.py by template and parameters.</dd>
 <dl class="class">
 <dt id="dist_py_module.setup.GenSetup">
 <em class="property">class </em><code class="descclassname">dist_py_module.setup.</code><code class="descname">GenSetup</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/setup.html#GenSetup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dist_py_module.setup.GenSetup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ats_utilities.config_io.base_check.FileChecking</span></code></p>
 <p>Define class GenSetup with attribute(s) and method(s).
 Generate module file setup.py by template and parameters.
 It defines:</p>
@@ -217,10 +216,10 @@ It defines:</p>
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
 <div class="line">__slots__ - Setting class slots.</div>
 <div class="line">VERBOSE - Console text indicator for current process-phase.</div>
-<div class="line">__CONFIG - Project configuraiton (template, module).</div>
+<div class="line">__PRO_STRUCTURE - Project setup (template, module).</div>
 <div class="line">__reader - Reader API.</div>
 <div class="line">__writer - Writer API.</div>
-<div class="line">__config - Project setup in yaml format.</div>
+<div class="line">__config - Project setup in dict format.</div>
 </div>
 </td>
 </tr>

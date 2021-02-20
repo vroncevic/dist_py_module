@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                v1.4.0
+                v1.5.0
               </div>
             
           
@@ -181,6 +181,7 @@
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.checker</span> <span class="kn">import</span> <span class="n">ATSChecker</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.config_io.base_check</span> <span class="kn">import</span> <span class="n">FileChecking</span>
     <span class="kn">from</span> <span class="nn">dist_py_module.setup.read_template</span> <span class="kn">import</span> <span class="n">ReadTemplate</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.console_io.verbose</span> <span class="kn">import</span> <span class="n">verbose_message</span>
     <span class="kn">from</span> <span class="nn">dist_py_module.setup.write_template</span> <span class="kn">import</span> <span class="n">WriteTemplate</span>
@@ -195,13 +196,13 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2021, Free software to use and distributed it.&#39;</span>
 <span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;GNU General Public License (GPL)&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.4.0&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.5.0&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
 
 
-<div class="viewcode-block" id="GenSetup"><a class="viewcode-back" href="../../dist_py_module.setup.html#dist_py_module.setup.GenSetup">[docs]</a><span class="k">class</span> <span class="nc">GenSetup</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="GenSetup"><a class="viewcode-back" href="../../dist_py_module.setup.html#dist_py_module.setup.GenSetup">[docs]</a><span class="k">class</span> <span class="nc">GenSetup</span><span class="p">(</span><span class="n">FileChecking</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Define class GenSetup with attribute(s) and method(s).</span>
 <span class="sd">        Generate module file setup.py by template and parameters.</span>
@@ -210,10 +211,10 @@
 <span class="sd">            :attributes:</span>
 <span class="sd">                | __slots__ - Setting class slots.</span>
 <span class="sd">                | VERBOSE - Console text indicator for current process-phase.</span>
-<span class="sd">                | __CONFIG - Project configuraiton (template, module).</span>
+<span class="sd">                | __PRO_STRUCTURE - Project setup (template, module).</span>
 <span class="sd">                | __reader - Reader API.</span>
 <span class="sd">                | __writer - Writer API.</span>
-<span class="sd">                | __config - Project setup in yaml format.</span>
+<span class="sd">                | __config - Project setup in dict format.</span>
 <span class="sd">            :methods:</span>
 <span class="sd">                | __init__ - Initial constructor.</span>
 <span class="sd">                | get_reader - Getter for template reader.</span>
@@ -221,9 +222,11 @@
 <span class="sd">                | gen_setup - Generate module file setup.py.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;VERBOSE&#39;</span><span class="p">,</span> <span class="s1">&#39;__CONFIG&#39;</span><span class="p">,</span> <span class="s1">&#39;__reader&#39;</span><span class="p">,</span> <span class="s1">&#39;__writer&#39;</span><span class="p">,</span> <span class="s1">&#39;__config&#39;</span><span class="p">)</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;VERBOSE&#39;</span><span class="p">,</span> <span class="s1">&#39;__PRO_STRUCTURE&#39;</span><span class="p">,</span> <span class="s1">&#39;__reader&#39;</span><span class="p">,</span> <span class="s1">&#39;__writer&#39;</span><span class="p">,</span> <span class="s1">&#39;__config&#39;</span>
+    <span class="p">)</span>
     <span class="n">VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DIST_PY_MODULE::SETUP::GEN_SETUP&#39;</span>
-    <span class="n">__CONFIG</span> <span class="o">=</span> <span class="s1">&#39;/../conf/project.yaml&#39;</span>
+    <span class="n">__PRO_STRUCTURE</span> <span class="o">=</span> <span class="s1">&#39;/../conf/project.yaml&#39;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -233,15 +236,23 @@
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">FileChecking</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="n">verbose_message</span><span class="p">(</span><span class="n">GenSetup</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;init setup&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__reader</span> <span class="o">=</span> <span class="n">ReadTemplate</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__writer</span> <span class="o">=</span> <span class="n">WriteTemplate</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
-        <span class="n">yml2obj</span> <span class="o">=</span> <span class="n">Yaml2Object</span><span class="p">(</span>
-            <span class="s2">&quot;</span><span class="si">{0}{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">GenSetup</span><span class="o">.</span><span class="n">__CONFIG</span>
-            <span class="p">)</span>
+        <span class="n">project</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">GenSetup</span><span class="o">.</span><span class="n">__PRO_STRUCTURE</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__config</span> <span class="o">=</span> <span class="n">yml2obj</span><span class="o">.</span><span class="n">read_configuration</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_path</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">project</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_mode</span><span class="p">(</span><span class="n">file_mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_format</span><span class="p">(</span>
+            <span class="n">file_path</span><span class="o">=</span><span class="n">project</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="s1">&#39;yaml&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_file_ok</span><span class="p">():</span>
+            <span class="n">yml2obj</span> <span class="o">=</span> <span class="n">Yaml2Object</span><span class="p">(</span><span class="n">project</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__config</span> <span class="o">=</span> <span class="n">yml2obj</span><span class="o">.</span><span class="n">read_configuration</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__config</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="GenSetup.get_reader"><a class="viewcode-back" href="../../dist_py_module.setup.html#dist_py_module.setup.GenSetup.get_reader">[docs]</a>    <span class="k">def</span> <span class="nf">get_reader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
