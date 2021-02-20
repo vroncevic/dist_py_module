@@ -25,6 +25,7 @@ import sys
 try:
     from pathlib import Path
     from ats_utilities.checker import ATSChecker
+    from ats_utilities.config_io.base_check import FileChecking
     from dist_py_module.setup.read_template import ReadTemplate
     from ats_utilities.console_io.verbose import verbose_message
     from dist_py_module.setup.write_template import WriteTemplate
@@ -39,13 +40,13 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.4.0'
+__version__ = '1.5.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class GenSetup(object):
+class GenSetup(FileChecking):
     """
         Define class GenSetup with attribute(s) and method(s).
         Generate module file setup.py by template and parameters.
@@ -54,10 +55,10 @@ class GenSetup(object):
             :attributes:
                 | __slots__ - Setting class slots.
                 | VERBOSE - Console text indicator for current process-phase.
-                | __CONFIG - Project configuraiton (template, module).
+                | __PRO_STRUCTURE - Project setup (template, module).
                 | __reader - Reader API.
                 | __writer - Writer API.
-                | __config - Project setup in yaml format.
+                | __config - Project setup in dict format.
             :methods:
                 | __init__ - Initial constructor.
                 | get_reader - Getter for template reader.
@@ -65,9 +66,11 @@ class GenSetup(object):
                 | gen_setup - Generate module file setup.py.
     """
 
-    __slots__ = ('VERBOSE', '__CONFIG', '__reader', '__writer', '__config')
+    __slots__ = (
+        'VERBOSE', '__PRO_STRUCTURE', '__reader', '__writer', '__config'
+    )
     VERBOSE = 'DIST_PY_MODULE::SETUP::GEN_SETUP'
-    __CONFIG = '/../conf/project.yaml'
+    __PRO_STRUCTURE = '/../conf/project.yaml'
 
     def __init__(self, verbose=False):
         """
@@ -77,15 +80,23 @@ class GenSetup(object):
             :type verbose: <bool>
             :exceptions: None
         """
+        FileChecking.__init__(self, verbose=verbose)
         verbose_message(GenSetup.VERBOSE, verbose, 'init setup')
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
-        yml2obj = Yaml2Object(
-            "{0}{1}".format(
-                Path(__file__).resolve().parent, GenSetup.__CONFIG
-            )
+        project = "{0}/{1}".format(
+            Path(__file__).parent, GenSetup.__PRO_STRUCTURE
         )
-        self.__config = yml2obj.read_configuration()
+        self.check_path(file_path=project, verbose=verbose)
+        self.check_mode(file_mode='r', verbose=verbose)
+        self.check_format(
+            file_path=project, file_format='yaml', verbose=verbose
+        )
+        if self.is_file_ok():
+            yml2obj = Yaml2Object(project)
+            self.__config = yml2obj.read_configuration()
+        else:
+            self.__config = None
 
     def get_reader(self):
         """
