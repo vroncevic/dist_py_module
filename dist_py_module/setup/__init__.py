@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-"""
+'''
  Module
      __init__.py
  Copyright
@@ -18,7 +18,7 @@
  Info
      Define class GenSetup with attribute(s) and method(s).
      Generate module file setup.py by template and parameters.
-"""
+'''
 
 import sys
 
@@ -33,21 +33,21 @@ try:
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as error_message:
-    MESSAGE = "\n{0}\n{1}\n".format(__file__, error_message)
+    MESSAGE = '\n{0}\n{1}\n'.format(__file__, error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.5.0'
+__version__ = '1.5.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
 class GenSetup(FileChecking):
-    """
+    '''
         Define class GenSetup with attribute(s) and method(s).
         Generate module file setup.py by template and parameters.
         It defines:
@@ -64,7 +64,7 @@ class GenSetup(FileChecking):
                 | get_reader - Getter for template reader.
                 | get_writer - Getter for template writer.
                 | gen_setup - Generate module file setup.py.
-    """
+    '''
 
     __slots__ = (
         'VERBOSE', '__PRO_STRUCTURE', '__reader', '__writer', '__config'
@@ -73,18 +73,18 @@ class GenSetup(FileChecking):
     __PRO_STRUCTURE = '/../conf/project.yaml'
 
     def __init__(self, verbose=False):
-        """
+        '''
             Initial constructor.
 
             :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
-        """
+        '''
         FileChecking.__init__(self, verbose=verbose)
         verbose_message(GenSetup.VERBOSE, verbose, 'init setup')
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
-        project = "{0}/{1}".format(
+        project = '{0}/{1}'.format(
             Path(__file__).parent, GenSetup.__PRO_STRUCTURE
         )
         self.check_path(file_path=project, verbose=verbose)
@@ -99,27 +99,27 @@ class GenSetup(FileChecking):
             self.__config = None
 
     def get_reader(self):
-        """
+        '''
             Getter for template reader.
 
             :return: Template reader object.
             :rtype: <ReadTemplate>
             :exceptions: None
-        """
+        '''
         return self.__reader
 
     def get_writer(self):
-        """
+        '''
             Getter for template writer.
 
             :return: Template writer object.
             :rtype: <WriteTemplate>
             :exceptions: None
-        """
+        '''
         return self.__writer
 
     def gen_setup(self, package_name, verbose=False):
-        """
+        '''
             Generate setup.py for python package.
 
             :param package_name: Parameter package name.
@@ -129,7 +129,7 @@ class GenSetup(FileChecking):
             :return: True (success) | False.
             :rtype: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
-        """
+        '''
         checker, error, status = ATSChecker(), None, False
         error, status = checker.check_params(
             [('str:package_name', package_name)]

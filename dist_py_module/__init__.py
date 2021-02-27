@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-"""
+'''
  Module
      __init__.py
  Copyright
@@ -18,7 +18,7 @@
  Info
      Define class DistPyModule with attribute(s) and method(s).
      Load a base info, create an CLI interface and run operation(s).
-"""
+'''
 
 import sys
 from os import getcwd
@@ -31,21 +31,21 @@ try:
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.console_io.success import success_message
 except ImportError as error_message:
-    MESSAGE = "\n{0}\n{1}\n".format(__file__, error_message)
+    MESSAGE = '\n{0}\n{1}\n'.format(__file__, error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2018, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.5.0'
+__version__ = '1.5.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
 class DistPyModule(CfgCLI):
-    """
+    '''
         Define class DistPyModule with attribute(s) and method(s).
         Load a base info, create an CLI interface and run operation(s).
         It defines:
@@ -58,7 +58,7 @@ class DistPyModule(CfgCLI):
             :methods:
                 | __init__ - Initial constructor.
                 | process - Process and generate module setup.py.
-    """
+    '''
 
     __slots__ = ('VERBOSE', '__CONFIG', '__OPS')
     VERBOSE = 'DIST_PY_MODULE'
@@ -66,16 +66,16 @@ class DistPyModule(CfgCLI):
     __OPS = ['-g', '--gen', '-v']
 
     def __init__(self, verbose=False):
-        """
+        '''
             Initial constructor.
 
             :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
-        """
+        '''
         verbose_message(DistPyModule.VERBOSE, verbose, 'init tool info')
         current_dir = Path(__file__).resolve().parent
-        base_info = "{0}{1}".format(current_dir, DistPyModule.__CONFIG)
+        base_info = '{0}{1}'.format(current_dir, DistPyModule.__CONFIG)
         CfgCLI.__init__(self, base_info, verbose=verbose)
         if self.tool_operational:
             self.add_new_option(
@@ -83,12 +83,12 @@ class DistPyModule(CfgCLI):
                 help='generate module setup.py'
             )
             self.add_new_option(
-                DistPyModule.__OPS[2], action="store_true", default=False,
+                DistPyModule.__OPS[2], action='store_true', default=False,
                 help='activate verbose mode for generation'
             )
 
     def process(self, verbose=False):
-        """
+        '''
             Process and run operation.
 
             :param verbose: Enable/disable verbose option.
@@ -96,7 +96,7 @@ class DistPyModule(CfgCLI):
             :return: True (success) | False.
             :rtype: <bool>
             :exceptions: None
-        """
+        '''
         status = False
         if self.tool_operational:
             num_of_args_sys = len(sys.argv)
@@ -109,19 +109,19 @@ class DistPyModule(CfgCLI):
                 sys.argv.append('-h')
             opts, args = self.parse_args(sys.argv)
             num_of_args, setup_exists = len(args), Path(
-                "{0}/{1}".format(getcwd(), 'setup.py')
+                '{0}/{1}'.format(getcwd(), 'setup.py')
             ).exists()
             if not setup_exists:
                 if num_of_args >= 1 and bool(opts.pkg):
                     print(
-                        "{0} {1} [{2}]".format(
-                            "[{0}]".format(DistPyModule.VERBOSE.lower()),
+                        '{0} {1} [{2}]'.format(
+                            '[{0}]'.format(DistPyModule.VERBOSE.lower()),
                             'generating setup.py for package', opts.pkg
                         )
                     )
                     generator = GenSetup(verbose=opts.v or verbose)
                     status = generator.gen_setup(
-                        "{0}".format(opts.pkg), verbose=opts.v or verbose
+                        '{0}'.format(opts.pkg), verbose=opts.v or verbose
                     )
                     if status:
                         success_message(DistPyModule.VERBOSE, 'done\n')
