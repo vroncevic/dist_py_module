@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                v1.5.1
+                v1.6.1
               </div>
             
           
@@ -168,7 +168,7 @@ other information that should be provided before the tool is installed.</p>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">dist_py_module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dist_py_module.html">dist_py_module package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dist_py_module.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="dist_py_module.setup.html">dist_py_module.setup package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dist_py_module.pro.html">dist_py_module.pro package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="dist_py_module.html#module-dist_py_module">Module contents</a></li>
@@ -187,14 +187,23 @@ other information that should be provided before the tool is installed.</p>
 <p>To install <strong>dist_py_module</strong> type the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf dist_py_module-x.y.z.tar.gz
 <span class="nb">cd</span> dist_py_module-x.y.z/
+<span class="c1"># python2</span>
 pip install -r requirements.txt
 python setup.py install_lib
 python setup.py install_data
 python setup.py install_egg_info
+<span class="c1"># pyton3</span>
+pip3 install -r requirements.txt
+python3 setup.py install_lib
+python3 setup.py install_data
+python3 setup.py install_egg_info
 </pre></div>
 </div>
 <p>You can use Docker to create image/container, or You can use pip to install:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install dist-py-module
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># pyton2</span>
+pip install dist-py-module
+<span class="c1"># pyton3</span>
+pip3 install dist-py-module
 </pre></div>
 </div>
 <p><a class="reference external" href="https://github.com/vroncevic/dist_py_module/actions?query=workflow%3A%22dist_py_module+docker+checker%22"><img alt="GitHub docker checker" src="https://github.com/vroncevic/dist_py_module/workflows/dist_py_module%20docker%20checker/badge.svg" /></a></p>
@@ -220,17 +229,19 @@ python setup.py install_egg_info
 ├── conf/
 │   ├── dist_py_module.cfg
 │   ├── dist_py_module_util.cfg
+│   ├── project.yaml
 │   └── template/
-│       └── setup.template
+│       ├── setup_package.template
+│       └── setup_tool.template
 ├── __init__.py
 ├── log/
 │   └── dist_py_module.log
-├── run/
-│   └── dist_py_module_run.py
-└── setup/
-    ├── __init__.py
-    ├── read_template.py
-    └── write_template.py
+├── pro/
+│   ├── __init__.py
+│   ├── read_template.py
+│   └── write_template.py
+└── run/
+    └── dist_py_module_run.py
 </pre></div>
 </div>
 </div>
@@ -273,7 +284,7 @@ at your option, any later version of Python 3 you may have available.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
+        &copy; Copyright 2017, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
 
     </p>
   </div>

@@ -43,7 +43,10 @@ Python package is located at **[pypi.org](https://pypi.org/project/dist-py-modul
 
 You can install by using pip
 ```
+# python2
 pip install dist-py-module
+# python3
+pip3 install dist-py-module
 ```
 
 ##### Install using setuptools
@@ -54,10 +57,16 @@ To install modules, locate and run setup.py with arguments
 ```
 tar xvzf dist_py_module-x.y.z.tar.gz
 cd dist_py_module-x.y.z/
+# python2
 pip install -r requirements.txt
 python setup.py install_lib
 python setup.py install_data
 python setup.py install_egg_info
+# python3
+pip3 install -r requirements.txt
+python3 setup.py install_lib
+python3 setup.py install_data
+python3 setup.py install_egg_info
 ```
 
 ##### Install using docker

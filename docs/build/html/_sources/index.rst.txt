@@ -51,16 +51,25 @@ To install **dist_py_module** type the following:
 
     tar xvzf dist_py_module-x.y.z.tar.gz
     cd dist_py_module-x.y.z/
+    # python2
     pip install -r requirements.txt
     python setup.py install_lib
     python setup.py install_data
     python setup.py install_egg_info
+    # pyton3
+    pip3 install -r requirements.txt
+    python3 setup.py install_lib
+    python3 setup.py install_data
+    python3 setup.py install_egg_info
 
 You can use Docker to create image/container, or You can use pip to install:
 
 .. code-block:: bash
 
+    # pyton2
     pip install dist-py-module
+    # pyton3
+    pip3 install dist-py-module
 
 |GitHub docker checker|
 
@@ -96,17 +105,19 @@ Code structure:
     ├── conf/
     │   ├── dist_py_module.cfg
     │   ├── dist_py_module_util.cfg
+    │   ├── project.yaml
     │   └── template/
-    │       └── setup.template
+    │       ├── setup_package.template
+    │       └── setup_tool.template
     ├── __init__.py
     ├── log/
     │   └── dist_py_module.log
-    ├── run/
-    │   └── dist_py_module_run.py
-    └── setup/
-        ├── __init__.py
-        ├── read_template.py
-        └── write_template.py
+    ├── pro/
+    │   ├── __init__.py
+    │   ├── read_template.py
+    │   └── write_template.py
+    └── run/
+        └── dist_py_module_run.py
 
 Copyright and licence
 -----------------------

@@ -1,24 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-"""
+'''
  Module
      setup.py
  Copyright
-     Copyright (C) 2017 Vladimir Roncevic <elektron.ronca@gmail.com>
-     dist_py_module is free software: you can redistribute it and/or modify it
+     Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+     $pkg is free software: you can redistribute it and/or modify it
      under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
      (at your option) any later version.
-     dist_py_module is distributed in the hope that it will be useful, but
+     $pkg is distributed in the hope that it will be useful, but
      WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
      See the GNU General Public License for more details.
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined setup for dist_py_module package.
-"""
+     Defined setup for $pkg package.
+'''
 
 from sys import argv, version_info, prefix, exit
 from os.path import abspath, dirname, join, exists
@@ -26,10 +26,10 @@ from site import getusersitepackages
 from setuptools import setup
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
+__copyright__ = 'Copyright 2021, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/dist_py_module/blob/master/LICENSE'
-__version__ = '1.6.1'
+__license__ = 'GNU General Public License (GPL)'
+__version__ = '1.0.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -94,45 +94,43 @@ APPROVED_LICENSES = [
 PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 
 setup(
-    name='dist_py_module',
-    version='1.6.1',
-    description='Python package for generation of setup file',
+    name='$pkg',
+    version='1.0.0',
+    description='Python module $pkg',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
-    url='https://vroncevic.github.io/dist_py_module',
-    license='https://github.com/vroncevic/dist_py_module/blob/master/LICENSE',
+    url='https://github.com/vroncevic/TODO',
+    license='GPL 2021 Free software to use and distributed it.',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    keywords='setup, python, install',
+    keywords='$pkg, TODO',
     platforms='POSIX',
     classifiers=PYP_CLASSIFIERS,
-    packages=['dist_py_module', 'dist_py_module.pro'],
+    packages=[
+        '$pkg'
+    ],
     install_requires=['ats-utilities'],
     data_files=[
-        ('/usr/local/bin/', ['dist_py_module/run/dist_py_module_run.py']),
+        ('/usr/local/bin/', ['${pkg}/run/${pkg}_run.py']),
         (
-            '{0}{1}'.format(INSTALL_DIR, 'dist_py_module/conf/'),
-            ['dist_py_module/conf/dist_py_module.cfg']
+            '{0}{1}'.format(INSTALL_DIR, '${pkg}/conf/'),
+            ['${pkg}/conf/${pkg}.cfg']
         ),
         (
-            '{0}{1}'.format(INSTALL_DIR, 'dist_py_module/conf/'),
-            ['dist_py_module/conf/dist_py_module_util.cfg']
+            '{0}{1}'.format(INSTALL_DIR, '${pkg}/conf/'),
+            ['${pkg}/conf/${pkg}_util.cfg']
         ),
         (
-            '{0}{1}'.format(INSTALL_DIR, 'dist_py_module/conf/'),
-            ['dist_py_module/conf/project.yaml']
+            '{0}{1}'.format(INSTALL_DIR, '${pkg}/conf/'),
+            ['${pkg}/conf/project.yaml']
         ),
         (
-            '{0}{1}'.format(INSTALL_DIR, 'dist_py_module/conf/template/'),
-            ['dist_py_module/conf/template/setup_package.template']
+            '{0}{1}'.format(INSTALL_DIR, '${pkg}/conf/template/'),
+            ['${pkg}/conf/template/setup.template']
         ),
         (
-            '{0}{1}'.format(INSTALL_DIR, 'dist_py_module/conf/template/'),
-            ['dist_py_module/conf/template/setup_tool.template']
-        ),
-        (
-            '{0}{1}'.format(INSTALL_DIR, 'dist_py_module/log/'),
-            ['dist_py_module/log/dist_py_module.log']
+            '{0}{1}'.format(INSTALL_DIR, '${pkg}/log/'),
+            ['${pkg}/log/${pkg}.log']
         )
     ]
 )
