@@ -6,7 +6,7 @@ Subpackages
 
 .. toctree::
 
-    dist_py_module.setup
+    dist_py_module.pro
 
 Module contents
 ---------------

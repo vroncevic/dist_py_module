@@ -1,5 +1,6 @@
-template:
-    setup.template
+templates:
+    - package: setup_package.template
+    - tool: setup_tool.template
 
 module:
     setup.py

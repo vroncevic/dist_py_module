@@ -4,7 +4,7 @@
  Module
      read_template.py
  Copyright
-     Copyright (C) 2018 Vladimir Roncevic <elektron.ronca@gmail.com>
+     Copyright (C) 2017 Vladimir Roncevic <elektron.ronca@gmail.com>
      dist_py_module is free software: you can redistribute it and/or modify it
      under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
@@ -16,8 +16,8 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Define class ReadTemplate with attribute(s) and method(s).
-     Read a template file (setup.template) and return a content.
+     Defined class ReadTemplate with attribute(s) and method(s).
+     Created API for read a template file and return a content.
 '''
 
 import sys
@@ -30,15 +30,15 @@ try:
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
-except ImportError as error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, error_message)
+except ImportError as ats_error_message:
+    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2018, Free software to use and distributed it.'
+__copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'GNU General Public License (GPL)'
-__version__ = '1.5.1'
+__license__ = 'https://github.com/vroncevic/dist_py_module/blob/master/LICENSE'
+__version__ = '1.6.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -46,8 +46,8 @@ __status__ = 'Updated'
 
 class ReadTemplate(FileChecking):
     '''
-        Define class ReadTemplate with attribute(s) and method(s).
-        Read a template file (setup.template) and return a content.
+        Defined class ReadTemplate with attribute(s) and method(s).
+        Created API for read a template file and return a content.
         It defines:
 
             :attributes:
@@ -59,10 +59,11 @@ class ReadTemplate(FileChecking):
                 | __init__ - Initial constructor.
                 | get_template_dir - Getter for template directory object.
                 | read - Read a template and return a string representation.
+                | __str__ - Dunder method for ReadTemplate.
     '''
 
     __slots__ = ('VERBOSE', '__TEMPLATE_DIR', '__template_dir')
-    VERBOSE = 'DIST_PY_MODULE::SETUP::READ_TEMPLATE'
+    VERBOSE = 'DIST_PY_MODULE::PRO::READ_TEMPLATE'
     __TEMPLATE_DIR = '/../conf/template/'
 
     def __init__(self, verbose=False):
@@ -110,8 +111,10 @@ class ReadTemplate(FileChecking):
         error, status = checker.check_params(
             [('str:template_module', template_module)]
         )
-        if status == ATSChecker.TYPE_ERROR: raise ATSTypeError(error)
-        if status == ATSChecker.VALUE_ERROR: raise ATSBadCallError(error)
+        if status == ATSChecker.TYPE_ERROR:
+            raise ATSTypeError(error)
+        if status == ATSChecker.VALUE_ERROR:
+            raise ATSBadCallError(error)
         setup_content, template_file = None, None
         verbose_message(ReadTemplate.VERBOSE, verbose, 'load template')
         template_file = '{0}{1}'.format(self.__template_dir, template_module)
@@ -120,3 +123,16 @@ class ReadTemplate(FileChecking):
             with open(template_file, 'r') as tmpl:
                 setup_content = tmpl.read()
         return setup_content
+
+    def __str__(self):
+        '''
+            Dunder method for ReadTemplate.
+
+            :return: Object in a human-readable format.
+            :rtype: <str>
+            :exceptions: None
+        '''
+        return '{0} ({1}, {2})'.format(
+            self.__class__.__name__, FileChecking.__str__(self),
+            self.__template_dir
+        )

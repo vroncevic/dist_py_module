@@ -6,9 +6,9 @@ import sys
 sys.path.insert(0, os.path.abspath('../../'))
 
 project = u'dist_py_module'
-copyright = u'2020, Vladimir Roncevic <elektron.ronca@gmail.com>'
+copyright = u'2017, Vladimir Roncevic <elektron.ronca@gmail.com>'
 author = u'Vladimir Roncevic <elektron.ronca@gmail.com>'
-version = u'v1.5.1'
+version = u'v1.6.1'
 release = u'https://github.com/vroncevic/dist_py_module/releases'
 extensions = ['sphinx.ext.viewcode', 'sphinx.ext.autodoc']
 templates_path = ['_templates']

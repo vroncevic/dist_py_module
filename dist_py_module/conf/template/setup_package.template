@@ -74,4 +74,3 @@ setup(
     ],
     install_requires=['ats-utilities']
 )
-
