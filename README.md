@@ -100,17 +100,19 @@ dist_py_module/
 ├── conf/
 │   ├── dist_py_module.cfg
 │   ├── dist_py_module_util.cfg
+│   ├── project.yaml
 │   └── template/
-│       └── setup.template
+│       ├── setup_package.template
+│       └── setup_tool.template
 ├── __init__.py
 ├── log/
 │   └── dist_py_module.log
-├── run/
-│   └── dist_py_module_run.py
-└── setup/
-    ├── __init__.py
-    ├── read_template.py
-    └── write_template.py
+├── pro/
+│   ├── __init__.py
+│   ├── read_template.py
+│   └── write_template.py
+└── run/
+    └── dist_py_module_run.py
 ```
 
 ### Docs
