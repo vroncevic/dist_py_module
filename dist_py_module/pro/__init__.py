@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/master/LICENSE'
-__version__ = '1.6.1'
+__version__ = '1.6.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -212,6 +212,5 @@ class GenSetup(FileChecking):
         '''
         return '{0} ({1}, {2}, {3}, {4})'.format(
             self.__class__.__name__, FileChecking.__str__(self),
-            ReadTemplate.__str__(self), WriteTemplate.__init__(self),
-            Yaml2Object.__str__(self)
+            str(self.__reader), str(self.__writer), str(self.__config)
         )
