@@ -37,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/master/LICENSE'
-__version__ = '1.6.1'
+__version__ = '1.6.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -129,4 +129,4 @@ class WriteTemplate(object):
             :rtype: <str>
             :exceptions: None
         '''
-        return '{0} ({1})'.format(self.__class__.__name__, self.__setup)
+        return '{0} ({1})'.format(self.__class__.__name__, str(self.__setup))
