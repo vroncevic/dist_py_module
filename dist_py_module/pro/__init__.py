@@ -146,12 +146,17 @@ class GenSetup(FileChecking):
         )
         template_file = self.select_pro_type(verbose=verbose)
         if bool(template_file):
-            setup_content = self.__reader.read(template_file, verbose=verbose)
-            if setup_content:
-                status = self.__writer.write(
-                    setup_content, package_name,
-                    self.__config['module'], verbose=verbose
+            if template_file == 'cancel':
+                status = True
+            else:
+                setup_content = self.__reader.read(
+                    template_file, verbose=verbose
                 )
+                if setup_content:
+                    status = self.__writer.write(
+                        setup_content, package_name,
+                        self.__config['module'], verbose=verbose
+                    )
         return True if status else False
 
     def select_pro_type(self, verbose=False):
@@ -189,7 +194,10 @@ class GenSetup(FileChecking):
                 try:
                     if int(input_type) in list(options):
                         for target in types[int(input_type) - 1].values():
-                            template_selected = target
+                            if target is None:
+                                template_selected = 'cancel'
+                            else:
+                                template_selected = target
                         break
                     else:
                         raise ValueError

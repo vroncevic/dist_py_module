@@ -302,12 +302,17 @@
         <span class="p">)</span>
         <span class="n">template_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_pro_type</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">template_file</span><span class="p">):</span>
-            <span class="n">setup_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">template_file</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">setup_content</span><span class="p">:</span>
-                <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-                    <span class="n">setup_content</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="p">[</span><span class="s1">&#39;module&#39;</span><span class="p">],</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+            <span class="k">if</span> <span class="n">template_file</span> <span class="o">==</span> <span class="s1">&#39;cancel&#39;</span><span class="p">:</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">setup_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span>
+                    <span class="n">template_file</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
                 <span class="p">)</span>
+                <span class="k">if</span> <span class="n">setup_content</span><span class="p">:</span>
+                    <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                        <span class="n">setup_content</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="p">[</span><span class="s1">&#39;module&#39;</span><span class="p">],</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+                    <span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">status</span> <span class="k">else</span> <span class="kc">False</span></div>
 
 <div class="viewcode-block" id="GenSetup.select_pro_type"><a class="viewcode-back" href="../../dist_py_module.pro.html#dist_py_module.pro.GenSetup.select_pro_type">[docs]</a>    <span class="k">def</span> <span class="nf">select_pro_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -345,7 +350,10 @@
                 <span class="k">try</span><span class="p">:</span>
                     <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_type</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">options</span><span class="p">):</span>
                         <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">types</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">input_type</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                            <span class="n">template_selected</span> <span class="o">=</span> <span class="n">target</span>
+                            <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                                <span class="n">template_selected</span> <span class="o">=</span> <span class="s1">&#39;cancel&#39;</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">template_selected</span> <span class="o">=</span> <span class="n">target</span>
                         <span class="k">break</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="k">raise</span> <span class="ne">ValueError</span>

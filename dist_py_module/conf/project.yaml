@@ -1,6 +1,7 @@
 templates:
     - package: setup_package.template
     - tool: setup_tool.template
+    - cancel: null
 
 module:
     setup.py
