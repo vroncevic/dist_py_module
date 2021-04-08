@@ -35,13 +35,11 @@ __status__ = 'Updated'
 THIS_DIR, LONG_DESCRIPTION = abspath(dirname(__file__)), None
 with open(join(THIS_DIR, 'README.md')) as readme:
     LONG_DESCRIPTION = readme.read()
-
 PROGRAMMING_LANG = 'Programming Language :: Python ::'
 VERSIONS = ['2.7', '3', '3.2', '3.3', '3.4']
 SUPPORTED_PY_VERSIONS = [
     '{0} {1}'.format(PROGRAMMING_LANG, VERSION) for VERSION in VERSIONS
 ]
-
 LICENSE_PREFIX = 'License :: OSI Approved ::'
 LICENSES = [
     'GNU Lesser General Public License v2 (LGPLv2)',
@@ -53,9 +51,7 @@ LICENSES = [
 APPROVED_LICENSES = [
     '{0} {1}'.format(LICENSE_PREFIX, LICENSE) for LICENSE in LICENSES
 ]
-
 PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
-
 setup(
     name='$pkg',
     version='1.0.0',
@@ -69,8 +65,6 @@ setup(
     keywords='$pkg, TODO',
     platforms='POSIX',
     classifiers=PYP_CLASSIFIERS,
-    packages=[
-        '$pkg'
-    ],
+    packages=['$pkg'],
     install_requires=['ats-utilities']
 )

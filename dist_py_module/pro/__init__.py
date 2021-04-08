@@ -40,8 +40,8 @@ except ImportError as ats_error_message:
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/dist_py_module/blob/master/LICENSE'
-__version__ = '1.7.2'
+__license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
+__version__ = '1.8.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -65,6 +65,7 @@ class GenSetup(FileChecking):
                 | get_reader - Getter for template reader.
                 | get_writer - Getter for template writer.
                 | gen_setup - Generate module file setup.py.
+                | select_pro_type - Select project type.
                 | __str__ - Dunder method for GenSetup.
     '''
 
@@ -133,9 +134,9 @@ class GenSetup(FileChecking):
             :exceptions: ATSTypeError | ATSBadCallError
         '''
         checker, error, status = ATSChecker(), None, False
-        error, status = checker.check_params(
-            [('str:package_name', package_name)]
-        )
+        error, status = checker.check_params([
+            ('str:package_name', package_name)
+        ])
         if status == ATSChecker.TYPE_ERROR:
             raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR:
