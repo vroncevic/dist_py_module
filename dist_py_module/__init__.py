@@ -26,6 +26,7 @@ from os import getcwd
 try:
     from pathlib import Path
     from dist_py_module.pro import GenSetup
+    from ats_utilities.logging import ATSLogger
     from ats_utilities.cli.cfg_cli import CfgCLI
     from ats_utilities.cooperative import CooperativeMeta
     from ats_utilities.console_io.error import error_message
@@ -39,7 +40,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '1.9.2'
+__version__ = '2.0.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -55,7 +56,9 @@ class DistPyModule(CfgCLI):
                 | __metaclass__ - setting cooperative metaclasses.
                 | GEN_VERBOSE - console text indicator for process-phase.
                 | CONFIG - tool info file path.
-                | OPS -  list of tool options.
+                | LOG - tool log file path.
+                | OPS - list of tool options.
+                | logger - logger object API.
             :methods:
                 | __init__ - initial constructor.
                 | process - process and generate module setup.py.
@@ -65,6 +68,7 @@ class DistPyModule(CfgCLI):
     __metaclass__ = CooperativeMeta
     GEN_VERBOSE = 'DIST_PY_MODULE'
     CONFIG = '/conf/dist_py_module.cfg'
+    LOG = '/log/dist_py_module.log'
     OPS = ['-g', '--gen', '-v', '--verbose', '--version']
 
     def __init__(self, verbose=False):
@@ -79,6 +83,11 @@ class DistPyModule(CfgCLI):
         base_info = '{0}{1}'.format(current_dir, DistPyModule.CONFIG)
         CfgCLI.__init__(self, base_info, verbose=verbose)
         verbose_message(DistPyModule.GEN_VERBOSE, verbose, 'init tool info')
+        self.logger = ATSLogger(
+            DistPyModule.GEN_VERBOSE.lower(),
+            '{0}{1}'.format(current_dir, DistPyModule.LOG),
+            verbose=verbose
+        )
         if self.tool_operational:
             self.add_new_option(
                 DistPyModule.OPS[0], DistPyModule.OPS[1], dest='gen',
@@ -131,21 +140,38 @@ class DistPyModule(CfgCLI):
                     )
                     if status:
                         success_message(DistPyModule.GEN_VERBOSE, 'done\n')
+                        self.logger.write_log(
+                            '{0} {1} done'.format(
+                                'generating setup.py for package', args.gen
+                            ), ATSLogger.ATS_INFO
+                        )
                     else:
                         error_message(
                             DistPyModule.GEN_VERBOSE, 'generation failed'
+                        )
+                        self.logger.write_log(
+                            'generation failed', ATSLogger.ATS_ERROR
                         )
                 else:
                     error_message(
                         DistPyModule.GEN_VERBOSE, 'provide package name'
                     )
+                    self.logger.write_log(
+                        'provide package name', ATSLogger.ATS_ERROR
+                    )
             else:
                 error_message(
                     DistPyModule.GEN_VERBOSE, 'setup.py already exist'
                 )
+                self.logger.write_log(
+                    'setup.py already exist', ATSLogger.ATS_ERROR
+                )
         else:
             error_message(
                 DistPyModule.GEN_VERBOSE, 'tool is not operational'
+            )
+            self.logger.write_log(
+                'tool is not operational', ATSLogger.ATS_ERROR
             )
         return status
 
@@ -157,6 +183,6 @@ class DistPyModule(CfgCLI):
             :rtype: <str>
             :exceptions: None
         '''
-        return '{0} ({1})'.format(
-            self.__class__.__name__, CfgCLI.__str__(self)
+        return '{0} ({1}, {2})'.format(
+            self.__class__.__name__, CfgCLI.__str__(self), str(self.logger)
         )

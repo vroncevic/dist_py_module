@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                v1.9.2
+                v2.0.2
               </div>
             
           
@@ -180,6 +180,7 @@
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
     <span class="kn">from</span> <span class="nn">dist_py_module.pro</span> <span class="kn">import</span> <span class="n">GenSetup</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.logging</span> <span class="kn">import</span> <span class="n">ATSLogger</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.cli.cfg_cli</span> <span class="kn">import</span> <span class="n">CfgCLI</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.cooperative</span> <span class="kn">import</span> <span class="n">CooperativeMeta</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.console_io.error</span> <span class="kn">import</span> <span class="n">error_message</span>
@@ -193,7 +194,7 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2017, https://vroncevic.github.io/dist_py_module&#39;</span>
 <span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.9.2&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;2.0.2&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
@@ -209,7 +210,9 @@
 <span class="sd">                | __metaclass__ - setting cooperative metaclasses.</span>
 <span class="sd">                | GEN_VERBOSE - console text indicator for process-phase.</span>
 <span class="sd">                | CONFIG - tool info file path.</span>
-<span class="sd">                | OPS -  list of tool options.</span>
+<span class="sd">                | LOG - tool log file path.</span>
+<span class="sd">                | OPS - list of tool options.</span>
+<span class="sd">                | logger - logger object API.</span>
 <span class="sd">            :methods:</span>
 <span class="sd">                | __init__ - initial constructor.</span>
 <span class="sd">                | process - process and generate module setup.py.</span>
@@ -219,6 +222,7 @@
     <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">CooperativeMeta</span>
     <span class="n">GEN_VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DIST_PY_MODULE&#39;</span>
     <span class="n">CONFIG</span> <span class="o">=</span> <span class="s1">&#39;/conf/dist_py_module.cfg&#39;</span>
+    <span class="n">LOG</span> <span class="o">=</span> <span class="s1">&#39;/log/dist_py_module.log&#39;</span>
     <span class="n">OPS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-g&#39;</span><span class="p">,</span> <span class="s1">&#39;--gen&#39;</span><span class="p">,</span> <span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -233,6 +237,11 @@
         <span class="n">base_info</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="n">DistPyModule</span><span class="o">.</span><span class="n">CONFIG</span><span class="p">)</span>
         <span class="n">CfgCLI</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_info</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="n">verbose_message</span><span class="p">(</span><span class="n">DistPyModule</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;init tool info&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">ATSLogger</span><span class="p">(</span>
+            <span class="n">DistPyModule</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+            <span class="s1">&#39;</span><span class="si">{0}{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="n">DistPyModule</span><span class="o">.</span><span class="n">LOG</span><span class="p">),</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool_operational</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_new_option</span><span class="p">(</span>
                 <span class="n">DistPyModule</span><span class="o">.</span><span class="n">OPS</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">DistPyModule</span><span class="o">.</span><span class="n">OPS</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;gen&#39;</span><span class="p">,</span>
@@ -280,25 +289,43 @@
                     <span class="p">)</span>
                     <span class="n">generator</span> <span class="o">=</span> <span class="n">GenSetup</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="ow">or</span> <span class="n">verbose</span><span class="p">)</span>
                     <span class="n">status</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">gen_setup</span><span class="p">(</span>
-                        <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">gen</span><span class="p">),</span> <span class="n">verbose</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="ow">or</span> <span class="n">verbose</span>
+                        <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">gen</span><span class="p">),</span>
+                        <span class="n">verbose</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="ow">or</span> <span class="n">verbose</span>
                     <span class="p">)</span>
                     <span class="k">if</span> <span class="n">status</span><span class="p">:</span>
                         <span class="n">success_message</span><span class="p">(</span><span class="n">DistPyModule</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="s1">&#39;done</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_log</span><span class="p">(</span>
+                            <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1"> done&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                <span class="s1">&#39;generating setup.py for package&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">gen</span>
+                            <span class="p">),</span> <span class="n">ATSLogger</span><span class="o">.</span><span class="n">ATS_INFO</span>
+                        <span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">error_message</span><span class="p">(</span>
                             <span class="n">DistPyModule</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="s1">&#39;generation failed&#39;</span>
+                        <span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_log</span><span class="p">(</span>
+                            <span class="s1">&#39;generation failed&#39;</span><span class="p">,</span> <span class="n">ATSLogger</span><span class="o">.</span><span class="n">ATS_ERROR</span>
                         <span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">error_message</span><span class="p">(</span>
                         <span class="n">DistPyModule</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="s1">&#39;provide package name&#39;</span>
                     <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_log</span><span class="p">(</span>
+                        <span class="s1">&#39;provide package name&#39;</span><span class="p">,</span> <span class="n">ATSLogger</span><span class="o">.</span><span class="n">ATS_ERROR</span>
+                    <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">error_message</span><span class="p">(</span>
                     <span class="n">DistPyModule</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="s1">&#39;setup.py already exist&#39;</span>
                 <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_log</span><span class="p">(</span>
+                    <span class="s1">&#39;setup.py already exist&#39;</span><span class="p">,</span> <span class="n">ATSLogger</span><span class="o">.</span><span class="n">ATS_ERROR</span>
+                <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">error_message</span><span class="p">(</span>
                 <span class="n">DistPyModule</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="s1">&#39;tool is not operational&#39;</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_log</span><span class="p">(</span>
+                <span class="s1">&#39;tool is not operational&#39;</span><span class="p">,</span> <span class="n">ATSLogger</span><span class="o">.</span><span class="n">ATS_ERROR</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">status</span></div>
 
@@ -310,8 +337,8 @@
 <span class="sd">            :rtype: &lt;str&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> (</span><span class="si">{1}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">CfgCLI</span><span class="o">.</span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> (</span><span class="si">{1}</span><span class="s1">, </span><span class="si">{2}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">CfgCLI</span><span class="o">.</span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">)</span>
         <span class="p">)</span></div>
 </pre></div>
 
