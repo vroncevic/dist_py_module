@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                v1.8.2
+                v1.9.2
               </div>
             
           
@@ -219,17 +219,17 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots.</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
-<div class="line">__CONFIG - Tool info file path.</div>
-<div class="line">__OPS -  List of tool options.</div>
+<div class="line">__metaclass__ - setting cooperative metaclasses.</div>
+<div class="line">GEN_VERBOSE - console text indicator for process-phase.</div>
+<div class="line">CONFIG - tool info file path.</div>
+<div class="line">OPS -  list of tool options.</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__init__ - Initial constructor.</div>
-<div class="line">process - Process and generate module setup.py.</div>
-<div class="line">__str__ - Dunder method for DistPyModule.</div>
+<div class="line">__init__ - initial constructor.</div>
+<div class="line">process - process and generate module setup.py.</div>
+<div class="line">__str__ - dunder method for DistPyModule.</div>
 </div>
 </td>
 </tr>
@@ -237,8 +237,23 @@ It defines:</p>
 </table>
 </div></blockquote>
 <dl class="attribute">
+<dt id="dist_py_module.DistPyModule.CONFIG">
+<code class="descname">CONFIG</code><em class="property"> = '/conf/dist_py_module.cfg'</em><a class="headerlink" href="#dist_py_module.DistPyModule.CONFIG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dist_py_module.DistPyModule.GEN_VERBOSE">
+<code class="descname">GEN_VERBOSE</code><em class="property"> = 'DIST_PY_MODULE'</em><a class="headerlink" href="#dist_py_module.DistPyModule.GEN_VERBOSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dist_py_module.DistPyModule.OPS">
+<code class="descname">OPS</code><em class="property"> = ['-g', '--gen', '-v', '--verbose', '--version']</em><a class="headerlink" href="#dist_py_module.DistPyModule.OPS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="dist_py_module.DistPyModule.VERBOSE">
-<code class="descname">VERBOSE</code><em class="property"> = 'DIST_PY_MODULE'</em><a class="headerlink" href="#dist_py_module.DistPyModule.VERBOSE" title="Permalink to this definition">¶</a></dt>
+<code class="descname">VERBOSE</code><em class="property"> = 'ATS_UTILITIES'</em><a class="headerlink" href="#dist_py_module.DistPyModule.VERBOSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -249,7 +264,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – enable/disable verbose option.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True (success) | False.</td>
 </tr>
