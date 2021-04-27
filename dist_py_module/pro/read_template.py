@@ -38,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '1.8.2'
+__version__ = '1.9.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -51,34 +51,31 @@ class ReadTemplate(FileChecking):
         It defines:
 
             :attributes:
-                | __slots__ - Setting class slots.
-                | VERBOSE - Console text indicator for current process-phase.
-                | __TEMPLATE_DIR - Template dir path.
-                | __template_dir - Absolute file path of template dir.
+                | GEN_VERBOSE - console text indicator for process-phase.
+                | TEMPLATE_DIR - template dir path.
+                | __template_dir - absolute file path of template dir.
             :methods:
-                | __init__ - Initial constructor.
-                | get_template_dir - Getter for template directory object.
-                | read - Read a template and return a string representation.
-                | __str__ - Dunder method for ReadTemplate.
+                | __init__ - initial constructor.
+                | get_template_dir - getter for template directory object.
+                | read - read a template and return a string representation.
+                | __str__ - dunder method for ReadTemplate.
     '''
 
-    __slots__ = ('VERBOSE', '__TEMPLATE_DIR', '__template_dir')
-    VERBOSE = 'DIST_PY_MODULE::PRO::READ_TEMPLATE'
-    __TEMPLATE_DIR = '/../conf/template/'
+    GEN_VERBOSE = 'DIST_PY_MODULE::PRO::READ_TEMPLATE'
+    TEMPLATE_DIR = '/../conf/template/'
 
     def __init__(self, verbose=False):
         '''
             Initial constructor.
 
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         '''
-        verbose_message(ReadTemplate.VERBOSE, verbose, 'init reader')
         FileChecking.__init__(self, verbose=verbose)
-        current_dir = Path(__file__).parent
+        verbose_message(ReadTemplate.GEN_VERBOSE, verbose, 'init reader')
         template_dir = '{0}{1}'.format(
-            current_dir, ReadTemplate.__TEMPLATE_DIR
+            Path(__file__).parent, ReadTemplate.TEMPLATE_DIR
         )
         check_template_dir = isdir(template_dir)
         if check_template_dir:
@@ -90,7 +87,7 @@ class ReadTemplate(FileChecking):
         '''
             Getter for template directory.
 
-            :return: Template directory object.
+            :return: template directory object.
             :rtype: <str>
         '''
         return self.__template_dir
@@ -99,11 +96,11 @@ class ReadTemplate(FileChecking):
         '''
             Read template structure.
 
-            :param template_module: Template module name.
+            :param template_module: template module name.
             :type template_module: <str>
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: Template content for setup module | None.
+            :return: template content for setup module | None.
             :rtype: <str> | <NoneType>
             :exceptions: None
         '''
@@ -116,19 +113,21 @@ class ReadTemplate(FileChecking):
         if status == ATSChecker.VALUE_ERROR:
             raise ATSBadCallError(error)
         setup_content, template_file = None, None
-        verbose_message(ReadTemplate.VERBOSE, verbose, 'load template')
+        verbose_message(ReadTemplate.GEN_VERBOSE, verbose, 'load template')
         template_file = '{0}{1}'.format(self.__template_dir, template_module)
-        self.check_path(file_path=template_file, verbose=verbose)
-        if self.file_path_ok:
-            with open(template_file, 'r') as tmpl:
-                setup_content = tmpl.read()
+        self.check_path(template_file, verbose=verbose)
+        self.check_mode('r', verbose=verbose)
+        self.check_format(template_file, 'template',verbose=verbose)
+        if self.is_file_ok():
+            with open(template_file, 'r') as setup_template:
+                setup_content = setup_template.read()
         return setup_content
 
     def __str__(self):
         '''
             Dunder method for ReadTemplate.
 
-            :return: Object in a human-readable format.
+            :return: object in a human-readable format.
             :rtype: <str>
             :exceptions: None
         '''

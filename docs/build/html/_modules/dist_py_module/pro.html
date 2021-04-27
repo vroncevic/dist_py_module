@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                v1.8.2
+                v1.9.2
               </div>
             
           
@@ -197,7 +197,7 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2017, https://vroncevic.github.io/dist_py_module&#39;</span>
 <span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.8.2&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.9.2&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
@@ -210,41 +210,37 @@
 <span class="sd">        It defines:</span>
 
 <span class="sd">            :attributes:</span>
-<span class="sd">                | __slots__ - Setting class slots.</span>
-<span class="sd">                | VERBOSE - Console text indicator for current process-phase.</span>
-<span class="sd">                | __PRO_STRUCTURE - Project setup (template, module).</span>
-<span class="sd">                | __reader - Reader API.</span>
-<span class="sd">                | __writer - Writer API.</span>
-<span class="sd">                | __config - Project setup in dict format.</span>
+<span class="sd">                | GEN_VERBOSE - console text indicator for process-phase.</span>
+<span class="sd">                | PRO_STRUCTURE - project setup (template, module).</span>
+<span class="sd">                | __reader - reader API.</span>
+<span class="sd">                | __writer - writer API.</span>
+<span class="sd">                | __config - project setup in dict format.</span>
 <span class="sd">            :methods:</span>
-<span class="sd">                | __init__ - Initial constructor.</span>
-<span class="sd">                | get_reader - Getter for template reader.</span>
-<span class="sd">                | get_writer - Getter for template writer.</span>
-<span class="sd">                | gen_setup - Generate module file setup.py.</span>
-<span class="sd">                | select_pro_type - Select project type.</span>
-<span class="sd">                | __str__ - Dunder method for GenSetup.</span>
+<span class="sd">                | __init__ - initial constructor.</span>
+<span class="sd">                | get_reader - getter for template reader.</span>
+<span class="sd">                | get_writer - getter for template writer.</span>
+<span class="sd">                | gen_setup - generate module file setup.py.</span>
+<span class="sd">                | select_pro_type - select project type.</span>
+<span class="sd">                | __str__ - dunder method for GenSetup.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s1">&#39;VERBOSE&#39;</span><span class="p">,</span> <span class="s1">&#39;__PRO_STRUCTURE&#39;</span><span class="p">,</span> <span class="s1">&#39;__reader&#39;</span><span class="p">,</span> <span class="s1">&#39;__writer&#39;</span><span class="p">,</span> <span class="s1">&#39;__config&#39;</span>
-    <span class="p">)</span>
-    <span class="n">VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DIST_PY_MODULE::PRO::GEN_SETUP&#39;</span>
-    <span class="n">__PRO_STRUCTURE</span> <span class="o">=</span> <span class="s1">&#39;/../conf/project.yaml&#39;</span>
+    <span class="n">GEN_VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DIST_PY_MODULE::PRO::GEN_SETUP&#39;</span>
+    <span class="n">PRO_STRUCTURE</span> <span class="o">=</span> <span class="s1">&#39;/../conf/project.yaml&#39;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Initial constructor.</span>
 
-<span class="sd">            :param verbose: Enable/disable verbose option.</span>
+<span class="sd">            :param verbose: enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">FileChecking</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
-        <span class="n">verbose_message</span><span class="p">(</span><span class="n">GenSetup</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;init setup&#39;</span><span class="p">)</span>
+        <span class="n">verbose_message</span><span class="p">(</span><span class="n">GenSetup</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;init setup&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__reader</span> <span class="o">=</span> <span class="n">ReadTemplate</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__writer</span> <span class="o">=</span> <span class="n">WriteTemplate</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="n">project</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">/</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">GenSetup</span><span class="o">.</span><span class="n">__PRO_STRUCTURE</span>
+            <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">GenSetup</span><span class="o">.</span><span class="n">PRO_STRUCTURE</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_path</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">project</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_mode</span><span class="p">(</span><span class="n">file_mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
@@ -261,7 +257,7 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Getter for template reader.</span>
 
-<span class="sd">            :return: Template reader object.</span>
+<span class="sd">            :return: template reader object.</span>
 <span class="sd">            :rtype: &lt;ReadTemplate&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -271,7 +267,7 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Getter for template writer.</span>
 
-<span class="sd">            :return: Template writer object.</span>
+<span class="sd">            :return: template writer object.</span>
 <span class="sd">            :rtype: &lt;WriteTemplate&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -281,9 +277,9 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Generate setup.py for python package.</span>
 
-<span class="sd">            :param package_name: Parameter package name.</span>
+<span class="sd">            :param package_name: parameter package name.</span>
 <span class="sd">            :type package_name: &lt;str&gt;</span>
-<span class="sd">            :param verbose: Enable/disable verbose option.</span>
+<span class="sd">            :param verbose: enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :return: True (success) | False.</span>
 <span class="sd">            :rtype: &lt;bool&gt;</span>
@@ -299,7 +295,7 @@
             <span class="k">raise</span> <span class="n">ATSBadCallError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
         <span class="n">status</span><span class="p">,</span> <span class="n">setup_content</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
         <span class="n">verbose_message</span><span class="p">(</span>
-            <span class="n">GenSetup</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;generating package&#39;</span><span class="p">,</span> <span class="n">package_name</span>
+            <span class="n">GenSetup</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;generating package&#39;</span><span class="p">,</span> <span class="n">package_name</span>
         <span class="p">)</span>
         <span class="n">template_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_pro_type</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">template_file</span><span class="p">):</span>
@@ -320,9 +316,9 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Select project type.</span>
 
-<span class="sd">            :param verbose: Enable/disable verbose option.</span>
+<span class="sd">            :param verbose: enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
-<span class="sd">            :return: Project type and project ID | None and None.</span>
+<span class="sd">            :return: project type and project ID | None and None.</span>
 <span class="sd">            :rtype: &lt;str&gt; | &lt;NoneType&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -336,7 +332,7 @@
                         <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">project_type</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
                     <span class="p">)</span>
                     <span class="n">verbose_message</span><span class="p">(</span>
-                        <span class="n">GenSetup</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;to be processed template&#39;</span><span class="p">,</span>
+                        <span class="n">GenSetup</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;to be processed template&#39;</span><span class="p">,</span>
                         <span class="n">template_file</span>
                     <span class="p">)</span>
             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -360,10 +356,10 @@
                         <span class="k">raise</span> <span class="ne">ValueError</span>
                 <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
                     <span class="n">error_message</span><span class="p">(</span>
-                        <span class="n">GenSetup</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="s1">&#39;not an appropriate choice&#39;</span>
+                        <span class="n">GenSetup</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="s1">&#39;not an appropriate choice&#39;</span>
                     <span class="p">)</span>
             <span class="n">verbose_message</span><span class="p">(</span>
-                <span class="n">GenSetup</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;selected&#39;</span><span class="p">,</span> <span class="n">template_selected</span>
+                <span class="n">GenSetup</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;selected&#39;</span><span class="p">,</span> <span class="n">template_selected</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">template_selected</span></div>
 
@@ -371,7 +367,7 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Dunder method for GenSetup.</span>
 
-<span class="sd">            :return: Object in a human-readable format.</span>
+<span class="sd">            :return: object in a human-readable format.</span>
 <span class="sd">            :rtype: &lt;str&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>

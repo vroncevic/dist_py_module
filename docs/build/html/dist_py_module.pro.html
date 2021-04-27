@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                v1.8.2
+                v1.9.2
               </div>
             
           
@@ -214,22 +214,21 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots.</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
-<div class="line">__PRO_STRUCTURE - Project setup (template, module).</div>
-<div class="line">__reader - Reader API.</div>
-<div class="line">__writer - Writer API.</div>
-<div class="line">__config - Project setup in dict format.</div>
+<div class="line">GEN_VERBOSE - console text indicator for process-phase.</div>
+<div class="line">PRO_STRUCTURE - project setup (template, module).</div>
+<div class="line">__reader - reader API.</div>
+<div class="line">__writer - writer API.</div>
+<div class="line">__config - project setup in dict format.</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__init__ - Initial constructor.</div>
-<div class="line">get_reader - Getter for template reader.</div>
-<div class="line">get_writer - Getter for template writer.</div>
-<div class="line">gen_setup - Generate module file setup.py.</div>
-<div class="line">select_pro_type - Select project type.</div>
-<div class="line">__str__ - Dunder method for GenSetup.</div>
+<div class="line">__init__ - initial constructor.</div>
+<div class="line">get_reader - getter for template reader.</div>
+<div class="line">get_writer - getter for template writer.</div>
+<div class="line">gen_setup - generate module file setup.py.</div>
+<div class="line">select_pro_type - select project type.</div>
+<div class="line">__str__ - dunder method for GenSetup.</div>
 </div>
 </td>
 </tr>
@@ -237,8 +236,18 @@ It defines:</p>
 </table>
 </div></blockquote>
 <dl class="attribute">
+<dt id="dist_py_module.pro.GenSetup.GEN_VERBOSE">
+<code class="descname">GEN_VERBOSE</code><em class="property"> = 'DIST_PY_MODULE::PRO::GEN_SETUP'</em><a class="headerlink" href="#dist_py_module.pro.GenSetup.GEN_VERBOSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="dist_py_module.pro.GenSetup.PRO_STRUCTURE">
+<code class="descname">PRO_STRUCTURE</code><em class="property"> = '/../conf/project.yaml'</em><a class="headerlink" href="#dist_py_module.pro.GenSetup.PRO_STRUCTURE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="dist_py_module.pro.GenSetup.VERBOSE">
-<code class="descname">VERBOSE</code><em class="property"> = 'DIST_PY_MODULE::PRO::GEN_SETUP'</em><a class="headerlink" href="#dist_py_module.pro.GenSetup.VERBOSE" title="Permalink to this definition">¶</a></dt>
+<code class="descname">VERBOSE</code><em class="property"> = 'ATS_UTILITIES'</em><a class="headerlink" href="#dist_py_module.pro.GenSetup.VERBOSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -250,8 +259,8 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>package_name</strong> (<em>&lt;str&gt;</em>) – Parameter package name.</li>
-<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</li>
+<li><strong>package_name</strong> (<em>&lt;str&gt;</em>) – parameter package name.</li>
+<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – enable/disable verbose option.</li>
 </ul>
 </td>
 </tr>
@@ -276,7 +285,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Template reader object.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">template reader object.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;ReadTemplate&gt;</td>
 </tr>
@@ -294,7 +303,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Template writer object.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">template writer object.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;WriteTemplate&gt;</td>
 </tr>
@@ -312,9 +321,9 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – enable/disable verbose option.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Project type and project ID | None and None.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">project type and project ID | None and None.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">&lt;str&gt; | &lt;NoneType&gt;</td>
 </tr>

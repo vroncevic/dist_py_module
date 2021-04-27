@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '1.8.2'
+__version__ = '1.9.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -54,41 +54,37 @@ class GenSetup(FileChecking):
         It defines:
 
             :attributes:
-                | __slots__ - Setting class slots.
-                | VERBOSE - Console text indicator for current process-phase.
-                | __PRO_STRUCTURE - Project setup (template, module).
-                | __reader - Reader API.
-                | __writer - Writer API.
-                | __config - Project setup in dict format.
+                | GEN_VERBOSE - console text indicator for process-phase.
+                | PRO_STRUCTURE - project setup (template, module).
+                | __reader - reader API.
+                | __writer - writer API.
+                | __config - project setup in dict format.
             :methods:
-                | __init__ - Initial constructor.
-                | get_reader - Getter for template reader.
-                | get_writer - Getter for template writer.
-                | gen_setup - Generate module file setup.py.
-                | select_pro_type - Select project type.
-                | __str__ - Dunder method for GenSetup.
+                | __init__ - initial constructor.
+                | get_reader - getter for template reader.
+                | get_writer - getter for template writer.
+                | gen_setup - generate module file setup.py.
+                | select_pro_type - select project type.
+                | __str__ - dunder method for GenSetup.
     '''
 
-    __slots__ = (
-        'VERBOSE', '__PRO_STRUCTURE', '__reader', '__writer', '__config'
-    )
-    VERBOSE = 'DIST_PY_MODULE::PRO::GEN_SETUP'
-    __PRO_STRUCTURE = '/../conf/project.yaml'
+    GEN_VERBOSE = 'DIST_PY_MODULE::PRO::GEN_SETUP'
+    PRO_STRUCTURE = '/../conf/project.yaml'
 
     def __init__(self, verbose=False):
         '''
             Initial constructor.
 
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         '''
         FileChecking.__init__(self, verbose=verbose)
-        verbose_message(GenSetup.VERBOSE, verbose, 'init setup')
+        verbose_message(GenSetup.GEN_VERBOSE, verbose, 'init setup')
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
         project = '{0}/{1}'.format(
-            Path(__file__).parent, GenSetup.__PRO_STRUCTURE
+            Path(__file__).parent, GenSetup.PRO_STRUCTURE
         )
         self.check_path(file_path=project, verbose=verbose)
         self.check_mode(file_mode='r', verbose=verbose)
@@ -105,7 +101,7 @@ class GenSetup(FileChecking):
         '''
             Getter for template reader.
 
-            :return: Template reader object.
+            :return: template reader object.
             :rtype: <ReadTemplate>
             :exceptions: None
         '''
@@ -115,7 +111,7 @@ class GenSetup(FileChecking):
         '''
             Getter for template writer.
 
-            :return: Template writer object.
+            :return: template writer object.
             :rtype: <WriteTemplate>
             :exceptions: None
         '''
@@ -125,9 +121,9 @@ class GenSetup(FileChecking):
         '''
             Generate setup.py for python package.
 
-            :param package_name: Parameter package name.
+            :param package_name: parameter package name.
             :type package_name: <str>
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :return: True (success) | False.
             :rtype: <bool>
@@ -143,7 +139,7 @@ class GenSetup(FileChecking):
             raise ATSBadCallError(error)
         status, setup_content = False, None
         verbose_message(
-            GenSetup.VERBOSE, verbose, 'generating package', package_name
+            GenSetup.GEN_VERBOSE, verbose, 'generating package', package_name
         )
         template_file = self.select_pro_type(verbose=verbose)
         if bool(template_file):
@@ -164,9 +160,9 @@ class GenSetup(FileChecking):
         '''
             Select project type.
 
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: Project type and project ID | None and None.
+            :return: project type and project ID | None and None.
             :rtype: <str> | <NoneType>
             :exceptions: None
         '''
@@ -180,7 +176,7 @@ class GenSetup(FileChecking):
                         '{0} {1}'.format(index + 1, project_type.capitalize())
                     )
                     verbose_message(
-                        GenSetup.VERBOSE, verbose, 'to be processed template',
+                        GenSetup.GEN_VERBOSE, verbose, 'to be processed template',
                         template_file
                     )
             while True:
@@ -204,10 +200,10 @@ class GenSetup(FileChecking):
                         raise ValueError
                 except ValueError:
                     error_message(
-                        GenSetup.VERBOSE, 'not an appropriate choice'
+                        GenSetup.GEN_VERBOSE, 'not an appropriate choice'
                     )
             verbose_message(
-                GenSetup.VERBOSE, verbose, 'selected', template_selected
+                GenSetup.GEN_VERBOSE, verbose, 'selected', template_selected
             )
         return template_selected
 
@@ -215,7 +211,7 @@ class GenSetup(FileChecking):
         '''
             Dunder method for GenSetup.
 
-            :return: Object in a human-readable format.
+            :return: object in a human-readable format.
             :rtype: <str>
             :exceptions: None
         '''
