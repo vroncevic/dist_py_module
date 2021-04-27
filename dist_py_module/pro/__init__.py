@@ -176,8 +176,8 @@ class GenSetup(FileChecking):
                         '{0} {1}'.format(index + 1, project_type.capitalize())
                     )
                     verbose_message(
-                        GenSetup.GEN_VERBOSE, verbose, 'to be processed template',
-                        template_file
+                        GenSetup.GEN_VERBOSE, verbose,
+                        'to be processed template', template_file
                     )
             while True:
                 try:

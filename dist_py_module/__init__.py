@@ -126,7 +126,8 @@ class DistPyModule(CfgCLI):
                     )
                     generator = GenSetup(verbose=args.verbose or verbose)
                     status = generator.gen_setup(
-                        '{0}'.format(args.gen), verbose=args.verbose or verbose
+                        '{0}'.format(args.gen),
+                        verbose=args.verbose or verbose
                     )
                     if status:
                         success_message(DistPyModule.GEN_VERBOSE, 'done\n')
