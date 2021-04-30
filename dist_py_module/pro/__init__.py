@@ -24,6 +24,8 @@ import sys
 
 try:
     from pathlib import Path
+    from dist_py_module.pro.read_template import ReadTemplate
+    from dist_py_module.pro.write_template import WriteTemplate
     from ats_utilities.checker import ATSChecker
     from ats_utilities.config_io.base_check import FileChecking
     from ats_utilities.console_io.error import error_message
@@ -31,8 +33,6 @@ try:
     from ats_utilities.config_io.yaml.yaml2object import Yaml2Object
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
-    from dist_py_module.pro.read_template import ReadTemplate
-    from dist_py_module.pro.write_template import WriteTemplate
 except ImportError as ats_error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.0.2'
+__version__ = '2.0.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -154,7 +154,7 @@ class GenSetup(FileChecking):
                         setup_content, package_name,
                         self.__config['module'], verbose=verbose
                     )
-        return True if status else False
+        return status
 
     def select_pro_type(self, verbose=False):
         '''
