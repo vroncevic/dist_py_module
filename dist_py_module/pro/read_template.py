@@ -38,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.0.2'
+__version__ = '2.0.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -105,9 +105,9 @@ class ReadTemplate(FileChecking):
             :exceptions: None
         '''
         checker, error, status = ATSChecker(), None, False
-        error, status = checker.check_params(
-            [('str:template_module', template_module)]
-        )
+        error, status = checker.check_params([
+            ('str:template_module', template_module)
+        ])
         if status == ATSChecker.TYPE_ERROR:
             raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR:
