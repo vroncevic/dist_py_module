@@ -29,7 +29,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.0.3'
+__version__ = '2.0.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -75,8 +75,6 @@ def install_directory():
 
 INSTALL_DIR = install_directory()
 TOOL_DIR = 'dist_py_module/'
-CONF_DIR = '{0}{1}'.format(TOOL_DIR, 'conf/')
-TEMPLATE_DIR = '{0}{1}'.format(CONF_DIR, 'template/')
 if not bool(INSTALL_DIR):
     print('[setup] force exit from install process')
     sys.exit(127)
@@ -102,7 +100,7 @@ APPROVED_LICENSES = [
 PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='dist_py_module',
-    version='2.0.3',
+    version='2.0.4',
     description='Python package for generation of setup file',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -115,40 +113,21 @@ setup(
     classifiers=PYP_CLASSIFIERS,
     packages=['dist_py_module', 'dist_py_module.pro'],
     install_requires=['ats-utilities'],
+    package_data = {
+        'dist_py_module': [
+            'conf/dist_py_module.cfg',
+            'conf/dist_py_module_util.cfg',
+            'conf/project.yaml',
+            'conf/template/setup_package.template',
+            'conf/template/setup_tool.template',
+            'log/dist_py_module.log'
+        ]
+    },
     data_files=[
         (
             '/usr/local/bin/', [
                 '{0}{1}'.format(TOOL_DIR, 'run/dist_py_module_run.py')
             ]
-        ),
-        (
-            '{0}{1}'.format(INSTALL_DIR, CONF_DIR), [
-                '{0}{1}'.format(CONF_DIR, 'dist_py_module.cfg')
-            ]
-        ),
-        (
-            '{0}{1}'.format(INSTALL_DIR, CONF_DIR), [
-                '{0}{1}'.format(CONF_DIR, 'dist_py_module_util.cfg')
-            ]
-        ),
-        (
-            '{0}{1}'.format(INSTALL_DIR, CONF_DIR), [
-                '{0}{1}'.format(CONF_DIR, 'project.yaml')
-            ]
-        ),
-        (
-            '{0}{1}'.format(INSTALL_DIR, TEMPLATE_DIR), [
-                '{0}{1}'.format(TEMPLATE_DIR, 'setup_package.template')
-            ]
-        ),
-        (
-            '{0}{1}'.format(INSTALL_DIR, TEMPLATE_DIR), [
-                '{0}{1}'.format(TEMPLATE_DIR, 'setup_tool.template')
-            ]
-        ),
-        (
-            '{0}{1}{2}'.format(INSTALL_DIR, TOOL_DIR, 'log/'),
-            ['{0}{1}'.format(TOOL_DIR, 'log/dist_py_module.log')]
         )
     ]
 )
