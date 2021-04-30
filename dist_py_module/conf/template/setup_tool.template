@@ -115,35 +115,20 @@ setup(
     classifiers=PYP_CLASSIFIERS,
     packages=['$pkg'],
     install_requires=['ats-utilities'],
+    data_package = {
+        '$pkg': [
+            'conf/${pkg}.cfg',
+            'conf/${pkg}_util.cfg',
+            'conf/project.yaml',
+            'conf/template/project.template',
+            'log/$pkg.log',
+        ]
+    },
     data_files=[
         (
             '/usr/local/bin/', [
                 '{0}{1}'.format(TOOL_DIR, 'run/${pkg}_run.py')
             ]
-        ),
-        (
-            '{0}{1}'.format(INSTALL_DIR, CONF_DIR), [
-                '{0}{1}'.format(CONF_DIR, '${pkg}.cfg')
-            ]
-        ),
-        (
-            '{0}{1}'.format(INSTALL_DIR, CONF_DIR), [
-                '{0}{1}'.format(CONF_DIR, '${pkg}_util.cfg')
-            ]
-        ),
-        (
-            '{0}{1}'.format(INSTALL_DIR, CONF_DIR), [
-                '{0}{1}'.format(CONF_DIR, 'project.yaml')
-            ]
-        ),
-        (
-            '{0}{1}'.format(INSTALL_DIR, TEMPLATE_DIR), [
-                '{0}{1}'.format(TEMPLATE_DIR, 'project.template')
-            ]
-        ),
-        (
-            '{0}{1}{2}'.format(INSTALL_DIR, TOOL_DIR, 'log/'),
-            ['{0}{1}'.format(TOOL_DIR, 'log/${pkg}.log')]
         )
     ]
 )
