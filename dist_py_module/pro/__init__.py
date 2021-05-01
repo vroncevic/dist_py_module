@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.0.5'
+__version__ = '2.0.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -83,7 +83,7 @@ class GenSetup(FileChecking):
         verbose_message(GenSetup.GEN_VERBOSE, verbose, 'init setup')
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
-        project = '{0}/{1}'.format(
+        project = '{0}{1}'.format(
             Path(__file__).parent, GenSetup.PRO_STRUCTURE
         )
         self.check_path(file_path=project, verbose=verbose)
@@ -125,7 +125,7 @@ class GenSetup(FileChecking):
             :type package_name: <str>
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: True (success) | False.
+            :return: boolean value True (success) | False.
             :rtype: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
@@ -162,7 +162,7 @@ class GenSetup(FileChecking):
 
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: project type and project ID | None and None.
+            :return: template type | None.
             :rtype: <str> | <NoneType>
             :exceptions: None
         '''

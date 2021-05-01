@@ -75,8 +75,6 @@ def install_directory():
 
 INSTALL_DIR = install_directory()
 TOOL_DIR = '${pkg}/'
-CONF_DIR = '{0}{1}'.format(TOOL_DIR, 'conf/')
-TEMPLATE_DIR = '{0}{1}'.format(CONF_DIR, 'template/')
 if not bool(INSTALL_DIR):
     print('[setup] force exit from install process')
     sys.exit(127)
