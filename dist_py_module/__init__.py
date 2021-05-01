@@ -40,7 +40,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.0.5'
+__version__ = '2.0.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -96,7 +96,7 @@ class DistPyModule(CfgCLI):
             self.add_new_option(
                 DistPyModule.OPS[2], DistPyModule.OPS[3],
                 action='store_true', default=False,
-                help='activate verbose mode for generation'
+                help='activate verbose mode'
             )
             self.add_new_option(
                 DistPyModule.OPS[4], action='version', version=__version__
@@ -126,22 +126,27 @@ class DistPyModule(CfgCLI):
                 '{0}/{1}'.format(getcwd(), 'setup.py')
             ).exists()
             if not setup_exists:
-                if bool(args.gen):
+                if bool(getattr(args, 'gen')):
                     print(
                         '{0} {1} [{2}]'.format(
                             '[{0}]'.format(DistPyModule.GEN_VERBOSE.lower()),
-                            'generating setup.py for package', args.gen
+                            'generating setup.py for package',
+                            getattr(args, 'gen')
                         )
                     )
-                    generator = GenSetup(verbose=args.verbose or verbose)
+                    generator = GenSetup(
+                        verbose=getattr(args, 'verbose') or verbose
+                    )
                     status = generator.gen_setup(
-                        '{0}'.format(args.gen), verbose=args.verbose or verbose
+                        '{0}'.format(getattr(args, 'gen')),
+                        verbose=getattr(args, 'verbose') or verbose
                     )
                     if status:
                         success_message(DistPyModule.GEN_VERBOSE, 'done\n')
                         self.logger.write_log(
                             '{0} {1} done'.format(
-                                'generating setup.py for package', args.gen
+                                'generating setup.py for package',
+                                getattr(args, 'gen')
                             ), ATSLogger.ATS_INFO
                         )
                     else:
