@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.0.6'
+__version__ = '2.1.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -125,7 +125,7 @@ class GenSetup(FileChecking):
             :type package_name: <str>
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: boolean value True (success) | False.
+            :return: boolean status, True (success) | False.
             :rtype: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
