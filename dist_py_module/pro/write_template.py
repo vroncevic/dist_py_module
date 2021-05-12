@@ -38,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.0.6'
+__version__ = '2.1.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -95,7 +95,7 @@ class WriteTemplate(FileChecking):
             :type module: <str>
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: boolean value True (success) | False.
+            :return: boolean status, True (success) | False.
             :rtype: <bool>
             :exception: ATSTypeError | ATSBadCallError
         '''
@@ -111,7 +111,7 @@ class WriteTemplate(FileChecking):
             raise ATSBadCallError(error)
         status, template = False, None
         self.__setup = '{0}/{1}'.format(getcwd(), module)
-        verbose_message(WriteTemplate.GEN_VERBOSE, verbose, 'write setup.py')
+        verbose_message(WriteTemplate.GEN_VERBOSE, verbose, 'write', module)
         package = {'pkg': '{0}'.format(package_name)}
         template = Template(setup_content)
         if template:
