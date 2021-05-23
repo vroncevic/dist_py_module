@@ -38,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.1.6'
+__version__ = '2.1.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -87,7 +87,7 @@ class WriteTemplate(FileChecking):
         '''
             Write setup content to file.
 
-            :param setup_content: template content.
+            :param setup_content: parameter template content.
             :type setup_content: <str>
             :param package_name: parameter package name.
             :type package_name: <str>
