@@ -122,11 +122,9 @@ setup(
             'log/$pkg.log',
         ]
     },
-    data_files=[
-        (
-            '/usr/local/bin/', [
-                '{0}{1}'.format(TOOL_DIR, 'run/${pkg}_run.py')
-            ]
-        )
-    ]
+    data_files=[(
+        '/usr/local/bin/', [
+            '{0}{1}'.format(TOOL_DIR, 'run/${pkg}_run.py')
+        ]
+    )]
 )

@@ -29,7 +29,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.1.6'
+__version__ = '2.1.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -100,7 +100,7 @@ APPROVED_LICENSES = [
 PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='dist_py_module',
-    version='2.1.6',
+    version='2.1.7',
     description='Python package for generation of setup file',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -123,11 +123,9 @@ setup(
             'log/dist_py_module.log'
         ]
     },
-    data_files=[
-        (
-            '/usr/local/bin/', [
-                '{0}{1}'.format(TOOL_DIR, 'run/dist_py_module_run.py')
-            ]
-        )
-    ]
+    data_files=[(
+        '/usr/local/bin/', [
+            '{0}{1}'.format(TOOL_DIR, 'run/dist_py_module_run.py')
+        ]
+    )]
 )
