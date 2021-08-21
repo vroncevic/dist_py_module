@@ -1,8 +1,8 @@
 <img align="right" src="https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/dist_py_module_logo.png" width="25%">
 
-# Generator for setup.py
+# Generate setup.py
 
-**dist_py_module** is toolset for generating setup.py.
+**dist_py_module** is toolset for generation of setup.py.
 
 Developed in **[python](https://www.python.org/)** code: **100%**.
 
@@ -30,6 +30,10 @@ other information that should be provided before the modules are installed.
 
 ### Installation
 
+Used next development environment
+
+![Development environment](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/debtux.png)
+
 ![Install Python2 Package](https://github.com/vroncevic/dist_py_module/workflows/Install%20Python2%20Package%20dist_py_module/badge.svg?branch=master) ![Install Python3 Package](https://github.com/vroncevic/dist_py_module/workflows/Install%20Python3%20Package%20dist_py_module/badge.svg?branch=master)
 
 Currently there are three ways to install tool:
@@ -53,7 +57,7 @@ pip3 install dist-py-module
 
 Navigate to release **[page](https://github.com/vroncevic/dist_py_module/releases/)** download and extract release archive.
 
-To install modules, locate and run setup.py with arguments
+To install **dist_py_module** type the following:
 ```
 tar xvzf dist_py_module-x.y.z.tar.gz
 cd dist_py_module-x.y.z/
@@ -85,13 +89,13 @@ You can use Dockerfile to create image/container.
 
 Base flow of generation process:
 
-![alt tag](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup_flow.png)
+![Setup generation flow](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup_flow.png)
 
 ### Tool structure
 
-**dist_py_module** is based on Template mechanism:
+**dist_py_module** is based on OOP.
 
-![alt tag](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup.png)
+![Setup tool flow](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup.png)
 
 Generator structure:
 

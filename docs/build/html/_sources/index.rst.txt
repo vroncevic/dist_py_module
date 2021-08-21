@@ -1,7 +1,7 @@
-Generator for setup.py
------------------------
+Generate setup.py
+------------------
 
-**dist_py_module** is toolset for generating setup.py.
+**dist_py_module** is toolset for generation of setup.py.
 
 Developed in `python <https://www.python.org/>`_ code: **100%**.
 
@@ -93,7 +93,7 @@ Base flow of generation process:
 Tool structure
 ---------------
 
-**dist_py_module** is based on Template mechanism:
+**dist_py_module** is based on OOP.
 
 .. image:: https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup.png
 
