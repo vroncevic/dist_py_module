@@ -1,7 +1,3 @@
 __pycache__/
 *.py[cod]
 *$py.class
-.Python
-.python-version
-.idea/
-.vscode/
