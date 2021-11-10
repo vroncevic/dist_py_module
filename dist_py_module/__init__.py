@@ -24,6 +24,7 @@ import sys
 from os import getcwd
 
 try:
+    from six import add_metaclass
     from pathlib import Path
     from dist_py_module.pro import GenSetup
     from ats_utilities.logging import ATSLogger
@@ -40,12 +41,13 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.1.7'
+__version__ = '2.1.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
+@add_metaclass(CooperativeMeta)
 class DistPyModule(CfgCLI):
     '''
         Defined class DistPyModule with attribute(s) and method(s).
@@ -53,7 +55,6 @@ class DistPyModule(CfgCLI):
         It defines:
 
             :attributes:
-                | __metaclass__ - setting cooperative metaclasses.
                 | GEN_VERBOSE - console text indicator for process-phase.
                 | CONFIG - tool info file path.
                 | LOG - tool log file path.
@@ -65,7 +66,6 @@ class DistPyModule(CfgCLI):
                 | __str__ - dunder method for DistPyModule.
     '''
 
-    __metaclass__ = CooperativeMeta
     GEN_VERBOSE = 'DIST_PY_MODULE'
     CONFIG = '/conf/dist_py_module.cfg'
     LOG = '/log/dist_py_module.log'
