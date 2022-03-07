@@ -2,8 +2,20 @@ name: Install Python2 Package dist_py_module
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'dist_py_module/**'
+      - 'MANIFEST.in'
+      - 'pyproject.toml'
+      - 'setup.cfg'
+      - 'setup.py'
   pull_request:
     branches: [ master ]
+    paths:
+      - 'dist_py_module/**'
+      - 'MANIFEST.in'
+      - 'pyproject.toml'
+      - 'setup.cfg'
+      - 'setup.py'
 jobs:
   deploy:
     runs-on: ubuntu-latest

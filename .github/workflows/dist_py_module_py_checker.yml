@@ -2,8 +2,14 @@ name: dist_py_module py checker
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'dist_py_module/**'
+      - 'setup.py'
   pull_request:
     branches: [ master ]
+    paths:
+      - 'dist_py_module/**'
+      - 'setup.py'
 jobs:
   build:
     runs-on: ubuntu-latest

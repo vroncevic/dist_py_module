@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-"""
+'''
  Module
      setup.py
  Copyright
@@ -18,7 +18,7 @@
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
      Defined setup for tool dist_py_module.
-"""
+'''
 
 from __future__ import print_function
 import sys

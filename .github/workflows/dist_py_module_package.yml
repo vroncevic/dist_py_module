@@ -1,5 +1,10 @@
 name: Python package dist_py_module
-on: [push]
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'dist_py_module/**'
+      - 'setup.py'
 jobs:
   build:
     runs-on: ubuntu-latest

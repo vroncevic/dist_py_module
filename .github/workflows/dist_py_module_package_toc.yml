@@ -1,5 +1,9 @@
 name: TOC Generator dist_py_module_package
-on: push
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '**.md'
 jobs:
   generateTOC:
     name: TOC Generator
