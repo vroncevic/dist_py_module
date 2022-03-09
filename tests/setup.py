@@ -5,19 +5,19 @@
  Module
      setup.py
  Copyright
-     Copyright (C) 2017 Vladimir Roncevic <elektron.ronca@gmail.com>
-     dist_py_module is free software: you can redistribute it and/or modify it
+     Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+     simple_test is free software: you can redistribute it and/or modify it
      under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
      (at your option) any later version.
-     dist_py_module is distributed in the hope that it will be useful, but
+     simple_test is distributed in the hope that it will be useful, but
      WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
      See the GNU General Public License for more details.
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined setup for tool dist_py_module.
+     Defined setup for tool simple_test.
 '''
 
 from __future__ import print_function
@@ -26,10 +26,10 @@ from os.path import abspath, dirname, join, exists
 from setuptools import setup
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
+__copyright__ = 'Copyright 2021, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.2.8'
+__license__ = 'GNU General Public License (GPL)'
+__version__ = '1.0.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -38,7 +38,7 @@ def install_directory():
     '''
         Return the installation directory, or None.
 
-        :return: path (success) | None.
+        :return: Path (success) | None.
         :rtype: <str> | <NoneType>
         :exceptions: None
     '''
@@ -74,7 +74,7 @@ def install_directory():
     return None
 
 INSTALL_DIR = install_directory()
-TOOL_DIR = 'dist_py_module/'
+TOOL_DIR = 'simple_test/'
 if not bool(INSTALL_DIR):
     print('[setup] force exit from install process')
     sys.exit(127)
@@ -99,34 +99,32 @@ APPROVED_LICENSES = [
 ]
 PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
-    name='dist_py_module',
-    version='2.2.8',
-    description='Python package for generation of setup file',
+    name='simple_test',
+    version='1.0.0',
+    description='Python module simple_test',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
-    url='https://vroncevic.github.io/dist_py_module',
-    license='GPL 2017 Free software to use and distributed it.',
+    url='https://github.com/vroncevic/TODO',
+    license='GPL 2021 Free software to use and distributed it.',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    keywords='setup, python, install',
+    keywords='simple_test, TODO',
     platforms='POSIX',
     classifiers=PYP_CLASSIFIERS,
-    packages=['dist_py_module', 'dist_py_module.pro'],
+    packages=['simple_test'],
     install_requires=['ats-utilities'],
-    package_data = {
-        'dist_py_module': [
-            'conf/dist_py_module.logo',
-            'conf/dist_py_module.cfg',
-            'conf/dist_py_module_util.cfg',
+    data_package = {
+        'simple_test': [
+            'conf/simple_test.cfg',
+            'conf/simple_test_util.cfg',
             'conf/project.yaml',
-            'conf/template/setup_package.template',
-            'conf/template/setup_tool.template',
-            'log/dist_py_module.log'
+            'conf/template/project.template',
+            'log/simple_test.log',
         ]
     },
     data_files=[(
         '/usr/local/bin/', [
-            '{0}{1}'.format(TOOL_DIR, 'run/dist_py_module_run.py')
+            '{0}{1}'.format(TOOL_DIR, 'run/simple_test_run.py')
         ]
     )]
 )

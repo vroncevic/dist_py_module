@@ -36,7 +36,7 @@ Used next development environment
 
 ![Install Python2 Package](https://github.com/vroncevic/dist_py_module/workflows/Install%20Python2%20Package%20dist_py_module/badge.svg?branch=master) ![Install Python3 Package](https://github.com/vroncevic/dist_py_module/workflows/Install%20Python3%20Package%20dist_py_module/badge.svg?branch=master)
 
-Currently there are three ways to install tool:
+Currently there are three ways to install tool
 * Install process based on pip
 * Install process based on setup.py (setuptools)
 * Install process based on docker mechanism
@@ -57,7 +57,7 @@ pip3 install dist-py-module
 
 Navigate to release **[page](https://github.com/vroncevic/dist_py_module/releases/)** download and extract release archive.
 
-To install **dist_py_module** type the following:
+To install **dist_py_module** type the following
 ```
 tar xvzf dist_py_module-x.y.z.tar.gz
 cd dist_py_module-x.y.z/
@@ -81,13 +81,13 @@ You can use Dockerfile to create image/container.
 
 ### Dependencies
 
-**dist_py_module** requires next modules and libraries:
+**dist_py_module** requires next modules and libraries
 
 * [ats-utilities - Python App/Tool/Script Utilities](https://pypi.org/project/ats-utilities/)
 
 ### Generation flow of pyp setup
 
-Base flow of generation process:
+Base flow of generation process
 
 ![Setup generation flow](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup_flow.png)
 
@@ -97,12 +97,13 @@ Base flow of generation process:
 
 ![Setup tool flow](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup.png)
 
-Generator structure:
+Generator structure
 
 ```
 dist_py_module/
 ├── conf/
 │   ├── dist_py_module.cfg
+│   ├── dist_py_module.logo
 │   ├── dist_py_module_util.cfg
 │   ├── project.yaml
 │   └── template/
@@ -123,7 +124,7 @@ dist_py_module/
 
 [![Documentation Status](https://readthedocs.org/projects/dist_py_module/badge/?version=latest)](https://dist_py_module.readthedocs.io/en/latest/?badge=latest)
 
-More documentation and info at:
+More documentation and info at
 
 * [dist_py_module.readthedocs.io](https://dist_py_module.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
