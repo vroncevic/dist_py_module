@@ -6,6 +6,9 @@
 
 Developed in **[python](https://www.python.org/)** code: **100%**.
 
+[![codecov](https://codecov.io/gh/vroncevic/dist_py_module/branch/dev/graph/badge.svg?token=Y6VSNLJ45R)](https://codecov.io/gh/vroncevic/dist_py_module)
+[![CircleCI](https://circleci.com/gh/vroncevic/dist_py_module/tree/master.svg?style=svg)](https://circleci.com/gh/vroncevic/dist_py_module/tree/master)
+
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
