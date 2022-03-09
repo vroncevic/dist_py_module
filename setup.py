@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-"""
+'''
  Module
      setup.py
  Copyright
@@ -18,7 +18,7 @@
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
      Defined setup for tool dist_py_module.
-"""
+'''
 
 from __future__ import print_function
 import sys
@@ -29,7 +29,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.1.8'
+__version__ = '2.2.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -57,7 +57,8 @@ def install_directory():
             ),
             '{0}/local/lib/python{1}/site-packages/'.format(
                 sys.prefix, py_version
-            )
+            ),
+            sys.prefix
         ))
     message = None
     for path in paths:
@@ -100,7 +101,7 @@ APPROVED_LICENSES = [
 PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='dist_py_module',
-    version='2.1.8',
+    version='2.2.8',
     description='Python package for generation of setup file',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -115,6 +116,7 @@ setup(
     install_requires=['ats-utilities'],
     package_data = {
         'dist_py_module': [
+            'conf/dist_py_module.logo',
             'conf/dist_py_module.cfg',
             'conf/dist_py_module_util.cfg',
             'conf/project.yaml',

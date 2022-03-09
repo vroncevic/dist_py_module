@@ -27,7 +27,7 @@
             <a href="../index.html" class="icon icon-home"> dist_py_module
           </a>
               <div class="version">
-                v2.1.8
+                v2.2.8
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -37,7 +37,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../modules.html">dist_py_module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Generate setup.py</a></li>
@@ -97,6 +97,7 @@
     <span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">add_metaclass</span>
     <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
     <span class="kn">from</span> <span class="nn">dist_py_module.pro</span> <span class="kn">import</span> <span class="n">GenSetup</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.splash</span> <span class="kn">import</span> <span class="n">Splash</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.logging</span> <span class="kn">import</span> <span class="n">ATSLogger</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.cli.cfg_cli</span> <span class="kn">import</span> <span class="n">CfgCLI</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.cooperative</span> <span class="kn">import</span> <span class="n">CooperativeMeta</span>
@@ -111,7 +112,7 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2017, https://vroncevic.github.io/dist_py_module&#39;</span>
 <span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;2.1.8&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;2.2.8&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
@@ -128,6 +129,7 @@
 <span class="sd">                | GEN_VERBOSE - console text indicator for process-phase.</span>
 <span class="sd">                | CONFIG - tool info file path.</span>
 <span class="sd">                | LOG - tool log file path.</span>
+<span class="sd">                | LOGO - logo for splash screen.</span>
 <span class="sd">                | OPS - list of tool options.</span>
 <span class="sd">                | logger - logger object API.</span>
 <span class="sd">            :methods:</span>
@@ -139,6 +141,7 @@
     <span class="n">GEN_VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DIST_PY_MODULE&#39;</span>
     <span class="n">CONFIG</span> <span class="o">=</span> <span class="s1">&#39;/conf/dist_py_module.cfg&#39;</span>
     <span class="n">LOG</span> <span class="o">=</span> <span class="s1">&#39;/log/dist_py_module.log&#39;</span>
+    <span class="n">LOGO</span> <span class="o">=</span> <span class="s1">&#39;/conf/dist_py_module.logo&#39;</span>
     <span class="n">OPS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-g&#39;</span><span class="p">,</span> <span class="s1">&#39;--gen&#39;</span><span class="p">,</span> <span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -150,6 +153,14 @@
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">current_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+        <span class="n">dist_py_module_property</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;ats_organization&#39;</span><span class="p">:</span> <span class="s1">&#39;vroncevic&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;ats_repository&#39;</span><span class="p">:</span> <span class="s1">&#39;dist_py_module&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;ats_name&#39;</span><span class="p">:</span> <span class="s1">&#39;dist_py_module&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;ats_logo_path&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{0}{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="n">DistPyModule</span><span class="o">.</span><span class="n">LOGO</span><span class="p">),</span>
+            <span class="s1">&#39;ats_use_github_infrastructure&#39;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">}</span>
+        <span class="n">splash</span> <span class="o">=</span> <span class="n">Splash</span><span class="p">(</span><span class="n">dist_py_module_property</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="n">base_info</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="n">DistPyModule</span><span class="o">.</span><span class="n">CONFIG</span><span class="p">)</span>
         <span class="n">CfgCLI</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_info</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="n">verbose_message</span><span class="p">(</span><span class="n">DistPyModule</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;init tool info&#39;</span><span class="p">)</span>
@@ -200,8 +211,7 @@
                     <span class="nb">print</span><span class="p">(</span>
                         <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1"> [</span><span class="si">{2}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                             <span class="s1">&#39;[</span><span class="si">{0}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">DistPyModule</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="o">.</span><span class="n">lower</span><span class="p">()),</span>
-                            <span class="s1">&#39;generating setup.py for package&#39;</span><span class="p">,</span>
-                            <span class="nb">getattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;gen&#39;</span><span class="p">)</span>
+                            <span class="s1">&#39;generating&#39;</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;gen&#39;</span><span class="p">)</span>
                         <span class="p">)</span>
                     <span class="p">)</span>
                     <span class="n">generator</span> <span class="o">=</span> <span class="n">GenSetup</span><span class="p">(</span>

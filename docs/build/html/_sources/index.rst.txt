@@ -25,7 +25,7 @@ other information that should be provided before the tool is installed.
 
 .. toctree::
    :maxdepth: 4
-   :caption: Contents:
+   :caption: Contents
 
    modules
    self
@@ -45,7 +45,7 @@ Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/dist_py_module/releases
 
-To install **dist_py_module** type the following:
+To install **dist_py_module** type the following
 
 .. code-block:: bash
 
@@ -62,7 +62,7 @@ To install **dist_py_module** type the following:
     python3 setup.py install_data
     python3 setup.py install_egg_info
 
-You can use Docker to create image/container, or You can use pip to install:
+You can use Docker to create image/container, or You can use pip to install
 
 .. code-block:: bash
 
@@ -79,14 +79,14 @@ You can use Docker to create image/container, or You can use pip to install:
 Dependencies
 -------------
 
-**dist_py_module** requires next modules and libraries:
+**dist_py_module** requires next modules and libraries
 
 * `ats-utilities - Python App/Tool/Script Utilities <https://pypi.org/project/ats-utilities/>`_
 
 Generation flow of project setup
 ---------------------------------
 
-Base flow of generation process:
+Base flow of generation process
 
 .. image:: https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup_flow.png
 
@@ -97,7 +97,7 @@ Tool structure
 
 .. image:: https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup.png
 
-Code structure:
+Code structure
 
 .. code-block:: bash
 

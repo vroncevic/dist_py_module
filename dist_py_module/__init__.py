@@ -27,6 +27,7 @@ try:
     from six import add_metaclass
     from pathlib import Path
     from dist_py_module.pro import GenSetup
+    from ats_utilities.splash import Splash
     from ats_utilities.logging import ATSLogger
     from ats_utilities.cli.cfg_cli import CfgCLI
     from ats_utilities.cooperative import CooperativeMeta
@@ -41,7 +42,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.1.8'
+__version__ = '2.2.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -58,6 +59,7 @@ class DistPyModule(CfgCLI):
                 | GEN_VERBOSE - console text indicator for process-phase.
                 | CONFIG - tool info file path.
                 | LOG - tool log file path.
+                | LOGO - logo for splash screen.
                 | OPS - list of tool options.
                 | logger - logger object API.
             :methods:
@@ -69,6 +71,7 @@ class DistPyModule(CfgCLI):
     GEN_VERBOSE = 'DIST_PY_MODULE'
     CONFIG = '/conf/dist_py_module.cfg'
     LOG = '/log/dist_py_module.log'
+    LOGO = '/conf/dist_py_module.logo'
     OPS = ['-g', '--gen', '-v', '--verbose', '--version']
 
     def __init__(self, verbose=False):
@@ -80,6 +83,14 @@ class DistPyModule(CfgCLI):
             :exceptions: None
         '''
         current_dir = Path(__file__).resolve().parent
+        dist_py_module_property = {
+            'ats_organization': 'vroncevic',
+            'ats_repository': 'dist_py_module',
+            'ats_name': 'dist_py_module',
+            'ats_logo_path': '{0}{1}'.format(current_dir, DistPyModule.LOGO),
+            'ats_use_github_infrastructure': True
+        }
+        splash = Splash(dist_py_module_property, verbose=verbose)
         base_info = '{0}{1}'.format(current_dir, DistPyModule.CONFIG)
         CfgCLI.__init__(self, base_info, verbose=verbose)
         verbose_message(DistPyModule.GEN_VERBOSE, verbose, 'init tool info')
@@ -130,8 +141,7 @@ class DistPyModule(CfgCLI):
                     print(
                         '{0} {1} [{2}]'.format(
                             '[{0}]'.format(DistPyModule.GEN_VERBOSE.lower()),
-                            'generating setup.py for package',
-                            getattr(args, 'gen')
+                            'generating', getattr(args, 'gen')
                         )
                     )
                     generator = GenSetup(
