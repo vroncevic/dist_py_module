@@ -31,8 +31,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     python3-pip \
     python3-wheel \
     python3-venv \
-    python3-dev \
-
+    python3-dev
 
 RUN python2 -m pip install --upgrade setuptools
 RUN python2 -m pip install --upgrade pip
