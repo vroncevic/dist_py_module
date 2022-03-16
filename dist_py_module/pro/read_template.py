@@ -21,10 +21,9 @@
 '''
 
 import sys
-from os.path import isdir
+from os.path import isdir, dirname, realpath
 
 try:
-    from pathlib import Path
     from ats_utilities.checker import ATSChecker
     from ats_utilities.config_io.base_check import FileChecking
     from ats_utilities.console_io.verbose import verbose_message
@@ -38,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.2.8'
+__version__ = '2.3.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -75,7 +74,7 @@ class ReadTemplate(FileChecking):
         FileChecking.__init__(self, verbose=verbose)
         verbose_message(ReadTemplate.GEN_VERBOSE, verbose, 'init reader')
         template_dir = '{0}{1}'.format(
-            Path(__file__).parent, ReadTemplate.TEMPLATE_DIR
+            dirname(realpath(__file__)), ReadTemplate.TEMPLATE_DIR
         )
         check_template_dir = isdir(template_dir)
         if check_template_dir:
@@ -117,7 +116,7 @@ class ReadTemplate(FileChecking):
         template_file = '{0}{1}'.format(self.__template_dir, template_module)
         self.check_path(template_file, verbose=verbose)
         self.check_mode('r', verbose=verbose)
-        self.check_format(template_file, 'template',verbose=verbose)
+        self.check_format(template_file, 'template', verbose=verbose)
         if self.is_file_ok():
             with open(template_file, 'r') as setup_template:
                 setup_content = setup_template.read()

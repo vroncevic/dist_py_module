@@ -22,10 +22,10 @@
 
 import sys
 from os import getcwd
+from os.path import dirname, realpath, exists
 
 try:
     from six import add_metaclass
-    from pathlib import Path
     from dist_py_module.pro import GenSetup
     from ats_utilities.splash import Splash
     from ats_utilities.logging import ATSLogger
@@ -42,7 +42,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.2.8'
+__version__ = '2.3.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -82,7 +82,7 @@ class DistPyModule(CfgCLI):
             :type verbose: <bool>
             :exceptions: None
         '''
-        current_dir = Path(__file__).resolve().parent
+        current_dir = dirname(realpath(__file__))
         dist_py_module_property = {
             'ats_organization': 'vroncevic',
             'ats_repository': 'dist_py_module',
@@ -133,9 +133,9 @@ class DistPyModule(CfgCLI):
             else:
                 sys.argv.append('-h')
             args = self.parse_args(sys.argv[1:])
-            setup_exists = Path(
+            setup_exists = exists(
                 '{0}/{1}'.format(getcwd(), 'setup.py')
-            ).exists()
+            )
             if not setup_exists:
                 if bool(getattr(args, 'gen')):
                     print(
