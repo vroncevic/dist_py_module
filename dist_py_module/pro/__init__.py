@@ -21,9 +21,9 @@
 '''
 
 import sys
+from os.path import dirname, realpath
 
 try:
-    from pathlib import Path
     from dist_py_module.pro.read_template import ReadTemplate
     from dist_py_module.pro.write_template import WriteTemplate
     from ats_utilities.checker import ATSChecker
@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.2.8'
+__version__ = '2.3.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -84,7 +84,7 @@ class GenSetup(FileChecking):
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
         project = '{0}{1}'.format(
-            Path(__file__).parent, GenSetup.PRO_STRUCTURE
+            dirname(realpath(__file__)), GenSetup.PRO_STRUCTURE
         )
         self.check_path(file_path=project, verbose=verbose)
         self.check_mode(file_mode='r', verbose=verbose)
