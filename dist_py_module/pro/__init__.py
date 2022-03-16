@@ -180,14 +180,8 @@ class GenSetup(FileChecking):
                         'to be processed template', template_file
                     )
             while True:
-                try:
-                    try:
-                        input_type = raw_input(' select project type: ')
-                    except NameError:
-                        input_type = input(' select project type: ')
-                    options = xrange(1, pro_types_len + 1, 1)
-                except NameError:
-                    options = range(1, pro_types_len + 1, 1)
+                input_type = input(' select project type: ')
+                options = range(1, pro_types_len + 1, 1)
                 try:
                     if int(input_type) in list(options):
                         for target in types[int(input_type) - 1].values():

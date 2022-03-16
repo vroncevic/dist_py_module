@@ -58,8 +58,7 @@ class WriteTemplateTestCase(unittest.TestCase):
                 | test_write_template_tool - test for base process.
     '''
 
-    SETUP_CONTENT_PACKAGE = '''
-#!/usr/bin/env python
+    SETUP_CONTENT_PACKAGE = '''#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
 \'\'\'
@@ -131,8 +130,7 @@ setup(
 )
 '''
 
-    SETUP_CONTENT_TOOL = '''
-#!/usr/bin/env python
+    SETUP_CONTENT_TOOL = '''#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
 \'\'\'
@@ -201,7 +199,7 @@ def install_directory():
             message = '[setup] use path {0}'.format(path)
             print(message)
             return path
-    message = '[setup] no installation path found, check {0}\n'.format(
+    message = '[setup] no installation path found, check {0}\\n'.format(
         sys.prefix
     )
     print(message)
@@ -278,7 +276,7 @@ setup(
             self.template_writer.write(
                 WriteTemplateTestCase.SETUP_CONTENT_PACKAGE,
                 '{0}'.format('simple_test'),
-                'setup.py'
+                'setup_package.py'
             ), False
         )
 
@@ -288,7 +286,7 @@ setup(
             self.template_writer.write(
                 WriteTemplateTestCase.SETUP_CONTENT_TOOL,
                 '{0}'.format('simple_test'),
-                'setup.py'
+                'setup_tool.py'
             ), False
         )
 

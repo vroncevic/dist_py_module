@@ -26,21 +26,21 @@ RUN DEBIAN_FRONTEND=noninteractive \
     libyaml-dev \
     python \
     python-pip \
-    python-wheel
-#    python3 \
-#    python3-pip \
-#    python3-wheel \
-#    python3-venv \
-#    python3-dev \
+    python-wheel \
+    python3 \
+    python3-pip \
+    python3-wheel \
+    python3-venv \
+    python3-dev \
 
 
 RUN python2 -m pip install --upgrade setuptools
 RUN python2 -m pip install --upgrade pip
 RUN python2 -m pip install --upgrade build
-#RUN python3 -m pip install --upgrade setuptools
-#RUN python3 -m pip install --upgrade pip
-#RUN python3 -m pip install --upgrade build
-#RUN python3 -m venv env
+RUN python3 -m pip install --upgrade setuptools
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade build
+RUN python3 -m venv env
 RUN mkdir /dist_py_module/
 COPY dist_py_module /dist_py_module/
 COPY setup.cfg /
@@ -52,8 +52,8 @@ COPY LICENSE /
 RUN find /dist_py_module/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
 RUN python -m build
 RUN pip2 install /dist/dist_py_module-*-py2-none-any.whl
-#RUN python3 -m build
-#RUN pip3 install /dist/dist_py_module-*-py3-none-any.whl
+RUN python3 -m build
+RUN pip3 install /dist/dist_py_module-*-py3-none-any.whl
 RUN rm -rf /dist_py_module/
 RUN rm -f setup.py
 RUN rm -f README.md
