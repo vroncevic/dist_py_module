@@ -4,4 +4,4 @@ The following is a set of guidelines for contributing to dist_py_module and its 
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [dist_py_module Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [dist_py_module](mailto:elektron.ronca@gmail.com).
+dist_py_module and everyone participating in it is governed by the [dist_py_module Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [dist_py_module](mailto:elektron.ronca@gmail.com).

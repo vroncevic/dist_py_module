@@ -1,15 +1,15 @@
 # -*- coding: UTF-8 -*-
 
 '''
- Module
+ modules
      write_template.py
  Copyright
      Copyright (C) 2017 Vladimir Roncevic <elektron.ronca@gmail.com>
-     dist_py_module is free software: you can redistribute it and/or modify it
+     dist_py_modules is free software: you can redistribute it and/or modify it
      under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
      (at your option) any later version.
-     dist_py_module is distributed in the hope that it will be useful, but
+     dist_py_modules is distributed in the hope that it will be useful, but
      WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
      See the GNU General Public License for more details.
@@ -35,10 +35,10 @@ except ImportError as ats_error_message:
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
+__copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_modules'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.3.8'
+__license__ = 'https://github.com/vroncevic/dist_py_modules/blob/dev/LICENSE'
+__version__ = '2.4.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -52,15 +52,15 @@ class WriteTemplate(FileChecking):
 
             :attributes:
                 | GEN_VERBOSE - console text indicator for process-phase.
-                | __setup - setup file path.
+                | __setup - setup files.
             :methods:
                 | __init__ - initial constructor.
-                | get_setup - getter for setup file object.
-                | write - write a template content to a file setup.py.
+                | get_setup - getter for setup files.
+                | write - write a template content to a setup files.
                 | __str__ - dunder method for WriteTemplate.
     '''
 
-    GEN_VERBOSE = 'DIST_PY_MODULE::PRO::WRITE_TEMPLATE'
+    GEN_VERBOSE = 'DIST_PY_modules::PRO::WRITE_TEMPLATE'
 
     def __init__(self, verbose=False):
         '''
@@ -83,16 +83,16 @@ class WriteTemplate(FileChecking):
         '''
         return self.__setup
 
-    def write(self, setup_content, package_name, module, verbose=False):
+    def write(self, setup_content, package_name, modules, verbose=False):
         '''
             Write setup content to file.
 
             :param setup_content: parameter template content.
-            :type setup_content: <str>
+            :type setup_content: <dict>
             :param package_name: parameter package name.
             :type package_name: <str>
-            :param module: module name.
-            :type module: <str>
+            :param modules: modules.
+            :type modules: <str>
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :return: boolean status, True (success) | False.
@@ -101,29 +101,40 @@ class WriteTemplate(FileChecking):
         '''
         checker, error, status = ATSChecker(), None, False
         error, status = checker.check_params([
-            ('str:setup_content', setup_content),
+            ('dict:setup_content', setup_content),
             ('str:package_name', package_name),
-            ('str:module', module)
+            ('list:modules', modules)
         ])
         if status == ATSChecker.TYPE_ERROR:
             raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR:
             raise ATSBadCallError(error)
-        status, template = False, None
-        self.__setup = '{0}/{1}'.format(getcwd(), module)
-        verbose_message(WriteTemplate.GEN_VERBOSE, verbose, 'write', module)
+        statuses, template = [], None
+        self.__setup = [
+            '{0}/{1}'.format(getcwd(), module) for module in modules
+        ]
+        verbose_message(WriteTemplate.GEN_VERBOSE, verbose, 'write modules')
         package = {'pkg': '{0}'.format(package_name)}
-        template = Template(setup_content)
-        if template:
-            with open(self.__setup, 'w') as setup_file:
-                setup_file.write(template.substitute(package))
-                chmod(self.__setup, 0o666)
-                self.check_path(self.__setup, verbose=verbose)
-                self.check_mode('w', verbose=verbose)
-                self.check_format(self.__setup, 'py',verbose=verbose)
-                if self.is_file_ok():
-                    status = True
-        return status
+        for index, content in enumerate(setup_content.values()):
+            template = Template(content)
+            if template:
+                with open(self.__setup[index], 'w') as setup_file:
+                    setup_file.write(template.substitute(package))
+                    chmod(self.__setup[index], 0o666)
+                    self.check_path(self.__setup[index], verbose=verbose)
+                    self.check_mode('w', verbose=verbose)
+                    self.check_format(
+                        self.__setup[index],
+                        self.__setup[index].split('.')[1],
+                        verbose=verbose
+                    )
+                    if self.is_file_ok():
+                        statuses.append(True)
+                    else:
+                        statuses.append(False)
+            else:
+                statuses.append(False)
+        return all(statuses)
 
     def __str__(self):
         '''
