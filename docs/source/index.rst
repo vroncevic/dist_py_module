@@ -103,12 +103,15 @@ Code structure
 
     dist_py_module/
     ├── conf/
-    │   ├── dist_py_module.logo
     │   ├── dist_py_module.cfg
+    │   ├── dist_py_module.logo
     │   ├── dist_py_module_util.cfg
     │   ├── project.yaml
     │   └── template/
+    │       ├── MANIFEST.template
+    │       ├── pyproject.template
     │       ├── setup_package.template
+    │       ├── setup.template
     │       └── setup_tool.template
     ├── __init__.py
     ├── log/

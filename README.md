@@ -113,7 +113,10 @@ dist_py_module/
 │   ├── dist_py_module_util.cfg
 │   ├── project.yaml
 │   └── template/
+│       ├── MANIFEST.template
+│       ├── pyproject.template
 │       ├── setup_package.template
+│       ├── setup.template
 │       └── setup_tool.template
 ├── __init__.py
 ├── log/
@@ -124,6 +127,8 @@ dist_py_module/
 │   └── write_template.py
 └── run/
     └── dist_py_module_run.py
+
+5 directories, 15 files
 ```
 
 ### Docs
