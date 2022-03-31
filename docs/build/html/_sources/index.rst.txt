@@ -103,6 +103,7 @@ Code structure
 
     dist_py_module/
     ├── conf/
+    │   ├── dist_py_module.logo
     │   ├── dist_py_module.cfg
     │   ├── dist_py_module_util.cfg
     │   ├── project.yaml

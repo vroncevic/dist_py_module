@@ -1,7 +1,18 @@
 templates:
-    - package: setup_package.template
-    - tool: setup_tool.template
+    - package:
+        - setup_package.template
+        - MANIFEST.template
+        - pyproject.template
+        - setup.template
+    - tool:
+        - setup_tool.template
+        - MANIFEST.template
+        - pyproject.template
+        - setup.template
     - cancel: null
 
-module:
-    setup.py
+modules:
+    - setup.py
+    - MANIFEST.in
+    - pyproject.toml
+    - setup.cfg

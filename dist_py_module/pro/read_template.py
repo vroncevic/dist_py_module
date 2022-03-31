@@ -37,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.3.8'
+__version__ = '2.4.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -91,35 +91,38 @@ class ReadTemplate(FileChecking):
         '''
         return self.__template_dir
 
-    def read(self, template_module, verbose=False):
+    def read(self, template_modules, verbose=False):
         '''
             Read template structure.
 
-            :param template_module: template module name.
-            :type template_module: <str>
+            :param template_modules: template modules.
+            :type template_modules: <list>
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: template content for setup module | None.
-            :rtype: <str> | <NoneType>
+            :return: template content for setup modules | None.
+            :rtype: <dict> | <NoneType>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
         checker, error, status = ATSChecker(), None, False
         error, status = checker.check_params([
-            ('str:template_module', template_module)
+            ('list:template_modules', template_modules)
         ])
         if status == ATSChecker.TYPE_ERROR:
             raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR:
             raise ATSBadCallError(error)
-        setup_content, template_file = None, None
+        setup_content = {}
         verbose_message(ReadTemplate.GEN_VERBOSE, verbose, 'load template')
-        template_file = '{0}{1}'.format(self.__template_dir, template_module)
-        self.check_path(template_file, verbose=verbose)
-        self.check_mode('r', verbose=verbose)
-        self.check_format(template_file, 'template', verbose=verbose)
-        if self.is_file_ok():
-            with open(template_file, 'r') as setup_template:
-                setup_content = setup_template.read()
+        for template_module in template_modules:
+            template_file = '{0}{1}'.format(
+                self.__template_dir, template_module
+            )
+            self.check_path(template_file, verbose=verbose)
+            self.check_mode('r', verbose=verbose)
+            self.check_format(template_file, 'template', verbose=verbose)
+            if self.is_file_ok():
+                with open(template_file, 'r') as setup_template:
+                    setup_content[template_file] = setup_template.read()
         return setup_content
 
     def __str__(self):

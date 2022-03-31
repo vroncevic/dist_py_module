@@ -4,7 +4,7 @@
 
 **dist_py_module** is toolset for generation of setup.py.
 
-Developed in **[python](https://www.python.org/)** code: **100%**.
+Developed in **[python](https://www.python.org/)** code.
 
 [![codecov](https://codecov.io/gh/vroncevic/dist_py_module/branch/dev/graph/badge.svg?token=Y6VSNLJ45R)](https://codecov.io/gh/vroncevic/dist_py_module)
 [![CircleCI](https://circleci.com/gh/vroncevic/dist_py_module/tree/master.svg?style=svg)](https://circleci.com/gh/vroncevic/dist_py_module/tree/master)
@@ -27,6 +27,7 @@ other information that should be provided before the modules are installed.
 - [Generation flow of pyp setup](#generation-flow-of-pyp-setup)
 - [Tool structure](#tool-structure)
 - [Docs](#docs)
+- [Contributing](#contributing)
 - [Copyright and licence](#copyright-and-licence)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -49,7 +50,8 @@ Currently there are three ways to install tool
 Python package is located at **[pypi.org](https://pypi.org/project/dist-py-module/)**.
 
 You can install by using pip
-```
+
+```bash
 # python2
 pip install dist-py-module
 # python3
@@ -61,7 +63,8 @@ pip3 install dist-py-module
 Navigate to release **[page](https://github.com/vroncevic/dist_py_module/releases/)** download and extract release archive.
 
 To install **dist_py_module** type the following
-```
+
+```bash
 tar xvzf dist_py_module-x.y.z.tar.gz
 cd dist_py_module-x.y.z/
 # python2
@@ -102,7 +105,7 @@ Base flow of generation process
 
 Generator structure
 
-```
+```bash
 dist_py_module/
 ├── conf/
 │   ├── dist_py_module.cfg
@@ -131,6 +134,10 @@ More documentation and info at
 
 * [dist_py_module.readthedocs.io](https://dist_py_module.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
+
+### Contributing
+
+[Contributing to codecipher](CONTRIBUTING.md)
 
 ### Copyright and licence
 

@@ -29,7 +29,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.3.8'
+__version__ = '2.4.8'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -76,6 +76,7 @@ def install_directory():
 
 INSTALL_DIR = install_directory()
 TOOL_DIR = 'dist_py_module/'
+CONF, TEMPLATE, LOG = 'conf', 'conf/template', 'log'
 if not bool(INSTALL_DIR):
     print('[setup] force exit from install process')
     sys.exit(127)
@@ -101,7 +102,7 @@ APPROVED_LICENSES = [
 PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='dist_py_module',
-    version='2.3.8',
+    version='2.4.8',
     description='Python package for generation of setup file',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -116,13 +117,13 @@ setup(
     install_requires=['ats-utilities'],
     package_data = {
         'dist_py_module': [
-            'conf/dist_py_module.logo',
-            'conf/dist_py_module.cfg',
-            'conf/dist_py_module_util.cfg',
-            'conf/project.yaml',
-            'conf/template/setup_package.template',
-            'conf/template/setup_tool.template',
-            'log/dist_py_module.log'
+            '{0}/{1}'.format(CONF, 'dist_py_module.logo'),
+            '{0}/{1}'.format(CONF, 'dist_py_module.cfg'),
+            '{0}/{1}'.format(CONF, 'dist_py_module_util.cfg'),
+            '{0}/{1}'.format(CONF, 'project.yaml'),
+            '{0}/{1}'.format(TEMPLATE, 'setup_package.template'),
+            '{0}/{1}'.format(TEMPLATE, 'setup_tool.template'),
+            '{0}/{1}'.format(LOG, 'dist_py_module.log')
         ]
     },
     data_files=[(

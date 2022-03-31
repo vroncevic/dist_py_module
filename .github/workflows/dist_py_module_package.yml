@@ -1,7 +1,12 @@
 name: Python package dist_py_module
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
+    paths:
+      - 'dist_py_module/**'
+      - 'setup.py'
+  pull_request:
+    branches: [ main ]
     paths:
       - 'dist_py_module/**'
       - 'setup.py'
@@ -10,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
+        python-version: [2.7, 3.6, 3.7, 3.8]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}

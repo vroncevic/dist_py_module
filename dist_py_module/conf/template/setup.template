@@ -2,33 +2,33 @@
 # Module
 #     setup.cfg
 # Copyright
-#     Copyright (C) 2017 Vladimir Roncevic <elektron.ronca@gmail.com>
-#     dist_py_module is free software: you can redistribute it and/or modify it
+#     Copyright (C) 2022 Vladimir Roncevic <elektron.ronca@gmail.com>
+#     $pkg is free software: you can redistribute it and/or modify it
 #     under the terms of the GNU General Public License as published by the
 #     Free Software Foundation, either version 3 of the License, or
 #     (at your option) any later version.
-#     dist_py_module is distributed in the hope that it will be useful, but
+#     $pkg is distributed in the hope that it will be useful, but
 #     WITHOUT ANY WARRANTY; without even the implied warranty of
 #     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #     See the GNU General Public License for more details.
 #     You should have received a copy of the GNU General Public License along
 #     with this program. If not, see <http://www.gnu.org/licenses/>.
 # Info
-#     Defined setup for package dist_py_module.
+#     Defined setup for package $pkg.
 #
 
 [metadata]
-name = dist_py_module
-version = 2.4.8
+name = $pkg
+version = 1.0.0
 author = Vladimir Roncevic
 author_email = elektron.ronca@gmail.com
-description = Python package for generation of setup file
-license=2017 Free software to use and distributed it.
+description = TODO
+license=2022 Free software to use and distributed it.
 long_description = file: README.md
 long_description_content_type = text/markdown
 keywords=setup, python, install
 platforms = any
-url = https://vroncevic.github.io/dist_py_module
+url = https://vroncevic.github.io/$pkg
 classifiers =
     Programming Language :: Python :: 2.7
     Programming Language :: Python :: 3
