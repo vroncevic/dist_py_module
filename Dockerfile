@@ -17,29 +17,33 @@ FROM debian:10
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get install -yq --no-install-recommends \
+    vim \
+    nano \
     tree \
     htop \
     wget \
+    curl \
     unzip \
     ca-certificates \
     openssl \
-    libyaml-dev \
     python \
-    python-pip \
-    python-wheel \
+    python-dev \
     python3 \
-    python3-pip \
-    python3-wheel \
-    python3-venv \
-    python3-dev
+    python3-dev \
+    libyaml-dev
 
+RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+RUN python2 get-pip.py
 RUN python2 -m pip install --upgrade setuptools
 RUN python2 -m pip install --upgrade pip
 RUN python2 -m pip install --upgrade build
+RUN rm -f get-pip.py
+RUN wget https://bootstrap.pypa.io/get-pip.py
+RUN python3 get-pip.py
 RUN python3 -m pip install --upgrade setuptools
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade build
-RUN python3 -m venv env
+RUN rm -f get-pip.py
 RUN mkdir /dist_py_module/
 COPY dist_py_module /dist_py_module/
 COPY setup.cfg /
@@ -49,10 +53,15 @@ COPY setup.py /
 COPY README.md /
 COPY LICENSE /
 RUN find /dist_py_module/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
-RUN python -m build
+RUN python2 -m build --no-isolation --wheel
 RUN pip2 install /dist/dist_py_module-*-py2-none-any.whl
-RUN python3 -m build
+RUN python3 -m build --no-isolation --wheel
 RUN pip3 install /dist/dist_py_module-*-py3-none-any.whl
 RUN rm -rf /dist_py_module/
+RUN rm -rf dist/ tests/
+RUN rm -f setup.cfg
+RUN rm -f pyproject.toml
+RUN rm -f MANIFEST.in
 RUN rm -f setup.py
 RUN rm -f README.md
+RUN rm -f LICENSE

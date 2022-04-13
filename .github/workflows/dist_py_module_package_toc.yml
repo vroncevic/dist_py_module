@@ -1,4 +1,4 @@
-name: TOC Generator dist_py_module_package
+name: dist_py_module_package toc generator
 on:
   push:
     branches: [ master ]
@@ -6,7 +6,7 @@ on:
       - '**.md'
 jobs:
   generateTOC:
-    name: TOC Generator
+    name: dist_py_module_package toc generator
     runs-on: ubuntu-latest
     steps:
       - uses: technote-space/toc-generator@v2

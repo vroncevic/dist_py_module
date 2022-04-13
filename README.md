@@ -2,18 +2,18 @@
 
 # Generate setup.py
 
-**dist_py_module** is toolset for generation of setup.py.
+☯️ **dist_py_module** is toolset for generation of setup.py.
 
-Developed in **[python](https://www.python.org/)** code.
+Developed in 🐍 **[python](https://www.python.org/)** code.
 
 [![codecov](https://codecov.io/gh/vroncevic/dist_py_module/branch/dev/graph/badge.svg?token=Y6VSNLJ45R)](https://codecov.io/gh/vroncevic/dist_py_module)
-[![CircleCI](https://circleci.com/gh/vroncevic/dist_py_module/tree/master.svg?style=svg)](https://circleci.com/gh/vroncevic/dist_py_module/tree/master)
+[![circleci](https://circleci.com/gh/vroncevic/dist_py_module/tree/master.svg?style=svg)](https://circleci.com/gh/vroncevic/dist_py_module/tree/master)
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-![Python package](https://github.com/vroncevic/dist_py_module/workflows/Python%20package/badge.svg?branch=master) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
+[![dist_py_module py code checker](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_py_checker.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_py_checker.yml) [![dist_py_module python package checker](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_package.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_package.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -21,7 +21,8 @@ other information that should be provided before the modules are installed.
 
 - [Installation](#installation)
     - [Install using pip](#install-using-pip)
-    - [Install using setuptools](#install-using-setuptools)
+    - [Install using build](#install-using-build)
+    - [Install using py setup](#install-using-py-setup)
     - [Install using docker](#install-using-docker)
 - [Dependencies](#dependencies)
 - [Generation flow of pyp setup](#generation-flow-of-pyp-setup)
@@ -38,16 +39,17 @@ Used next development environment
 
 ![Development environment](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/debtux.png)
 
-![Install Python2 Package](https://github.com/vroncevic/dist_py_module/workflows/Install%20Python2%20Package%20dist_py_module/badge.svg?branch=master) ![Install Python3 Package](https://github.com/vroncevic/dist_py_module/workflows/Install%20Python3%20Package%20dist_py_module/badge.svg?branch=master)
+[![dist_py_module build python2 package](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python2_publish.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python2_publish.yml) [![dist_py_module build python3 package](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python3_publish.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python3_publish.yml)
 
-Currently there are three ways to install tool
-* Install process based on pip
-* Install process based on setup.py (setuptools)
+Currently there are four ways to install framework
+* Install process based on using pip mechanism
+* Install process based on build mechanism
+* Install process based on setup.py mechanism
 * Install process based on docker mechanism
 
 ##### Install using pip
 
-Python package is located at **[pypi.org](https://pypi.org/project/dist-py-module/)**.
+Python 📦 is located at **[pypi.org](https://pypi.org/project/dist-py-module/)**.
 
 You can install by using pip
 
@@ -58,9 +60,40 @@ pip install dist-py-module
 pip3 install dist-py-module
 ```
 
-##### Install using setuptools
+##### Install using build
 
-Navigate to release **[page](https://github.com/vroncevic/dist_py_module/releases/)** download and extract release archive.
+Navigate to **[release page](https://github.com/vroncevic/dist_py_module/releases)** download and extract release archive 📦.
+
+To install **dist-py-module**, run
+
+```bash
+tar xvzf dist-py-module-x.y.z.tar.gz
+cd dist-py-module-x.y.z
+# python2
+wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+python2 get-pip.py
+python2 -m pip install --upgrade setuptools
+python2 -m pip install --upgrade pip
+python2 -m pip install --upgrade build
+pip2 install -r requirements.txt
+python2 -m build --no-isolation --wheel
+pip2 install dist/dist-py-module-x.y.z-py2-none-any.whl
+rm -f get-pip.py
+# python3
+wget https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py 
+python3 -m pip install --upgrade setuptools
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade build
+pip3 install -r requirements.txt
+python3 -m build --no-isolation --wheel
+pip3 install dist/dist-py-module-x.y.z-py3-none-any.whl
+rm -f get-pip.py
+```
+
+##### Install using py setup
+
+Navigate to release **[page](https://github.com/vroncevic/dist_py_module/releases/)** download and extract release archive 📦.
 
 To install **dist_py_module** type the following
 
@@ -81,15 +114,15 @@ python3 setup.py install_egg_info
 
 ##### Install using docker
 
-You can use Dockerfile to create image/container.
+You can use Dockerfile to create image/container 🚢.
 
-[![dist_py_module docker checker](https://github.com/vroncevic/dist_py_module/workflows/dist_py_module%20docker%20checker/badge.svg)](https://github.com/vroncevic/dist_py_module/actions?query=workflow%3A%22dist_py_module+docker+checker%22)
+[![dist_py_module docker checker](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_docker_checker.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_docker_checker.yml)
 
 ### Dependencies
 
 **dist_py_module** requires next modules and libraries
 
-* [ats-utilities - Python App/Tool/Script Utilities](https://pypi.org/project/ats-utilities/)
+* [dist-py-module - Python App/Tool/Script Utilities](https://pypi.org/project/dist-py-module/)
 
 ### Generation flow of pyp setup
 
@@ -103,7 +136,7 @@ Base flow of generation process
 
 ![Setup tool flow](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup.png)
 
-Generator structure
+🧰 Generator structure
 
 ```bash
 dist_py_module/
@@ -133,16 +166,16 @@ dist_py_module/
 
 ### Docs
 
-[![Documentation Status](https://readthedocs.org/projects/dist_py_module/badge/?version=latest)](https://dist_py_module.readthedocs.io/en/latest/?badge=latest)
+[![documentation status](https://readthedocs.org/projects/dist-py-module/badge/?version=master)](https://dist-py-module.readthedocs.io/projects/dist-py-module/en/master/?badge=master) [![Pages build deployment](https://github.com/vroncevic/dist_py_module/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/pages/pages-build-deployment)
 
-More documentation and info at
+📗 More documentation and info at
 
 * [dist_py_module.readthedocs.io](https://dist_py_module.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
 
 ### Contributing
 
-[Contributing to codecipher](CONTRIBUTING.md)
+🌎 🌍 🌏 [Contributing to codecipher](CONTRIBUTING.md)
 
 ### Copyright and licence
 
