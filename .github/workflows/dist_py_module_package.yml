@@ -1,12 +1,12 @@
 name: dist_py_module python package
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - 'dist_py_module/**'
       - 'setup.py'
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - 'dist_py_module/**'
       - 'setup.py'
