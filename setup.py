@@ -123,6 +123,9 @@ setup(
             '{0}/{1}'.format(CONF, 'project.yaml'),
             '{0}/{1}'.format(TEMPLATE, 'setup_package.template'),
             '{0}/{1}'.format(TEMPLATE, 'setup_tool.template'),
+            '{0}/{1}'.format(TEMPLATE, 'MANIFEST.template'),
+            '{0}/{1}'.format(TEMPLATE, 'pyproject.template'),
+            '{0}/{1}'.format(TEMPLATE, 'setup.template'),
             '{0}/{1}'.format(LOG, 'dist_py_module.log')
         ]
     },
