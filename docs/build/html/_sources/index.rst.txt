@@ -3,7 +3,7 @@ Generate setup.py
 
 **dist_py_module** is toolset for generation of setup.py.
 
-Developed in `python <https://www.python.org/>`_ code: **100%**.
+Developed in `python <https://www.python.org/>`_ code.
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
