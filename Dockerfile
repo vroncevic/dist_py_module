@@ -53,9 +53,9 @@ COPY setup.py /
 COPY README.md /
 COPY LICENSE /
 RUN find /dist_py_module/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
-RUN python2 -m build --no-isolation --wheel
+RUN python2 -m build -s --no-isolation --wheel
 RUN pip2 install /dist/dist_py_module-*-py2-none-any.whl
-RUN python3 -m build --no-isolation --wheel
+RUN python3 -m build -s --no-isolation --wheel
 RUN pip3 install /dist/dist_py_module-*-py3-none-any.whl
 RUN rm -rf /dist_py_module/
 RUN rm -rf dist/ tests/
