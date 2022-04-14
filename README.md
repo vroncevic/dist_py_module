@@ -76,7 +76,7 @@ python2 -m pip install --upgrade setuptools
 python2 -m pip install --upgrade pip
 python2 -m pip install --upgrade build
 pip2 install -r requirements.txt
-python2 -m build --no-isolation --wheel
+python2 -m build -s --no-isolation --wheel
 pip2 install dist/dist-py-module-x.y.z-py2-none-any.whl
 rm -f get-pip.py
 # python3
@@ -86,7 +86,7 @@ python3 -m pip install --upgrade setuptools
 python3 -m pip install --upgrade pip
 python3 -m pip install --upgrade build
 pip3 install -r requirements.txt
-python3 -m build --no-isolation --wheel
+python3 -m build -s --no-isolation --wheel
 pip3 install dist/dist-py-module-x.y.z-py3-none-any.whl
 rm -f get-pip.py
 ```
