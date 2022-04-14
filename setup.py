@@ -110,7 +110,7 @@ setup(
     license='GPL 2017 Free software to use and distributed it.',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    keywords='setup, python, install',
+    keywords='setup, python, install, dist',
     platforms='POSIX',
     classifiers=PYP_CLASSIFIERS,
     packages=['dist_py_module', 'dist_py_module.pro'],

@@ -52,6 +52,10 @@ COPY MANIFEST.in /
 COPY setup.py /
 COPY README.md /
 COPY LICENSE /
+COPY requirements.txt /
+RUN pip2 install -r requirements.txt
+RUN pip3 install -r requirements.txt
+RUN rm -f requirements.txt
 RUN find /dist_py_module/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
 RUN python2 -m build -s --no-isolation --wheel
 RUN pip2 install /dist/dist_py_module-*-py2-none-any.whl
