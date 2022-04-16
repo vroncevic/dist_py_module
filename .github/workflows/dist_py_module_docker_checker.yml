@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: build docker image
+    - name: dist_py_module docker checker build image
       id: docker_checker
       run: |
         echo Building Docker image
