@@ -18,8 +18,8 @@ other information that should be provided before the tool is installed.
 .. |Python code checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_code_checker?style=flat&label=dist_py_module%20python%20code%20checker
    :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_code_checker.yml
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/dist_py_module/badge/?version=latest
-   :target: https://dist_py_module.readthedocs.io/projects/dist_py_module/en/latest/?badge=latest
+.. |Documentation Status| image:: https://readthedocs.org/projects/dist-py-module/badge/?version=latest
+   :target: https://dist-py-module.readthedocs.io/en/latest/?badge=latest
 
 .. |GitHub issues| image:: https://img.shields.io/github/issues/vroncevic/dist_py_module.svg
    :target: https://github.com/vroncevic/dist_py_module/issues

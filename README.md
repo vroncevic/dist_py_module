@@ -167,7 +167,7 @@ dist_py_module/
 
 ### Docs
 
-[![documentation status](https://readthedocs.org/projects/dist-py-module/badge/?version=master)](https://dist-py-module.readthedocs.io/projects/dist-py-module/en/master/?badge=master)
+[![Documentation Status](https://readthedocs.org/projects/dist-py-module/badge/?version=latest)](https://dist-py-module.readthedocs.io/en/latest/?badge=latest)
 
 📗 More documentation and info at
 
