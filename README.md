@@ -6,14 +6,15 @@
 
 Developed in 🐍 **[python](https://www.python.org/)** code.
 
-[![codecov](https://codecov.io/gh/vroncevic/dist_py_module/branch/dev/graph/badge.svg?token=Y6VSNLJ45R)](https://codecov.io/gh/vroncevic/dist_py_module)
-[![circleci](https://circleci.com/gh/vroncevic/dist_py_module/tree/master.svg?style=svg)](https://circleci.com/gh/vroncevic/dist_py_module/tree/master)
+[![codecov](https://codecov.io/gh/vroncevic/dist_py_module/branch/dev/graph/badge.svg?token=Y6VSNLJ45R)](https://codecov.io/gh/vroncevic/dist_py_module) [![circleci](https://circleci.com/gh/vroncevic/dist_py_module/tree/master.svg?style=svg)](https://circleci.com/gh/vroncevic/dist_py_module/tree/master)
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-[![dist_py_module py checker](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_py_checker.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_py_checker.yml) [![dist_py_module python package](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_package.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_package.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
+[![dist_py_module python package linting](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_package_linting?style=flat&label=dist_py_module%20python%20package linting)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_package_linting.yml) [![dist_py_module python code checker](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_code_checker?style=flat&label=dist_py_module%20python%20code%20checker)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_code_checker.yml)
+
+[![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -39,7 +40,7 @@ Used next development environment
 
 ![Development environment](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/debtux.png)
 
-[![dist_py_module build python2 package](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python2_publish.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python2_publish.yml) [![dist_py_module build python3 package](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python3_publish.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python3_publish.yml)
+[![dist_py_module build python2 package](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_build_python2_package?style=flat&label=dist_py_module%20build%20python2%20package)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_build_python2_package.yml) [![dist_py_module build python3 package](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_build_python3_package?style=flat&label=dist_py_module%20build%20python3%20package)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_build_python3_package.yml)
 
 Currently there are four ways to install framework
 * Install process based on using pip mechanism
@@ -116,7 +117,7 @@ python3 setup.py install_egg_info
 
 You can use Dockerfile to create image/container 🚢.
 
-[![dist_py_module docker checker](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_docker_checker.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_docker_checker.yml)
+[![dist_py_module docker checker](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_docker_checker?style=flat&label=dist_py_module%20docker%20checker)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_docker_checker.yml)
 
 ### Dependencies
 
@@ -166,7 +167,7 @@ dist_py_module/
 
 ### Docs
 
-[![documentation status](https://readthedocs.org/projects/dist-py-module/badge/?version=master)](https://dist-py-module.readthedocs.io/projects/dist-py-module/en/master/?badge=master) [![Pages build deployment](https://github.com/vroncevic/dist_py_module/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/pages/pages-build-deployment)
+[![documentation status](https://readthedocs.org/projects/dist-py-module/badge/?version=master)](https://dist-py-module.readthedocs.io/projects/dist-py-module/en/master/?badge=master) [![pages build deployment](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/pages-build-deployment?style=flat&label=pages%20build%20deployment)](https://github.com/vroncevic/dist_py_module/actions/workflows/pages/pages-build-deployment)
 
 📗 More documentation and info at
 
