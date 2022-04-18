@@ -1,14 +1,14 @@
-name: dist_py_module triage
+name: dist_py_module_triage
 on:
   issues:
     types: [opened]
 jobs:
   commentOnNewIssues:
-    name: dist_py_module triage
+    name: dist_py_module_triage
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: dist_py_module triage
+      - name: dist_py_module_triage
         uses: actions/github@v1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -17,12 +17,10 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined setup for tool simple_test.
+     Define setup for simple_test package.
 '''
 
-from __future__ import print_function
-import sys
-from os.path import abspath, dirname, join, exists
+from os.path import abspath, dirname, join
 from setuptools import setup
 
 __author__ = 'Vladimir Roncevic'
@@ -34,50 +32,6 @@ __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
-def install_directory():
-    '''
-        Return the installation directory, or None.
-
-        :return: Path (success) | None.
-        :rtype: <str> | <NoneType>
-        :exceptions: None
-    '''
-    py_version = '{0}.{1}'.format(sys.version_info[0], sys.version_info[1])
-    if '--github' in sys.argv:
-        index = sys.argv.index('--github')
-        sys.argv.pop(index)
-        paths = (
-            '{0}/lib/python{1}/dist-packages/'.format(sys.prefix, py_version),
-            '{0}/lib/python{1}/site-packages/'.format(sys.prefix, py_version)
-        )
-    else:
-        paths = (s for s in (
-            '{0}/local/lib/python{1}/dist-packages/'.format(
-                sys.prefix, py_version
-            ),
-            '{0}/local/lib/python{1}/site-packages/'.format(
-                sys.prefix, py_version
-            )
-        ))
-    message = None
-    for path in paths:
-        message = '[setup] check path {0}'.format(path)
-        print(message)
-        if exists(path):
-            message = '[setup] use path {0}'.format(path)
-            print(message)
-            return path
-    message = '[setup] no installation path found, check {0}\n'.format(
-        sys.prefix
-    )
-    print(message)
-    return None
-
-INSTALL_DIR = install_directory()
-TOOL_DIR = 'simple_test/'
-if not bool(INSTALL_DIR):
-    print('[setup] force exit from install process')
-    sys.exit(127)
 THIS_DIR, LONG_DESCRIPTION = abspath(dirname(__file__)), None
 with open(join(THIS_DIR, 'README.md')) as readme:
     LONG_DESCRIPTION = readme.read()
@@ -112,19 +66,5 @@ setup(
     platforms='POSIX',
     classifiers=PYP_CLASSIFIERS,
     packages=['simple_test'],
-    install_requires=['ats-utilities'],
-    data_package = {
-        'simple_test': [
-            'conf/simple_test.cfg',
-            'conf/simple_test_util.cfg',
-            'conf/project.yaml',
-            'conf/template/project.template',
-            'log/simple_test.log',
-        ]
-    },
-    data_files=[(
-        '/usr/local/bin/', [
-            '{0}{1}'.format(TOOL_DIR, 'run/simple_test_run.py')
-        ]
-    )]
+    install_requires=['ats-utilities']
 )

@@ -1,27 +1,31 @@
 Generate setup.py
 ------------------
 
-**dist_py_module** is toolset for generation of setup.py.
+☯️ **dist_py_module** is toolset for generation of setup.py.
 
-Developed in `python <https://www.python.org/>`_ code.
+Developed in 🐍 `python <https://www.python.org/>`_ code.
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.
 
-|Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
+|Python package linting| |Python code checker| |Documentation Status|
+|GitHub issues| |GitHub contributors|
 
-.. |Python package| image:: https://github.com/vroncevic/dist_py_module/workflows/Python%20package/badge.svg
-   :target: https://github.com/vroncevic/dist_py_module/workflows/Python%20package/badge.svg?branch=master
+.. |Python package linting| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_package_linting?style=flat&label=dist_py_module%20python%20package linting
+   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_package_linting.yml
+
+.. |Python code checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_code_checker?style=flat&label=dist_py_module%20python%20code%20checker
+   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_code_checker.yml
+
+.. |Documentation Status| image:: https://readthedocs.org/projects/dist_py_module/badge/?version=latest
+   :target: https://dist_py_module.readthedocs.io/projects/dist_py_module/en/latest/?badge=latest
 
 .. |GitHub issues| image:: https://img.shields.io/github/issues/vroncevic/dist_py_module.svg
    :target: https://github.com/vroncevic/dist_py_module/issues
 
 .. |GitHub contributors| image:: https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg
    :target: https://github.com/vroncevic/dist_py_module/graphs/contributors
-
-.. |Documentation Status| image:: https://readthedocs.org/projects/dist_py_module/badge/?version=latest
-   :target: https://dist_py_module.readthedocs.io/projects/dist_py_module/en/latest/?badge=latest
 
 .. toctree::
    :maxdepth: 4
@@ -33,19 +37,19 @@ other information that should be provided before the tool is installed.
 Installation
 -------------
 
-|Install Python2 Package| |Install Python3 Package|
+|Build Python2 Package| |Build Python3 Package|
 
-.. |Install Python2 Package| image:: https://github.com/vroncevic/dist_py_module/workflows/Install%20Python2%20Package%20dist_py_module/badge.svg
-   :target: https://github.com/vroncevic/dist_py_module/workflows/Install%20Python2%20Package%20dist_py_module/badge.svg?branch=master
+.. |Build Python2 Package| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_build_python2_package?style=flat&label=dist_py_module%20build%20python2%20package
+   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_build_python2_package.yml
 
-.. |Install Python3 Package| image:: https://github.com/vroncevic/dist_py_module/workflows/Install%20Python3%20Package%20dist_py_module/badge.svg
-   :target: https://github.com/vroncevic/dist_py_module/workflows/Install%20Python3%20Package%20dist_py_module/badge.svg?branch=master
+.. |Build Python3 Package| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_build_python3_package?style=flat&label=dist_py_module%20build%20python3%20package
+   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_build_python3_package.yml
 
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/dist_py_module/releases
 
-To install **dist_py_module** type the following
+To install 📦 **dist_py_module** type the following
 
 .. code-block:: bash
 
