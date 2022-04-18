@@ -12,7 +12,7 @@ other information that should be provided before the tool is installed.
 |Python package linting| |Python code checker| |Documentation Status|
 |GitHub issues| |GitHub contributors|
 
-.. |Python package linting| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_package_linting?style=flat&label=dist_py_module%20python%20package linting
+.. |Python package linting| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_package_linting?style=flat&label=dist_py_module%20python%20package%20linting
    :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_package_linting.yml
 
 .. |Python code checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_code_checker?style=flat&label=dist_py_module%20python%20code%20checker
@@ -77,8 +77,8 @@ You can use Docker to create image/container, or You can use pip to install
 
 |GitHub docker checker|
 
-.. |GitHub docker checker| image:: https://github.com/vroncevic/dist_py_module/workflows/dist_py_module%20docker%20checker/badge.svg
-   :target: https://github.com/vroncevic/dist_py_module/actions?query=workflow%3A%22dist_py_module+docker+checker%22
+.. |GitHub docker checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_docker_checker?style=flat&label=dist_py_module%20docker%20checker
+   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_docker_checker.yml
 
 Dependencies
 -------------
