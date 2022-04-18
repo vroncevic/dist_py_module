@@ -12,7 +12,7 @@ The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-[![dist_py_module python package linting](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_package_linting?style=flat&label=dist_py_module%20python%20package linting)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_package_linting.yml) [![dist_py_module python code checker](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_code_checker?style=flat&label=dist_py_module%20python%20code%20checker)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_code_checker.yml)
+[![dist_py_module python package linting](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_package_linting?style=flat&label=dist_py_module%20python%20package%20linting)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_package_linting.yml) [![dist_py_module python code checker](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_code_checker?style=flat&label=dist_py_module%20python%20code%20checker)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_code_checker.yml)
 
 [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
 
@@ -167,7 +167,7 @@ dist_py_module/
 
 ### Docs
 
-[![documentation status](https://readthedocs.org/projects/dist-py-module/badge/?version=master)](https://dist-py-module.readthedocs.io/projects/dist-py-module/en/master/?badge=master) [![pages build deployment](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/pages-build-deployment?style=flat&label=pages%20build%20deployment)](https://github.com/vroncevic/dist_py_module/actions/workflows/pages/pages-build-deployment)
+[![documentation status](https://readthedocs.org/projects/dist-py-module/badge/?version=master)](https://dist-py-module.readthedocs.io/projects/dist-py-module/en/master/?badge=master)
 
 📗 More documentation and info at
 
