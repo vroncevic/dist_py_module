@@ -1,4 +1,4 @@
-name: dist_py_module_python_package_linting
+name: dist_py_module_package_checker
 on:
   push:
     branches: [ master ]

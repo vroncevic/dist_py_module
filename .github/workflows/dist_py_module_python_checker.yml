@@ -1,4 +1,4 @@
-name: dist_py_module_python_code_checker
+name: dist_py_module_python_checker
 on:
   push:
     branches: [ master ]
