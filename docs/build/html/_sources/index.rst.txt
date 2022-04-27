@@ -9,22 +9,22 @@ The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.
 
-|Python package linting| |Python code checker| |Documentation Status|
-|GitHub issues| |GitHub contributors|
+|python package checker| |python checker| |documentation status|
+|github issues| |github contributors|
 
-.. |Python package linting| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_package_linting?style=flat&label=dist_py_module%20python%20package%20linting
-   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_package_linting.yml
+.. |python package checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_checker?style=flat&label=dist_py_module%20python%20checker
+   :target: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_checker
 
-.. |Python code checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_code_checker?style=flat&label=dist_py_module%20python%20code%20checker
-   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_code_checker.yml
+.. |python checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_package_checker?style=flat&label=dist_py_module%20package%20checker
+   :target: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_package_checker
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/dist-py-module/badge/?version=latest
+.. |documentation status| image:: https://readthedocs.org/projects/dist-py-module/badge/?version=latest
    :target: https://dist-py-module.readthedocs.io/en/latest/?badge=latest
 
-.. |GitHub issues| image:: https://img.shields.io/github/issues/vroncevic/dist_py_module.svg
+.. |github issues| image:: https://img.shields.io/github/issues/vroncevic/dist_py_module.svg
    :target: https://github.com/vroncevic/dist_py_module/issues
 
-.. |GitHub contributors| image:: https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg
+.. |github contributors| image:: https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg
    :target: https://github.com/vroncevic/dist_py_module/graphs/contributors
 
 .. toctree::
@@ -37,13 +37,13 @@ other information that should be provided before the tool is installed.
 Installation
 -------------
 
-|Build Python2 Package| |Build Python3 Package|
+|build python2 package| |build python3 package|
 
-.. |Build Python2 Package| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_build_python2_package?style=flat&label=dist_py_module%20build%20python2%20package
-   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_build_python2_package.yml
+.. |build python2 package| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python2_build?style=flat&label=dist_py_module%20python2%20build
+   :target: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python2_build
 
-.. |Build Python3 Package| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_build_python3_package?style=flat&label=dist_py_module%20build%20python3%20package
-   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_build_python3_package.yml
+.. |build python3 package| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python3_build?style=flat&label=dist_py_module%20python3%20build
+   :target: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python3_build
 
 Navigate to release `page`_ download and extract release archive.
 
@@ -75,10 +75,10 @@ You can use Docker to create image/container, or You can use pip to install
     # pyton3
     pip3 install dist-py-module
 
-|GitHub docker checker|
+|github docker checker|
 
-.. |GitHub docker checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_docker_checker?style=flat&label=dist_py_module%20docker%20checker
-   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_docker_checker.yml
+.. |github docker checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_docker_checker?style=flat&label=dist_py_module%20docker%20checker
+   :target: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_docker_checker
 
 Dependencies
 -------------
@@ -130,13 +130,13 @@ Code structure
 Copyright and licence
 -----------------------
 
-|License: GPL v3| |License: Apache 2.0|
+|license: gpl v3| |license: apache 2.0|
 
-.. |License: GPL v3| image:: https://img.shields.io/badge/License-GPLv3-blue.svg
+.. |license: gpl v3| image:: https://img.shields.io/badge/license-gplv3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
 
-.. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
-   :target: https://opensource.org/licenses/Apache-2.0
+.. |license: apache 2.0| image:: https://img.shields.io/badge/license-apache%202.0-blue.svg
+   :target: https://opensource.org/licenses/apache-2.0
 
 Copyright (C) 2018 by `vroncevic.github.io/dist_py_module <https://vroncevic.github.io/dist_py_module>`_
 
@@ -146,14 +146,14 @@ at your option, any later version of Python 3 you may have available.
 
 Lets help and support PSF.
 
-|Python Software Foundation|
+|python software foundation|
 
-.. |Python Software Foundation| image:: https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/psf-logo-alpha.png
+.. |python software foundation| image:: https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/psf-logo-alpha.png
    :target: https://www.python.org/psf/
 
-|Donate|
+|donate|
 
-.. |Donate| image:: https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif
+.. |donate| image:: https://www.paypalobjects.com/en_us/i/btn/btn_donatecc_lg.gif
    :target: https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2
 
 Indices and tables

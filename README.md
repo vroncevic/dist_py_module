@@ -12,9 +12,7 @@ The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-[![dist_py_module python package linting](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_package_linting?style=flat&label=dist_py_module%20python%20package%20linting)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_package_linting.yml) [![dist_py_module python code checker](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_code_checker?style=flat&label=dist_py_module%20python%20code%20checker)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_code_checker.yml)
-
-[![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
+[![dist_py_module python checker](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_checker?style=flat&label=dist_py_module%20python%20checker)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_checker.yml) [![dist_py_module package checker](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_package_checker?style=flat&label=dist_py_module%20package%20checker)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_package_checker.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -40,7 +38,7 @@ Used next development environment
 
 ![Development environment](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/debtux.png)
 
-[![dist_py_module build python2 package](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_build_python2_package?style=flat&label=dist_py_module%20build%20python2%20package)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_build_python2_package.yml) [![dist_py_module build python3 package](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_build_python3_package?style=flat&label=dist_py_module%20build%20python3%20package)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_build_python3_package.yml)
+[![dist_py_module python2 build](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python2_build?style=flat&label=dist_py_module%20python2%20build)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python2_build.yml) [![dist_py_module python3 build](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python3_build?style=flat&label=dist_py_module%20python3%20build)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python3_build.yml)
 
 Currently there are four ways to install framework
 * Install process based on using pip mechanism
@@ -65,7 +63,7 @@ pip3 install dist-py-module
 
 Navigate to **[release page](https://github.com/vroncevic/dist_py_module/releases)** download and extract release archive 📦.
 
-To install **dist-py-module**, run
+To install **dist-py-module** 📦 run
 
 ```bash
 tar xvzf dist-py-module-x.y.z.tar.gz
@@ -96,7 +94,7 @@ rm -f get-pip.py
 
 Navigate to release **[page](https://github.com/vroncevic/dist_py_module/releases/)** download and extract release archive 📦.
 
-To install **dist_py_module** type the following
+To install **dist_py_module** 📦 type the following
 
 ```bash
 tar xvzf dist_py_module-x.y.z.tar.gz
