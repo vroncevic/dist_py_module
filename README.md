@@ -2,17 +2,15 @@
 
 # Generate setup.py
 
-☯️ **dist_py_module** is toolset for generation of setup.py.
+**dist_py_module** is toolset for generation of setup.py.
 
-Developed in 🐍 **[python](https://www.python.org/)** code.
-
-[![codecov](https://codecov.io/gh/vroncevic/dist_py_module/branch/dev/graph/badge.svg?token=Y6VSNLJ45R)](https://codecov.io/gh/vroncevic/dist_py_module) [![circleci](https://circleci.com/gh/vroncevic/dist_py_module/tree/master.svg?style=svg)](https://circleci.com/gh/vroncevic/dist_py_module/tree/master)
+Developed in **[python](https://www.python.org/)** code.
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-[![dist_py_module python checker](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_checker?style=flat&label=dist_py_module%20python%20checker)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_checker.yml) [![dist_py_module package checker](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_package_checker?style=flat&label=dist_py_module%20package%20checker)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_package_checker.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
+[![dist_py_module python checker](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_checker.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_checker.yml) [![dist_py_module package checker](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_package_checker.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_package.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/dist_py_module.svg)](https://github.com/vroncevic/dist_py_module/graphs/contributors)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -24,7 +22,6 @@ other information that should be provided before the modules are installed.
     - [Install using py setup](#install-using-py-setup)
     - [Install using docker](#install-using-docker)
 - [Dependencies](#dependencies)
-- [Generation flow of pyp setup](#generation-flow-of-pyp-setup)
 - [Tool structure](#tool-structure)
 - [Docs](#docs)
 - [Contributing](#contributing)
@@ -36,9 +33,9 @@ other information that should be provided before the modules are installed.
 
 Used next development environment
 
-![Development environment](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/debtux.png)
+![debian linux os](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/debtux.png)
 
-[![dist_py_module python2 build](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python2_build?style=flat&label=dist_py_module%20python2%20build)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python2_build.yml) [![dist_py_module python3 build](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python3_build?style=flat&label=dist_py_module%20python3%20build)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python3_build.yml)
+[![dist_py_module python3 build](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python3_build.yml/badge.svg)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python3_build.yml)
 
 Currently there are four ways to install framework
 * Install process based on using pip mechanism
@@ -48,36 +45,24 @@ Currently there are four ways to install framework
 
 ##### Install using pip
 
-Python 📦 is located at **[pypi.org](https://pypi.org/project/dist-py-module/)**.
+Python is located at **[pypi.org](https://pypi.org/project/dist-py-module/)**.
 
 You can install by using pip
 
 ```bash
-# python2
-pip install dist-py-module
 # python3
 pip3 install dist-py-module
 ```
 
 ##### Install using build
 
-Navigate to **[release page](https://github.com/vroncevic/dist_py_module/releases)** download and extract release archive 📦.
+Navigate to **[release page](https://github.com/vroncevic/dist_py_module/releases)** download and extract release archive.
 
-To install **dist-py-module** 📦 run
+To install **dist-py-module** run
 
 ```bash
 tar xvzf dist-py-module-x.y.z.tar.gz
 cd dist-py-module-x.y.z
-# python2
-wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
-python2 get-pip.py
-python2 -m pip install --upgrade setuptools
-python2 -m pip install --upgrade pip
-python2 -m pip install --upgrade build
-pip2 install -r requirements.txt
-python2 -m build -s --no-isolation --wheel
-pip2 install dist/dist-py-module-x.y.z-py2-none-any.whl
-rm -f get-pip.py
 # python3
 wget https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py 
@@ -92,18 +77,13 @@ rm -f get-pip.py
 
 ##### Install using py setup
 
-Navigate to release **[page](https://github.com/vroncevic/dist_py_module/releases/)** download and extract release archive 📦.
+Navigate to release **[page](https://github.com/vroncevic/dist_py_module/releases/)** download and extract release archive.
 
-To install **dist_py_module** 📦 type the following
+To install **dist_py_module** type the following
 
 ```bash
 tar xvzf dist_py_module-x.y.z.tar.gz
 cd dist_py_module-x.y.z/
-# python2
-pip install -r requirements.txt
-python setup.py install_lib
-python setup.py install_data
-python setup.py install_egg_info
 # python3
 pip3 install -r requirements.txt
 python3 setup.py install_lib
@@ -113,9 +93,7 @@ python3 setup.py install_egg_info
 
 ##### Install using docker
 
-You can use Dockerfile to create image/container 🚢.
-
-[![dist_py_module docker checker](https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_docker_checker?style=flat&label=dist_py_module%20docker%20checker)](https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_docker_checker.yml)
+You can use Dockerfile to create image/container.
 
 ### Dependencies
 
@@ -123,58 +101,50 @@ You can use Dockerfile to create image/container 🚢.
 
 * [dist-py-module - Python App/Tool/Script Utilities](https://pypi.org/project/dist-py-module/)
 
-### Generation flow of pyp setup
-
-Base flow of generation process
-
-![Setup generation flow](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup_flow.png)
-
 ### Tool structure
 
 **dist_py_module** is based on OOP.
 
-![Setup tool flow](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup.png)
-
-🧰 Generator structure
+Generator structure
 
 ```bash
 dist_py_module/
-├── conf/
-│   ├── dist_py_module.cfg
-│   ├── dist_py_module.logo
-│   ├── dist_py_module_util.cfg
-│   ├── project.yaml
-│   └── template/
-│       ├── MANIFEST.template
-│       ├── pyproject.template
-│       ├── setup_package.template
-│       ├── setup.template
-│       └── setup_tool.template
-├── __init__.py
-├── log/
-│   └── dist_py_module.log
-├── pro/
-│   ├── __init__.py
-│   ├── read_template.py
-│   └── write_template.py
-└── run/
-    └── dist_py_module_run.py
+    ├── conf/
+    │   ├── dist_py_module.cfg
+    │   ├── dist_py_module.logo
+    │   ├── dist_py_module_util.cfg
+    │   ├── project.yaml
+    │   └── template/
+    │       ├── MANIFEST.template
+    │       ├── pyproject.template
+    │       ├── setup_package.template
+    │       ├── setup.template
+    │       └── setup_tool.template
+    ├── __init__.py
+    ├── log/
+    │   └── dist_py_module.log
+    ├── pro/
+    │   ├── __init__.py
+    │   ├── read_template.py
+    │   └── write_template.py
+    └── run/
+        └── dist_py_module_run.py
 
-5 directories, 15 files
+    5 directories, 15 files
 ```
 
 ### Docs
 
 [![Documentation Status](https://readthedocs.org/projects/dist-py-module/badge/?version=latest)](https://dist-py-module.readthedocs.io/en/latest/?badge=latest)
 
-📗 More documentation and info at
+More documentation and info at
 
-* [dist_py_module.readthedocs.io](https://dist_py_module.readthedocs.io/en/latest/)
+* [dist_py_module.readthedocs.io](https://dist-py-module.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
 
 ### Contributing
 
-🌎 🌍 🌏 [Contributing to codecipher](CONTRIBUTING.md)
+[Contributing to codecipher](CONTRIBUTING.md)
 
 ### Copyright and licence
 
@@ -183,11 +153,11 @@ dist_py_module/
 Copyright (C) 2018 by [vroncevic.github.io/dist_py_module](https://vroncevic.github.io/dist_py_module)
 
 **dist_py_module** is free software; you can redistribute it and/or modify
-it under the same terms as Python itself, either Python version 2.x/3.x or,
+it under the same terms as Python itself, either Python version 3.x or,
 at your option, any later version of Python 3 you may have available.
 
 Lets help and support PSF.
 
 [![Python Software Foundation](https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/psf-logo-alpha.png)](https://www.python.org/psf/)
 
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2)
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.python.org/psf/donations/)

@@ -1,86 +1,107 @@
 # -*- coding: UTF-8 -*-
 
 '''
- Module
-     read_template_test.py
- Copyright
-     Copyright (C) 2022 Vladimir Roncevic <elektron.ronca@gmail.com>
-     dist_py_module is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     dist_py_module is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class ReadTemplateTestCase with attribute(s) and method(s).
-     Created test cases for checking functionalities of ReadTemplate.
- Execute
-     python3 -m unittest -v read_template_test
+Module
+    read_template_test.py
+Copyright
+    Copyright (C) 2017 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+    dist_py_module is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    dist_py_module is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class ReadTemplateTestCase with attribute(s) and method(s).
+    Creates test cases for checking functionalities of ReadTemplate.
+Execute
+    python3 -m unittest -v read_template_test
 '''
 
 import sys
-import unittest
+from typing import List
+from unittest import TestCase, main
 
 try:
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from dist_py_module.pro.read_template import ReadTemplate
 except ImportError as test_error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, test_error_message)
-    sys.exit(MESSAGE)  # Force close python test ############################
+    # Force close python test #################################################
+    sys.exit(f'\n{__file__}\n{test_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2022, https://vroncevic.github.io/dist_py_module'
-__credits__ = ['Vladimir Roncevic']
+__copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.9.8'
+__version__ = '3.0.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class ReadTemplateTestCase(unittest.TestCase):
+class ReadTemplateTestCase(TestCase):
     '''
-        Defined class ReadTemplateTestCase with attribute(s) and method(s).
-        Created test cases for checking functionalities of ReadTemplate.
+        Defines class ReadTemplateTestCase with attribute(s) and method(s).
+        Creates test cases for checking functionalities of ReadTemplate.
+        ReadTemplate unit tests.
+
         It defines:
 
             :attributes:
-                | template_reader - Template read object.
+                | None
             :methods:
-                | setUp - call before test cases.
-                | tearDown - call after test cases.
-                | test_template_dir - test template dir check.
-                | test_setup_package - test setup package check.
-                | test_setup_tool - test setup tool check.
+                | setUp - Call before test case.
+                | tearDown - Call after test case.
+                | test_read_template_create - Test read templates create.
+                | test_read_template_empty - Test read templates empty.
+                | test_read_template_none - Test read templates None.
+                | test_read_template - Test read templates.
     '''
 
-    def setUp(self):
-        '''Call before test cases.'''
-        self.template_reader = ReadTemplate()
+    def setUp(self) -> None:
+        '''Call before test case.'''
 
-    def tearDown(self):
-        '''Call after test cases.'''
-        self.template_reader = None
+    def tearDown(self) -> None:
+        '''Call after test case.'''
 
-    def test_template_dir(self):
-        '''Test template dir check.'''
-        self.assertIsNot(self.template_reader.get_template_dir(), None)
+    def test_read_template_create(self) -> None:
+        '''Test read templates create'''
+        template = ReadTemplate()
+        self.assertIsNotNone(template)
 
-    def test_setup_package(self):
-        '''Test setup package check.'''
-        self.assertIsNot(
-            self.template_reader.read('setup_package.template'), None
-        )
+    def test_read_template_empty(self) -> None:
+        '''Test read templates empty'''
+        template = ReadTemplate()
+        template_file: List[str] | None = []
+        with self.assertRaises(ATSValueError):
+            self.assertFalse(
+                template.read(template_file)
+            )
 
-    def test_setup_tool(self):
-        '''Test setup tool check.'''
-        self.assertIsNot(
-            self.template_reader.read('setup_tool.template'), None
-        )
+    def test_read_template_none(self) -> None:
+        '''Test read templates None'''
+        template = ReadTemplate()
+        with self.assertRaises(ATSTypeError):
+            self.assertFalse(
+                template.read(None)  # type: ignore
+            )
+
+    def test_read_template(self) -> None:
+        '''Test read templates'''
+        template = ReadTemplate()
+        template_files: List[str] | None = [
+            'setup_package.template',
+            'MANIFEST.template',
+            'pyproject.template',
+            'setup.template'
+        ]
+        self.assertTrue(bool(template.read(template_files)))
 
 
 if __name__ == '__main__':
-    unittest.main()
+    main()

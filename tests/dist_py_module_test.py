@@ -1,86 +1,157 @@
 # -*- coding: UTF-8 -*-
 
 '''
- Module
-     dist_py_module_test.py
- Copyright
-     Copyright (C) 2022 Vladimir Roncevic <elektron.ronca@gmail.com>
-     dist_py_module is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     dist_py_module is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class DistPyModuleTestCase with attribute(s) and method(s).
-     Created test cases for checking functionalities of DistPyModule.
- Execute
-     python3 -m unittest -v dist_py_module_test
+Module
+    dist_py_module_test.py
+Copyright
+    Copyright (C) 2017 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+    dist_py_module is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    dist_py_module is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class DistPyModuleTestCase with attribute(s) and method(s).
+    Creates test cases for checking functionalities of DistPyModule.
+Execute
+    python3 -m unittest -v dist_py_module_test
 '''
 
 import sys
-import unittest
+from typing import Any, List
+from os.path import exists
+from os import remove
+from unittest import TestCase, main
+from unittest.mock import patch
 
 try:
-    from dist_py_module.pro import GenSetup
+    from dist_py_module import DistPyModule
 except ImportError as test_error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, test_error_message)
-    sys.exit(MESSAGE)  # Force close python test ############################
+    # Force close python test #################################################
+    sys.exit(f'\n{__file__}\n{test_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2021, https://vroncevic.github.io/dist_py_module'
-__credits__ = ['Vladimir Roncevic']
+__copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.9.8'
+__version__ = '3.0.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class DistPyModuleTestCase(unittest.TestCase):
+class DistPyModuleTestCase(TestCase):
     '''
-        Defined class DistPyModuleTestCase with attribute(s) and method(s).
-        Created test cases for checking functionalities of DistPyModule.
+        Defines class DistPyModuleTestCase with attribute(s) and method(s).
+        Creates test cases for checking functionalities of DistPyModule.
+        DistPyModule unit tests.
+
         It defines:
 
             :attributes:
-                | tool_generator - tool generator object.
+                | None
             :methods:
-                | setUp - call before test cases.
-                | tearDown - call after test cases.
-                | test_reader_not_none - test for check reader.
-                | test_writer_not_none - test for check writer.
-                | test_process - test for base process.
+                | setUp - Call before test case.
+                | tearDown - Call after test case.
+                | test_default_create - Default on create (not None).
+                | test_missing_args - Test missing args.
+                | test_wrong_arg - Test wrong arg.
+                | test_process - Generate project structure.
+                | test_tool_not_operational - Test not operational.
+                | test_cancel_process - Test cancel process.
+                | test_package_process - Test package process.
+                | test_pro_already_exists - Test pro already exists.
     '''
 
-    def setUp(self):
-        '''Call before test cases.'''
-        self.verbose = False
-        self.tool_generator = GenSetup(self.verbose)
+    def setUp(self) -> None:
+        '''Call before test case.'''
 
-    def tearDown(self):
-        '''Call after test cases.'''
-        self.tool_generator = None
+    def tearDown(self) -> None:
+        '''Call after test case.'''
+        if exists('MANIFEST.in'):
+            remove('MANIFEST.in')
+        if exists('pyproject.toml'):
+            remove('pyproject.toml')
+        if exists('setup.cfg'):
+            remove('setup.cfg')
+        if exists('setup.py'):
+            remove('setup.py')
 
-    def test_reader_not_none(self):
-        '''Test is reader setup done.'''
-        self.assertIsNot(self.tool_generator.get_reader(), None)
+    def test_default_create(self) -> None:
+        '''Default on create (not None)'''
+        generator: DistPyModule = DistPyModule()
+        self.assertIsNotNone(generator)
 
-    def test_writer_not_none(self):
-        '''Test is writer setup done.'''
-        self.assertIsNot(self.tool_generator.get_writer(), None)
+    def test_missing_args(self) -> None:
+        '''Test missing args'''
+        sys.argv.clear()
+        sys.argv.insert(0, 'python3')
+        sys.argv.insert(1, 'gen_dist_py_module_run.py')
+        generator: DistPyModule = DistPyModule()
+        self.assertFalse(generator.process())
 
-    def test_process(self):
-        '''Test base process.'''
-        status = self.tool_generator.gen_setup(
-            '{0}'.format('simple_test'), self.verbose
-        )
-        self.assertEqual(status, True)
+    def test_wrong_arg(self) -> None:
+        '''Test wrong arg'''
+        sys.argv.clear()
+        sys.argv.insert(0, 'python3')
+        sys.argv.insert(1, 'gen_dist_py_module_run.py')
+        sys.argv.insert(2, '-d')
+        sys.argv.insert(3, 'simple_project')
+        generator: DistPyModule = DistPyModule()
+        self.assertFalse(generator.process())
+
+    @patch('builtins.input', return_value='1')
+    def test_process(self, mock_input: Any) -> None:
+        '''Generate project structure'''
+        sys.argv.clear()
+        sys.argv.insert(0, 'python3')
+        sys.argv.insert(1, 'gen_dist_py_module_run.py')
+        sys.argv.insert(2, '-g')
+        sys.argv.insert(3, 'simple_project')
+        generator: DistPyModule = DistPyModule()
+        self.assertTrue(generator.process())
+        mock_input.assert_called_once_with(' select project type: ')
+
+    @patch('builtins.input', return_value='3')
+    def test_cancel_process(self, mock_input: Any) -> None:
+        '''Test cancel process'''
+        sys.argv.clear()
+        sys.argv.insert(0, 'python3')
+        sys.argv.insert(1, 'gen_dist_py_module_run.py')
+        sys.argv.insert(2, '-g')
+        sys.argv.insert(3, 'simple_project')
+        generator: DistPyModule = DistPyModule()
+        self.assertTrue(generator.process())
+        mock_input.assert_called_once_with(' select project type: ')
+
+    @patch('builtins.input', return_value='2')
+    def test_package_process(self, mock_input: Any) -> None:
+        '''Test package process'''
+        sys.argv.clear()
+        sys.argv.insert(0, 'python3')
+        sys.argv.insert(1, 'gen_dist_py_module_run.py')
+        sys.argv.insert(2, '-g')
+        sys.argv.insert(3, 'simple_project')
+        generator: DistPyModule = DistPyModule()
+        self.assertTrue(generator.process())
+        mock_input.assert_called_once_with(' select project type: ')
+
+    def test_tool_not_operational(self) -> None:
+        '''Test not operational'''
+        sys.argv.clear()
+        sys.argv.insert(0, 'python3')
+        sys.argv.insert(1, 'gen_dist_py_module_run.py')
+        sys.argv.insert(2, '-g')
+        sys.argv.insert(3, 'simple_project')
+        generator: DistPyModule = DistPyModule()
+        generator.tool_operational = False
+        self.assertFalse(generator.process())
 
 
 if __name__ == '__main__':
-    unittest.main()
+    main()

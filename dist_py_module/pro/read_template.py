@@ -1,139 +1,114 @@
 # -*- coding: UTF-8 -*-
 
 '''
- Module
-     read_template.py
- Copyright
-     Copyright (C) 2017 Vladimir Roncevic <elektron.ronca@gmail.com>
-     dist_py_module is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     dist_py_module is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class ReadTemplate with attribute(s) and method(s).
-     Created API for read a template file and return a content.
+Module
+    read_template.py
+Copyright
+    Copyright (C) 2017 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+    dist_py_module is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    dist_py_module is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class ReadTemplate with attribute(s) and method(s).
+    Creates an API for reading a template file.
 '''
 
 import sys
-from os.path import isdir, dirname, realpath
+from typing import Any, List, Dict
+from os.path import dirname, realpath
 
 try:
-    from ats_utilities.checker import ATSChecker
-    from ats_utilities.config_io.base_check import FileChecking
+    from ats_utilities.config_io.file_check import FileCheck
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
-    from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
 except ImportError as ats_error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
-    sys.exit(MESSAGE)  # Force close python ATS ##############################
+    # Force close python ATS ##################################################
+    sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2017, https://vroncevic.github.io/dist_py_module'
-__credits__ = ['Vladimir Roncevic']
+__copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.9.8'
+__version__ = '3.0.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class ReadTemplate(FileChecking):
+class ReadTemplate(FileCheck):
     '''
-        Defined class ReadTemplate with attribute(s) and method(s).
-        Created API for read a template file and return a content.
+        Defines class ReadTemplate with attribute(s) and method(s).
+        Creates an API for reading a template file.
+
         It defines:
 
             :attributes:
-                | GEN_VERBOSE - console text indicator for process-phase.
-                | TEMPLATE_DIR - template dir path.
-                | __template_dir - absolute file path of template dir.
+                | _GEN_VERBOSE - Console text indicator for process-phase.
+                | _TEMPLATE_DIR - Template dir path.
             :methods:
-                | __init__ - initial constructor.
-                | get_template_dir - getter for template directory object.
-                | read - read a template and return a string representation.
-                | __str__ - dunder method for ReadTemplate.
+                | __init__ - Initials ReadTemplate constructor.
+                | read - Reads a template file.
     '''
 
-    GEN_VERBOSE = 'DIST_PY_MODULE::PRO::READ_TEMPLATE'
-    TEMPLATE_DIR = '/../conf/template/'
+    _GEN_VERBOSE: str = 'DIST_PY_MODULE::PRO::READ_TEMPLATE'
+    _TEMPLATE_DIR: str = '/../conf/template/'
 
-    def __init__(self, verbose=False):
+    def __init__(self, verbose: bool = False) -> None:
         '''
-            Initial constructor.
+            Initials ReadTemplate constructor.
 
-            :param verbose: enable/disable verbose option.
+            :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
             :exceptions: None
         '''
-        FileChecking.__init__(self, verbose=verbose)
-        verbose_message(ReadTemplate.GEN_VERBOSE, verbose, 'init reader')
-        template_dir = '{0}{1}'.format(
-            dirname(realpath(__file__)), ReadTemplate.TEMPLATE_DIR
-        )
-        check_template_dir = isdir(template_dir)
-        if check_template_dir:
-            self.__template_dir = template_dir
-        else:
-            self.__template_dir = None
+        super().__init__(verbose)
+        verbose_message(verbose, [f'{self._GEN_VERBOSE} init reader'])
 
-    def get_template_dir(self):
+    def read(
+        self,
+        template_files: List[str] | None,
+        verbose: bool = False
+    ) -> Dict[Any, Any]:
         '''
-            Getter for template directory.
+            Reads a template file.
 
-            :return: template directory path | None.
-            :rtype: <str> | <NoneType>
-        '''
-        return self.__template_dir
-
-    def read(self, template_modules, verbose=False):
-        '''
-            Read template structure.
-
-            :param template_modules: template modules.
-            :type template_modules: <list>
-            :param verbose: enable/disable verbose option.
+            :param template_files: Template file | None
+            :type template_files: <List[str]> | <NoneType>
+            :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
-            :return: template content for setup modules | None.
-            :rtype: <dict> | <NoneType>
-            :exceptions: ATSTypeError | ATSBadCallError
+            :return: Template content for setup module
+            :rtype: <Dict[Any, Any]>
+            :exceptions: ATSTypeError | ATSValueError
         '''
-        checker, error, status = ATSChecker(), None, False
-        error, status = checker.check_params([
-            ('list:template_modules', template_modules)
+        error_msg: str | None = None
+        error_id: int | None = None
+        error_msg, error_id = self.check_params([
+            ('list:template_files', template_files)
         ])
-        if status == ATSChecker.TYPE_ERROR:
-            raise ATSTypeError(error)
-        if status == ATSChecker.VALUE_ERROR:
-            raise ATSBadCallError(error)
-        setup_content = {}
-        verbose_message(ReadTemplate.GEN_VERBOSE, verbose, 'load template')
-        for template_module in template_modules:
-            template_file = '{0}{1}'.format(
-                self.__template_dir, template_module
-            )
-            self.check_path(template_file, verbose=verbose)
-            self.check_mode('r', verbose=verbose)
-            self.check_format(template_file, 'template', verbose=verbose)
+        if error_id == self.TYPE_ERROR:
+            raise ATSTypeError(error_msg)
+        if not bool(template_files):
+            raise ATSValueError('missing template name')
+        setup_content: Dict[Any, Any] = {}
+        verbose_message(verbose, [f'{self._GEN_VERBOSE} load templates'])
+        current_dir: str = dirname(realpath(__file__))
+        template_dir: str = f'{current_dir}{self._TEMPLATE_DIR}'
+        for template_file in template_files:
+            template_module: str = f'{template_dir}{template_file}'
+            self.check_path(template_module, verbose)
+            self.check_mode('r', verbose)
+            self.check_format(template_module, 'template', verbose)
             if self.is_file_ok():
-                with open(template_file, 'r') as setup_template:
+                with open(
+                    template_module, 'r', encoding='utf-8'
+                ) as setup_template:
                     setup_content[template_file] = setup_template.read()
         return setup_content
-
-    def __str__(self):
-        '''
-            Dunder method for ReadTemplate.
-
-            :return: object in a human-readable format.
-            :rtype: <str>
-            :exceptions: None
-        '''
-        return '{0} ({1}, {2})'.format(
-            self.__class__.__name__, FileChecking.__str__(self),
-            self.__template_dir
-        )
