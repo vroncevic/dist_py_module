@@ -15,8 +15,8 @@ other information that should be provided before the tool is installed.
 .. |python package checker| image:: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_checker.yml/badge.svg
    :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_checker.yml
 
-.. |python checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_package_checker?style=flat&label=dist_py_module%20package%20checker
-   :target: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_package_checker
+.. |python checker| image:: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_package_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_package.yml
 
 .. |documentation status| image:: https://readthedocs.org/projects/dist-py-module/badge/?version=latest
    :target: https://dist-py-module.readthedocs.io/en/latest/?badge=latest
