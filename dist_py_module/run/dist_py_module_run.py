@@ -21,6 +21,7 @@ Info
 '''
 
 import sys
+from typing import List
 
 try:
     from dist_py_module import DistPyModule
@@ -38,5 +39,5 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 if __name__ == '__main__':
-    TOOL = DistPyModule(verbose: bool = False)
-    TOOL.process(verbose: bool = False)
+    TOOL = DistPyModule(verbose=False)
+    TOOL.process(verbose=False)
