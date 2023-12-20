@@ -1,9 +1,9 @@
 Generate setup.py
 ------------------
 
-☯️ **dist_py_module** is toolset for generation of setup.py.
+**dist_py_module** is toolset for generation of setup.py.
 
-Developed in 🐍 `python <https://www.python.org/>`_ code.
+Developed in `python <https://www.python.org/>`_ code.
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
@@ -12,8 +12,8 @@ other information that should be provided before the tool is installed.
 |python package checker| |python checker| |documentation status|
 |github issues| |github contributors|
 
-.. |python package checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_checker?style=flat&label=dist_py_module%20python%20checker
-   :target: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python_checker
+.. |python package checker| image:: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python_checker.yml
 
 .. |python checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_package_checker?style=flat&label=dist_py_module%20package%20checker
    :target: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_package_checker
@@ -37,29 +37,21 @@ other information that should be provided before the tool is installed.
 Installation
 -------------
 
-|build python2 package| |build python3 package|
+|build python3 package|
 
-.. |build python2 package| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python2_build?style=flat&label=dist_py_module%20python2%20build
-   :target: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python2_build
-
-.. |build python3 package| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python3_build?style=flat&label=dist_py_module%20python3%20build
-   :target: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_python3_build
+.. |build python3 package| image:: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python3_build.yml/badge.svg
+   :target: https://github.com/vroncevic/dist_py_module/actions/workflows/dist_py_module_python3_build.yml
 
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/dist_py_module/releases
 
-To install 📦 **dist_py_module** type the following
+To install **dist_py_module** type the following
 
 .. code-block:: bash
 
     tar xvzf dist_py_module-x.y.z.tar.gz
     cd dist_py_module-x.y.z/
-    # python2
-    pip install -r requirements.txt
-    python setup.py install_lib
-    python setup.py install_data
-    python setup.py install_egg_info
     # pyton3
     pip3 install -r requirements.txt
     python3 setup.py install_lib
@@ -70,15 +62,8 @@ You can use Docker to create image/container, or You can use pip to install
 
 .. code-block:: bash
 
-    # pyton2
-    pip install dist-py-module
     # pyton3
     pip3 install dist-py-module
-
-|github docker checker|
-
-.. |github docker checker| image:: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_docker_checker?style=flat&label=dist_py_module%20docker%20checker
-   :target: https://img.shields.io/github/workflow/status/vroncevic/dist_py_module/dist_py_module_docker_checker
 
 Dependencies
 -------------
@@ -87,19 +72,10 @@ Dependencies
 
 * `ats-utilities - Python App/Tool/Script Utilities <https://pypi.org/project/ats-utilities/>`_
 
-Generation flow of project setup
----------------------------------
-
-Base flow of generation process
-
-.. image:: https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup_flow.png
-
 Tool structure
 ---------------
 
 **dist_py_module** is based on OOP.
-
-.. image:: https://raw.githubusercontent.com/vroncevic/dist_py_module/dev/docs/python_setup.png
 
 Code structure
 
@@ -138,10 +114,10 @@ Copyright and licence
 .. |license: apache 2.0| image:: https://img.shields.io/badge/license-apache%202.0-blue.svg
    :target: https://opensource.org/licenses/apache-2.0
 
-Copyright (C) 2018 by `vroncevic.github.io/dist_py_module <https://vroncevic.github.io/dist_py_module>`_
+Copyright (C) 2017 - 2024 by `vroncevic.github.io/dist_py_module <https://vroncevic.github.io/dist_py_module>`_
 
 **dist_py_module** is free software; you can redistribute it and/or modify
-it under the same terms as Python itself, either Python version 2.x/3.x or,
+it under the same terms as Python itself, either Python version 3.x or,
 at your option, any later version of Python 3 you may have available.
 
 Lets help and support PSF.
@@ -154,7 +130,7 @@ Lets help and support PSF.
 |donate|
 
 .. |donate| image:: https://www.paypalobjects.com/en_us/i/btn/btn_donatecc_lg.gif
-   :target: https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2
+   :target: https://www.python.org/psf/donations/
 
 Indices and tables
 ------------------

@@ -1,5 +1,0 @@
-[run]
-omit =
-    setup.py
-    setup_package.py
-    setup_tool.py

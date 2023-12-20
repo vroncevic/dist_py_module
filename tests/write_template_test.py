@@ -1,294 +1,173 @@
 # -*- coding: UTF-8 -*-
 
 '''
- Module
-     write_template_test.py
- Copyright
-     Copyright (C) 2022 Vladimir Roncevic <elektron.ronca@gmail.com>
-     dist_py_module is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     dist_py_module is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class WriteTemplateTestCase with attribute(s) and method(s).
-     Created test cases for checking functionalities of WriteTemplate.
- Execute
-     python3 -m unittest -v write_template_test
+Module
+    write_template_test.py
+Copyright
+    Copyright (C) 2022-2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+    gen_stm8 is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    gen_stm8 is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class WriteTemplateTestCase with attribute(s) and method(s).
+    Creates test cases for checking functionalities of WriteTemplate.
+Execute
+    python3 -m unittest -v write_template_test
 '''
 
 import sys
-import unittest
+from os.path import exists
+from os import remove
+from typing import Any, List, Dict
+from unittest import TestCase, main
 
 try:
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
+    from dist_py_module.pro.read_template import ReadTemplate
     from dist_py_module.pro.write_template import WriteTemplate
 except ImportError as test_error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, test_error_message)
-    sys.exit(MESSAGE)  # Force close python test ############################
+    # Force close python test #################################################
+    sys.exit(f'\n{__file__}\n{test_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2022, https://vroncevic.github.io/dist_py_module'
-__credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '2.9.8'
+__copyright__ = '(C) 2024, https://vroncevic.github.io/gen_stm8'
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
+__license__ = 'https://github.com/vroncevic/gen_stm8/blob/dev/LICENSE'
+__version__ = '3.0.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class WriteTemplateTestCase(unittest.TestCase):
+class WriteTemplateTestCase(TestCase):
     '''
-        Defined class WriteTemplateTestCase with attribute(s) and method(s).
-        Created test cases for checking functionalities of WriteTemplate.
+        Defines class WriteTemplateTestCase with attribute(s) and method(s).
+        Creates test cases for checking functionalities of WriteTemplate.
+        WriteTemplate unit tests.
+
         It defines:
 
             :attributes:
-                | SETUP_CONTENT_PACKAGE - Package template.
-                | SETUP_CONTENT_TOOL - Tool template.
-                | template_writer - Template write object.
+                | None
             :methods:
-                | setUp - call before test cases.
-                | tearDown - call after test cases.
-                | test_write_template_package - test for check writer.
-                | test_write_template_tool - test for base process.
+                | setUp - call before test case.
+                | tearDown - call after test case.
+                | test_write_template_create - Test write templates create.
+                | test_write_template_empty - Test write templates empty.
+                | test_write_template_none - Test write templates None.
+                | test_write_template - Test write templates.
+                | test_write_missing_modules - Test missing modules.
+                | test_write_empty_pkg_name - Test empty pkg name.
     '''
 
-    SETUP_CONTENT_PACKAGE = '''#!/usr/bin/env python
-# -*- coding: UTF-8 -*-
+    def setUp(self) -> None:
+        '''Call before test case.'''
 
-\'\'\'
- Module
-     setup.py
- Copyright
-     Copyright (C) 2022 Vladimir Roncevic <elektron.ronca@gmail.com>
-     $pkg is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     $pkg is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Define setup for $pkg package.
-\'\'\'
+    def tearDown(self) -> None:
+        '''Call after test case.'''
+        if exists('MANIFEST.in'):
+            remove('MANIFEST.in')
+        if exists('pyproject.toml'):
+            remove('pyproject.toml')
+        if exists('setup.cfg'):
+            remove('setup.cfg')
+        if exists('setup.py'):
+            remove('setup.py')
 
-from os.path import abspath, dirname, join
-from setuptools import setup
+    def test_write_template_create(self) -> None:
+        '''Test write templates create'''
+        template = WriteTemplate()
+        self.assertIsNotNone(template)
 
-__author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2022, Free software to use and distributed it.'
-__credits__ = ['Vladimir Roncevic']
-__license__ = 'GNU General Public License (GPL)'
-__version__ = '1.0.0'
-__maintainer__ = 'Vladimir Roncevic'
-__email__ = 'elektron.ronca@gmail.com'
-__status__ = 'Updated'
-
-THIS_DIR, LONG_DESCRIPTION = abspath(dirname(__file__)), None
-with open(join(THIS_DIR, 'README.md')) as readme:
-    LONG_DESCRIPTION = readme.read()
-PROGRAMMING_LANG = 'Programming Language :: Python ::'
-VERSIONS = ['2.7', '3', '3.2', '3.3', '3.4']
-SUPPORTED_PY_VERSIONS = [
-    '{0} {1}'.format(PROGRAMMING_LANG, VERSION) for VERSION in VERSIONS
-]
-LICENSE_PREFIX = 'License :: OSI Approved ::'
-LICENSES = [
-    'GNU Lesser General Public License v2 (LGPLv2)',
-    'GNU Lesser General Public License v2 or later (LGPLv2+)',
-    'GNU Lesser General Public License v3 (LGPLv3)',
-    'GNU Lesser General Public License v3 or later (LGPLv3+)',
-    'GNU Library or Lesser General Public License (LGPL)'
-]
-APPROVED_LICENSES = [
-    '{0} {1}'.format(LICENSE_PREFIX, LICENSE) for LICENSE in LICENSES
-]
-PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
-setup(
-    name='$pkg',
-    version='1.0.0',
-    description='Python module $pkg',
-    author='Vladimir Roncevic',
-    author_email='elektron.ronca@gmail.com',
-    url='https://github.com/vroncevic/TODO',
-    license='GPL 2022 Free software to use and distributed it.',
-    long_description=LONG_DESCRIPTION,
-    long_description_content_type='text/markdown',
-    keywords='$pkg, TODO',
-    platforms='POSIX',
-    classifiers=PYP_CLASSIFIERS,
-    packages=['$pkg'],
-    install_requires=['ats-utilities']
-)
-'''
-
-    SETUP_CONTENT_TOOL = '''#!/usr/bin/env python
-# -*- coding: UTF-8 -*-
-
-\'\'\'
- Module
-     setup.py
- Copyright
-     Copyright (C) 2022 Vladimir Roncevic <elektron.ronca@gmail.com>
-     $pkg is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     $pkg is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined setup for tool $pkg.
-\'\'\'
-
-from __future__ import print_function
-import sys
-from os.path import abspath, dirname, join, exists
-from setuptools import setup
-
-__author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2022, Free software to use and distributed it.'
-__credits__ = ['Vladimir Roncevic']
-__license__ = 'GNU General Public License (GPL)'
-__version__ = '1.0.0'
-__maintainer__ = 'Vladimir Roncevic'
-__email__ = 'elektron.ronca@gmail.com'
-__status__ = 'Updated'
-
-def install_directory():
-    \'\'\'
-        Return the installation directory, or None.
-
-        :return: Path (success) | None.
-        :rtype: <str> | <NoneType>
-        :exceptions: None
-    \'\'\'
-    py_version = '{0}.{1}'.format(sys.version_info[0], sys.version_info[1])
-    if '--github' in sys.argv:
-        index = sys.argv.index('--github')
-        sys.argv.pop(index)
-        paths = (
-            '{0}/lib/python{1}/dist-packages/'.format(sys.prefix, py_version),
-            '{0}/lib/python{1}/site-packages/'.format(sys.prefix, py_version)
-        )
-    else:
-        paths = (s for s in (
-            '{0}/local/lib/python{1}/dist-packages/'.format(
-                sys.prefix, py_version
-            ),
-            '{0}/local/lib/python{1}/site-packages/'.format(
-                sys.prefix, py_version
+    def test_write_template_empty(self) -> None:
+        '''Test write templates empty'''
+        template = WriteTemplate()
+        content: Dict[Any, Any] = {}
+        templates: List[str] = []
+        with self.assertRaises(ATSValueError):
+            self.assertFalse(
+                template.write(content, 'simple_project', templates)
             )
-        ))
-    message = None
-    for path in paths:
-        message = '[setup] check path {0}'.format(path)
-        print(message)
-        if exists(path):
-            message = '[setup] use path {0}'.format(path)
-            print(message)
-            return path
-    message = '[setup] no installation path found, check {0}\\n'.format(
-        sys.prefix
-    )
-    print(message)
-    return None
 
-INSTALL_DIR = install_directory()
-TOOL_DIR = '${pkg}/'
-if not bool(INSTALL_DIR):
-    print('[setup] force exit from install process')
-    sys.exit(127)
-THIS_DIR, LONG_DESCRIPTION = abspath(dirname(__file__)), None
-with open(join(THIS_DIR, 'README.md')) as readme:
-    LONG_DESCRIPTION = readme.read()
-PROGRAMMING_LANG = 'Programming Language :: Python ::'
-VERSIONS = ['2.7', '3', '3.2', '3.3', '3.4']
-SUPPORTED_PY_VERSIONS = [
-    '{0} {1}'.format(PROGRAMMING_LANG, VERSION) for VERSION in VERSIONS
-]
-LICENSE_PREFIX = 'License :: OSI Approved ::'
-LICENSES = [
-    'GNU Lesser General Public License v2 (LGPLv2)',
-    'GNU Lesser General Public License v2 or later (LGPLv2+)',
-    'GNU Lesser General Public License v3 (LGPLv3)',
-    'GNU Lesser General Public License v3 or later (LGPLv3+)',
-    'GNU Library or Lesser General Public License (LGPL)'
-]
-APPROVED_LICENSES = [
-    '{0} {1}'.format(LICENSE_PREFIX, LICENSE) for LICENSE in LICENSES
-]
-PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
-setup(
-    name='$pkg',
-    version='1.0.0',
-    description='Python module $pkg',
-    author='Vladimir Roncevic',
-    author_email='elektron.ronca@gmail.com',
-    url='https://github.com/vroncevic/TODO',
-    license='GPL 2022 Free software to use and distributed it.',
-    long_description=LONG_DESCRIPTION,
-    long_description_content_type='text/markdown',
-    keywords='$pkg, TODO',
-    platforms='POSIX',
-    classifiers=PYP_CLASSIFIERS,
-    packages=['$pkg'],
-    install_requires=['ats-utilities'],
-    data_package = {
-        '$pkg': [
-            'conf/${pkg}.cfg',
-            'conf/${pkg}_util.cfg',
-            'conf/project.yaml',
-            'conf/template/project.template',
-            'log/$pkg.log',
+    def test_write_template_none(self) -> None:
+        '''Test write templates None'''
+        template = WriteTemplate()
+        templates: List[str] = []
+        with self.assertRaises(ATSTypeError):
+            self.assertFalse(
+                template.write(
+                    None, 'simple_project', templates  # type: ignore
+                )
+            )
+
+    def test_write_template(self) -> None:
+        '''Test write templates'''
+        template_read = ReadTemplate()
+        template_write = WriteTemplate()
+        templates: List[str] | None = [
+            'setup_package.template',
+            'MANIFEST.template',
+            'pyproject.template',
+            'setup.template'
         ]
-    },
-    data_files=[(
-        '/usr/local/bin/', [
-            '{0}{1}'.format(TOOL_DIR, 'run/${pkg}_run.py')
+        modules: List[str] | None = [
+            'setup.py',
+            'MANIFEST.in',
+            'pyproject.toml',
+            'setup.cfg'
         ]
-    )]
-)
-'''
-
-    def setUp(self):
-        '''Call before test cases.'''
-        self.template_writer = WriteTemplate()
-
-    def tearDown(self):
-        '''Call after test cases.'''
-        self.template_writer = None
-
-    def test_write_template_package(self):
-        '''Test write template package check.'''
-        self.assertIsNot(
-            self.template_writer.write(
-                WriteTemplateTestCase.SETUP_CONTENT_PACKAGE,
-                '{0}'.format('simple_test'),
-                'setup_package.py'
-            ), False
+        content: Dict[Any, Any] = template_read.read(templates)
+        self.assertTrue(
+            template_write.write(content, 'simple_project', modules)
         )
 
-    def test_write_template_tool(self):
-        '''Test write template tool check.'''
-        self.assertIsNot(
-            self.template_writer.write(
-                WriteTemplateTestCase.SETUP_CONTENT_TOOL,
-                '{0}'.format('simple_test'),
-                'setup_tool.py'
-            ), False
-        )
+    def test_write_missing_modules(self) -> None:
+        '''Test missing templates'''
+        template_read = ReadTemplate()
+        template_write = WriteTemplate()
+        templates: List[str] | None = [
+            'setup_package.template',
+            'MANIFEST.template',
+            'pyproject.template',
+            'setup.template'
+        ]
+        modules: List[str] = []
+        content: Dict[Any, Any] = template_read.read(templates)
+        with self.assertRaises(ATSValueError):
+            self.assertTrue(
+                template_write.write(content, 'simple_project', modules)
+            )
+
+    def test_write_empty_pkg_name(self) -> None:
+        '''Test empty pkg name'''
+        template_read = ReadTemplate()
+        template_write = WriteTemplate()
+        templates: List[str] | None = [
+            'setup_package.template',
+            'MANIFEST.template',
+            'pyproject.template',
+            'setup.template'
+        ]
+        modules: List[str] | None = [
+            'setup.py',
+            'MANIFEST.in',
+            'pyproject.toml',
+            'setup.cfg'
+        ]
+        content: Dict[Any, Any] = template_read.read(templates)
+        with self.assertRaises(ATSValueError):
+            self.assertTrue(
+                template_write.write(content, '', modules)
+            )
+
 
 if __name__ == '__main__':
-    unittest.main()
+    main()
