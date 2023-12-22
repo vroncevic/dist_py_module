@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.0.1'
+__version__ = '3.0.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -91,7 +91,9 @@ class DistPyModule(CfgCLI):
         Splash(dist_py_module_property, verbose)
         base_info: str = f'{current_dir}{self._CONFIG}'
         super().__init__(base_info, verbose)
-        verbose_message(verbose, [f'{self._GEN_VERBOSE} init tool info'])
+        verbose_message(
+            verbose, [f'{self._GEN_VERBOSE.lower()} init tool info']
+        )
         self._logger = ATSLogger(
             self._GEN_VERBOSE.lower(), f'{current_dir}{self._LOG}', verbose
         )

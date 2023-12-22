@@ -37,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.0.1'
+__version__ = '3.0.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -70,7 +70,7 @@ class ReadTemplate(FileCheck):
             :exceptions: None
         '''
         super().__init__(verbose)
-        verbose_message(verbose, [f'{self._GEN_VERBOSE} init reader'])
+        verbose_message(verbose, [f'{self._GEN_VERBOSE.lower()} init reader'])
 
     def read(
         self,
@@ -98,7 +98,9 @@ class ReadTemplate(FileCheck):
         if not bool(template_files):
             raise ATSValueError('missing template name')
         setup_content: Dict[Any, Any] = {}
-        verbose_message(verbose, [f'{self._GEN_VERBOSE} load templates'])
+        verbose_message(
+            verbose, [f'{self._GEN_VERBOSE.lower()} load templates']
+        )
         current_dir: str = dirname(realpath(__file__))
         template_dir: str = f'{current_dir}{self._TEMPLATE_DIR}'
         for template_file in template_files:

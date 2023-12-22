@@ -23,6 +23,7 @@ Info
 import sys
 from typing import Any, List, Dict
 from os import getcwd, chmod
+from datetime import datetime
 from string import Template
 
 try:
@@ -38,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_modules'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_modules/blob/dev/LICENSE'
-__version__ = '3.0.1'
+__version__ = '3.0.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -58,7 +59,7 @@ class WriteTemplate(FileCheck):
                 | write - Writes setup content to file.
     '''
 
-    _GEN_VERBOSE = 'DIST_PY_MODULES::PRO::WRITE_TEMPLATE'
+    _GEN_VERBOSE: str = 'DIST_PY_MODULES::PRO::WRITE_TEMPLATE'
 
     def __init__(self, verbose: bool = False) -> None:
         '''
@@ -69,7 +70,7 @@ class WriteTemplate(FileCheck):
             :exceptions: None
         '''
         super().__init__(verbose)
-        verbose_message(verbose, [f'{self._GEN_VERBOSE} init writer'])
+        verbose_message(verbose, [f'{self._GEN_VERBOSE.lower()} init writer'])
 
     def write(
         self,
@@ -110,7 +111,9 @@ class WriteTemplate(FileCheck):
             raise ATSValueError('missing setup modules')
         all_stat: List[bool] = []
         setup = list(f'{getcwd()}/{module}' for module in modules)
-        verbose_message(verbose, [f'{self._GEN_VERBOSE} write modules'])
+        verbose_message(
+            verbose, [f'{self._GEN_VERBOSE.lower()} write modules']
+        )
         for index, content in enumerate(setup_content.values()):
             template: Template = Template(content)
             if template:
@@ -118,7 +121,8 @@ class WriteTemplate(FileCheck):
                     setup[index], 'w', encoding='utf-8'
                 ) as setup_file:
                     setup_file.write(template.substitute({
-                        'pkg': f'{package_name}'
+                        'PKG': f'{package_name}',
+                        'YEAR': f'{datetime.now().year}'
                     }))
                     chmod(setup[index], 0o666)
                     self.check_path(setup[index], verbose)
