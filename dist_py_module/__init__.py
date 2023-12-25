@@ -32,6 +32,8 @@ try:
     from ats_utilities.console_io.error import error_message
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.console_io.success import success_message
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
     from dist_py_module.pro import GenSetup
 except ImportError as ats_error_message:
     # Force close python ATS ##################################################
@@ -41,7 +43,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.0.2'
+__version__ = '3.0.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -83,8 +85,8 @@ class DistPyModule(CfgCLI):
         current_dir: str = dirname(realpath(__file__))
         dist_py_module_property: Dict[str, str | bool] = {
             'ats_organization': 'vroncevic',
-            'ats_repository': 'dist_py_module',
-            'ats_name': 'dist_py_module',
+            'ats_repository': f'{self._GEN_VERBOSE.lower()}',
+            'ats_name': f'{self._GEN_VERBOSE.lower()}',
             'ats_logo_path': f'{current_dir}{self._LOGO}',
             'ats_use_github_infrastructure': True
         }
@@ -100,7 +102,7 @@ class DistPyModule(CfgCLI):
         if self.tool_operational:
             self.add_new_option(
                 self._OPS[0], self._OPS[1], dest='gen',
-                help='generate module setup.py'
+                help='generate module setup.py (provide pkg name)'
             )
             self.add_new_option(
                 self._OPS[2], self._OPS[3],
@@ -126,18 +128,24 @@ class DistPyModule(CfgCLI):
             if len(sys.argv) >= 4:
                 if sys.argv[2] not in self._OPS:
                     error_message(
-                        [f'{self._GEN_VERBOSE.lower()} provide project name']
+                        [
+                            f'{self._GEN_VERBOSE.lower()}',
+                            'provide package name (-g pkg | --gen pkg)'
+                        ]
                     )
                     self._logger.write_log(
-                        'provide project name', self._logger.ATS_ERROR
+                        'missing package name', self._logger.ATS_ERROR
                     )
                     return status
             else:
                 error_message(
-                    [f'{self._GEN_VERBOSE.lower()} provide project name']
+                    [
+                        f'{self._GEN_VERBOSE.lower()}',
+                        'provide package name (-g pkg | --gen pkg)'
+                    ]
                 )
                 self._logger.write_log(
-                    'provide project name', self._logger.ATS_ERROR
+                    'missing package name', self._logger.ATS_ERROR
                 )
                 return status
             args: Any | Namespace = self.parse_args(sys.argv[2:])
@@ -150,10 +158,18 @@ class DistPyModule(CfgCLI):
                     ])
                 )
                 generator = GenSetup(getattr(args, 'verbose') or verbose)
-                status: bool = generator.gen_setup(
-                    f'{getattr(args, "gen")}',
-                    getattr(args, 'verbose') or verbose
-                )
+                try:
+                    status: bool = generator.gen_setup(
+                        f'{getattr(args, "gen")}',
+                        getattr(args, 'verbose') or verbose
+                    )
+                except (ATSTypeError, ATSValueError) as e:
+                    error_message(
+                        [f'{self._GEN_VERBOSE.lower()} {str(e)}']
+                    )
+                    self._logger.write_log(
+                        f'{str(e)}', self._logger.ATS_ERROR
+                    )
                 if status:
                     success_message([f'{self._GEN_VERBOSE.lower()} done\n'])
                     self._logger.write_log(
@@ -169,10 +185,13 @@ class DistPyModule(CfgCLI):
                     )
             else:
                 error_message(
-                    [f'{self._GEN_VERBOSE.lower()} provide package name']
+                    [
+                        f'{self._GEN_VERBOSE.lower()}',
+                        'provide package name (-g pkg | --gen pkg)'
+                    ]
                 )
                 self._logger.write_log(
-                    'provide package name', self._logger.ATS_ERROR
+                    'missing package name', self._logger.ATS_ERROR
                 )
         else:
             error_message(
