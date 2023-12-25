@@ -39,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_modules'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_modules/blob/dev/LICENSE'
-__version__ = '3.0.2'
+__version__ = '3.0.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -116,7 +116,7 @@ class WriteTemplate(FileCheck):
         )
         for index, content in enumerate(setup_content.values()):
             template: Template = Template(content)
-            if template:
+            if bool(template):
                 with open(
                     setup[index], 'w', encoding='utf-8'
                 ) as setup_file:

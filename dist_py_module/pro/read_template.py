@@ -37,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.0.2'
+__version__ = '3.0.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -97,7 +97,7 @@ class ReadTemplate(FileCheck):
             raise ATSTypeError(error_msg)
         if not bool(template_files):
             raise ATSValueError('missing template name')
-        setup_content: Dict[Any, Any] = {}
+        config: Dict[Any, Any] = {}
         verbose_message(
             verbose, [f'{self._GEN_VERBOSE.lower()} load templates']
         )
@@ -112,5 +112,5 @@ class ReadTemplate(FileCheck):
                 with open(
                     template_module, 'r', encoding='utf-8'
                 ) as setup_template:
-                    setup_content[template_file] = setup_template.read()
-        return setup_content
+                    config[template_file] = setup_template.read()
+        return config

@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.0.2'
+__version__ = '3.0.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -88,7 +88,7 @@ class GenSetup(FileCheck):
         self.check_mode('r', verbose)
         self.check_format(project, 'yaml', verbose)
         if self.is_file_ok():
-            yml2obj = Yaml2Object(project)
+            yml2obj: Yaml2Object | None = Yaml2Object(project)
             self.config: Dict[Any, Any] = yml2obj.read_configuration()
 
     def get_reader(self) -> ReadTemplate | None:
