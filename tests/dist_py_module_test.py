@@ -39,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.0.3'
+__version__ = '3.0.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -90,16 +90,12 @@ class DistPyModuleTestCase(TestCase):
     def test_missing_args(self) -> None:
         '''Test missing args'''
         sys.argv.clear()
-        sys.argv.insert(0, 'python3')
-        sys.argv.insert(1, 'gen_dist_py_module_run.py')
         generator: DistPyModule = DistPyModule()
         self.assertFalse(generator.process())
 
     def test_wrong_arg(self) -> None:
         '''Test wrong arg'''
         sys.argv.clear()
-        sys.argv.insert(0, 'python3')
-        sys.argv.insert(1, 'gen_dist_py_module_run.py')
         sys.argv.insert(2, '-d')
         sys.argv.insert(3, 'simple_project')
         generator: DistPyModule = DistPyModule()
@@ -109,10 +105,8 @@ class DistPyModuleTestCase(TestCase):
     def test_process(self, mock_input: Any) -> None:
         '''Generate project structure'''
         sys.argv.clear()
-        sys.argv.insert(0, 'python3')
-        sys.argv.insert(1, 'gen_dist_py_module_run.py')
-        sys.argv.insert(2, '-g')
-        sys.argv.insert(3, 'simple_project')
+        sys.argv.insert(0, '-n')
+        sys.argv.insert(1, 'simple_project')
         generator: DistPyModule = DistPyModule()
         self.assertTrue(generator.process())
         mock_input.assert_called_once_with(' select project type: ')
@@ -121,10 +115,8 @@ class DistPyModuleTestCase(TestCase):
     def test_cancel_process(self, mock_input: Any) -> None:
         '''Test cancel process'''
         sys.argv.clear()
-        sys.argv.insert(0, 'python3')
-        sys.argv.insert(1, 'gen_dist_py_module_run.py')
-        sys.argv.insert(2, '-g')
-        sys.argv.insert(3, 'simple_project')
+        sys.argv.insert(0, '-n')
+        sys.argv.insert(1, 'simple_project')
         generator: DistPyModule = DistPyModule()
         self.assertTrue(generator.process())
         mock_input.assert_called_once_with(' select project type: ')
@@ -133,10 +125,8 @@ class DistPyModuleTestCase(TestCase):
     def test_package_process(self, mock_input: Any) -> None:
         '''Test package process'''
         sys.argv.clear()
-        sys.argv.insert(0, 'python3')
-        sys.argv.insert(1, 'gen_dist_py_module_run.py')
-        sys.argv.insert(2, '-g')
-        sys.argv.insert(3, 'simple_project')
+        sys.argv.insert(0, '-n')
+        sys.argv.insert(1, 'simple_project')
         generator: DistPyModule = DistPyModule()
         self.assertTrue(generator.process())
         mock_input.assert_called_once_with(' select project type: ')
@@ -144,10 +134,8 @@ class DistPyModuleTestCase(TestCase):
     def test_tool_not_operational(self) -> None:
         '''Test not operational'''
         sys.argv.clear()
-        sys.argv.insert(0, 'python3')
-        sys.argv.insert(1, 'gen_dist_py_module_run.py')
-        sys.argv.insert(2, '-g')
-        sys.argv.insert(3, 'simple_project')
+        sys.argv.insert(0, '-n')
+        sys.argv.insert(1, 'simple_project')
         generator: DistPyModule = DistPyModule()
         generator.tool_operational = False
         self.assertFalse(generator.process())
