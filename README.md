@@ -108,29 +108,30 @@ You can use Dockerfile to create image/container.
 Generator structure
 
 ```bash
-dist_py_module/
-    ├── conf/
-    │   ├── dist_py_module.cfg
-    │   ├── dist_py_module.logo
-    │   ├── dist_py_module_util.cfg
-    │   ├── project.yaml
-    │   └── template/
-    │       ├── MANIFEST.template
-    │       ├── pyproject.template
-    │       ├── setup_package.template
-    │       ├── setup.template
-    │       └── setup_tool.template
-    ├── __init__.py
-    ├── log/
-    │   └── dist_py_module.log
-    ├── pro/
-    │   ├── __init__.py
-    │   ├── read_template.py
-    │   └── write_template.py
-    └── run/
-        └── dist_py_module_run.py
-
-    5 directories, 15 files
+    dist_py_module/
+          ├── conf/
+          │   ├── dist_py_module.cfg
+          │   ├── dist_py_module.logo
+          │   ├── dist_py_module_util.cfg
+          │   ├── project.yaml
+          │   └── template/
+          │       ├── MANIFEST.template
+          │       ├── pyproject.template
+          │       ├── setup_package.template
+          │       ├── setup.template
+          │       └── setup_tool.template
+          ├── __init__.py
+          ├── log/
+          │   └── dist_py_module.log
+          ├── pro/
+          │   ├── __init__.py
+          │   ├── read_template.py
+          │   └── write_template.py
+          ├── py.typed
+          └── run/
+              └── dist_py_module_run.py
+    
+    6 directories, 16 files
 ```
 
 ### Docs

@@ -21,7 +21,7 @@ Info
 '''
 
 import sys
-from typing import Any, List, Dict
+from typing import Any, List, Dict, Optional
 from os.path import dirname, realpath
 
 try:
@@ -37,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.0.5'
+__version__ = '3.0.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -74,22 +74,22 @@ class ReadTemplate(FileCheck):
 
     def read(
         self,
-        template_files: List[str] | None,
+        template_files: Optional[List[str]],
         verbose: bool = False
     ) -> Dict[Any, Any]:
         '''
             Reads a template file.
 
             :param template_files: Template file | None
-            :type template_files: <List[str]> | <NoneType>
+            :type template_files: <Optional[List[str]]>
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
             :return: Template content for setup module
             :rtype: <Dict[Any, Any]>
             :exceptions: ATSTypeError | ATSValueError
         '''
-        error_msg: str | None = None
-        error_id: int | None = None
+        error_msg: Optional[str] = None
+        error_id: Optional[int] = None
         error_msg, error_id = self.check_params([
             ('list:template_files', template_files)
         ])

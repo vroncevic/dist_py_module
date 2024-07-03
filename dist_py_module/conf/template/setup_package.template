@@ -34,7 +34,7 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 THIS_DIR: str = abspath(dirname(__file__))
-long_description: str | None = None
+long_description: Optional[str] = None
 with open(join(THIS_DIR, 'README.md'), encoding='utf-8') as readme:
     long_description = readme.read()
 PROGRAMMING_LANG: str = 'Programming Language :: Python ::'

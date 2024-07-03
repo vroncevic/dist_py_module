@@ -21,7 +21,7 @@ Info
 '''
 
 import sys
-from typing import Any, List, Dict
+from typing import Any, List, Dict, Optional
 from os import getcwd, chmod
 from datetime import datetime
 from string import Template
@@ -39,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_modules'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_modules/blob/dev/LICENSE'
-__version__ = '3.0.5'
+__version__ = '3.0.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -94,8 +94,8 @@ class WriteTemplate(FileCheck):
             :rtype: <bool>
             :exception: ATSTypeError | ATSValueError
         '''
-        error_msg: str | None = None
-        error_id: int | None = None
+        error_msg: Optional[str] = None
+        error_id: Optional[int] = None
         error_msg, error_id = self.check_params([
             ('dict:setup_content', setup_content),
             ('str:package_name', package_name),

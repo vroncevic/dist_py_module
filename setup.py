@@ -21,7 +21,7 @@ Info
 '''
 
 from __future__ import print_function
-from typing import List
+from typing import List, Optional
 from os.path import abspath, dirname, join
 from setuptools import setup
 
@@ -29,7 +29,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.0.5'
+__version__ = '3.0.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -39,7 +39,7 @@ CONF: str = 'conf'
 TEMPLATE: str = 'conf/template'
 LOG: str = 'log'
 THIS_DIR: str = abspath(dirname(__file__))
-long_description: str | None = None
+long_description: Optional[str] = None
 with open(join(THIS_DIR, 'README.md'), 'r', encoding='utf-8') as readme:
     long_description = readme.read()
 PROGRAMMING_LANG: str = 'Programming Language :: Python ::'
@@ -61,7 +61,7 @@ APPROVED_LICENSES: List[str] = [
 PYP_CLASSIFIERS: List[str] = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='dist_py_module',
-    version='3.0.5',
+    version='3.0.6',
     description='Python package for generation of setup file',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',

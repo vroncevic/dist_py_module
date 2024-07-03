@@ -21,18 +21,18 @@ Info
 '''
 
 import sys
-from typing import Any, List, Dict
+from typing import Any, List, Dict, Optional
 from os.path import dirname, realpath
 
 try:
-    from dist_py_module.pro.read_template import ReadTemplate
-    from dist_py_module.pro.write_template import WriteTemplate
     from ats_utilities.config_io.file_check import FileCheck
     from ats_utilities.console_io.error import error_message
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.config_io.yaml.yaml2object import Yaml2Object
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_value_error import ATSValueError
+    from dist_py_module.pro.read_template import ReadTemplate
+    from dist_py_module.pro.write_template import WriteTemplate
 except ImportError as ats_error_message:
     # Force close python ATS ##################################################
     sys.exit(f'\n{__file__}\n{ats_error_message}\n')
@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.0.5'
+__version__ = '3.0.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -80,8 +80,8 @@ class GenSetup(FileCheck):
         '''
         super().__init__(verbose)
         verbose_message(verbose, [f'{self._GEN_VERBOSE.lower()} init setup'])
-        self._reader: ReadTemplate | None = ReadTemplate(verbose)
-        self._writer: WriteTemplate | None = WriteTemplate(verbose)
+        self._reader: Optional[ReadTemplate] = ReadTemplate(verbose)
+        self._writer: Optional[WriteTemplate] = WriteTemplate(verbose)
         current_dir: str = dirname(realpath(__file__))
         project: str = f'{current_dir}{self._PRO_STRUCTURE}'
         self.check_path(project, verbose)
@@ -91,40 +91,42 @@ class GenSetup(FileCheck):
             yml2obj: Yaml2Object | None = Yaml2Object(project)
             self.config: Dict[Any, Any] = yml2obj.read_configuration()
 
-    def get_reader(self) -> ReadTemplate | None:
+    def get_reader(self) -> Optional[ReadTemplate]:
         '''
             Gets template reader.
 
             :return: Template reader object | None
-            :rtype: <ReadTemplate> | <NoneType>
+            :rtype: <Optional[ReadTemplate]>
             :exceptions: None
         '''
         return self._reader
 
-    def get_writer(self) -> WriteTemplate | None:
+    def get_writer(self) -> Optional[WriteTemplate]:
         '''
             Gets template writer.
 
             :return: Template writer object | none
-            :rtype: <WriteTemplate> | <NoneType
+            :rtype: <Optional[WriteTemplate]>
             :exceptions: None
         '''
         return self._writer
 
-    def gen_setup(self, pack_name: str | None, verbose: bool = False) -> bool:
+    def gen_setup(
+        self, pack_name: Optional[str], verbose: bool = False
+    ) -> bool:
         '''
             Generates setup.py for python package.
 
             :param pack_name: Package name | None
-            :type pack_name: <str> | <NoneType>
+            :type pack_name: <Optional[str]>
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
             :return: True (success operation) | False
             :rtype: <bool>
             :exceptions: ATSTypeError | ATSValueError
         '''
-        error_msg: str | None = None
-        error_id: int | None = None
+        error_msg: Optional[str] = None
+        error_id: Optional[int] = None
         error_msg, error_id = self.check_params([
             ('str:pack_name', pack_name)
         ])
@@ -138,7 +140,7 @@ class GenSetup(FileCheck):
                 f'{self._GEN_VERBOSE.lower()} generating package', pack_name
             ]
         )
-        template_files: List[str] | None = self.select_pro(verbose)
+        template_files: Optional[List[str]] = self.select_pro(verbose)
         if bool(template_files) and self._reader and self._writer:
             if 'cancel' in template_files:
                 status = True
@@ -153,17 +155,17 @@ class GenSetup(FileCheck):
                     )
         return status
 
-    def select_pro(self, verbose: bool = False) -> List[str] | None:
+    def select_pro(self, verbose: bool = False) -> Optional[List[str]]:
         '''
             Select project structure.
 
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
             :return: Templates | None
-            :rtype: <List[str]> | <NoneType>
+            :rtype: <Optional[List[str]]>
             :exceptions: None
         '''
-        template_selected: List[str] | None = None
+        template_selected: Optional[List[str]] = None
         if bool(self.config):
             types: Dict[Any, Any] = self.config['templates']
             pro_types_len: int = len(types)

@@ -21,7 +21,7 @@ Info
 '''
 
 import sys
-from typing import Any, List, Dict
+from typing import List, Dict
 from os.path import exists, dirname, realpath
 from os import getcwd
 from argparse import Namespace
@@ -44,7 +44,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.0.5'
+__version__ = '3.0.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -124,7 +124,7 @@ class DistPyModule(CfgCLI):
         status: bool = False
         if self.tool_operational:
             try:
-                args: Any | Namespace = self.parse_args(sys.argv)
+                args: Namespace = self.parse_args(sys.argv)
                 if not bool(getattr(args, "name")):
                     error_message(
                         [f'{self._GEN_VERBOSE.lower()} missing name argument']
