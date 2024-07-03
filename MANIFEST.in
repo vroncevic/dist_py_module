@@ -1,13 +1,2 @@
 global-exclude *.py[cod]
 global-exclude *.editorconfig
-include dist_py_module/run/dist_py_module_run.py
-include dist_py_module/conf/dist_py_module.logo
-include dist_py_module/conf/dist_py_module.cfg
-include dist_py_module/conf/dist_py_module_util.cfg
-include dist_py_module/conf/project.yaml
-include dist_py_module/conf/template/setup_package.template
-include dist_py_module/conf/template/setup_tool.template
-include dist_py_module/conf/template/MANIFEST.template
-include dist_py_module/conf/template/pyproject.template
-include dist_py_module/conf/template/setup.template
-include dist_py_module/log/dist_py_module.log
