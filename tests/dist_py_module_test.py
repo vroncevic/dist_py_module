@@ -39,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/dist_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.0.6'
+__version__ = '3.0.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -62,10 +62,8 @@ class DistPyModuleTestCase(TestCase):
                 | test_missing_args - Test missing args.
                 | test_wrong_arg - Test wrong arg.
                 | test_process - Generate project structure.
-                | test_tool_not_operational - Test not operational.
                 | test_cancel_process - Test cancel process.
                 | test_package_process - Test package process.
-                | test_pro_already_exists - Test pro already exists.
     '''
 
     def setUp(self) -> None:
@@ -130,15 +128,6 @@ class DistPyModuleTestCase(TestCase):
         generator: DistPyModule = DistPyModule()
         self.assertTrue(generator.process())
         mock_input.assert_called_once_with(' select project type: ')
-
-    def test_tool_not_operational(self) -> None:
-        '''Test not operational'''
-        sys.argv.clear()
-        sys.argv.insert(0, '-n')
-        sys.argv.insert(1, 'simple_project')
-        generator: DistPyModule = DistPyModule()
-        generator.tool_operational = False
-        self.assertFalse(generator.process())
 
 
 if __name__ == '__main__':

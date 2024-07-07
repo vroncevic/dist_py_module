@@ -23,6 +23,7 @@ other information that should be provided before the modules are installed.
     - [Install using docker](#install-using-docker)
 - [Dependencies](#dependencies)
 - [Tool structure](#tool-structure)
+- [Code coverage](#code-coverage)
 - [Docs](#docs)
 - [Contributing](#contributing)
 - [Copyright and licence](#copyright-and-licence)
@@ -133,6 +134,16 @@ Generator structure
     
     6 directories, 16 files
 ```
+
+### Code coverage
+
+| Name | Stmts | Miss | Cover |
+|------|-------|------|-------|
+| `dist_py_module/__init__.py` | 70 | 14 | 80% |
+| `dist_py_module/pro/__init__.py` | 81 | 3 | 96% |
+| `dist_py_module/pro/read_template.py` | 45 | 2 | 96% |
+| `dist_py_module/pro/write_template.py` | 54 | 4 | 93% |
+| **Total** | 250 | 23 | 91% |
 
 ### Docs
 
