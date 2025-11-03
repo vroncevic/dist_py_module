@@ -139,11 +139,11 @@ Generator structure
 
 | Name | Stmts | Miss | Cover |
 |------|-------|------|-------|
-| `dist_py_module/__init__.py` | 70 | 14 | 80% |
-| `dist_py_module/pro/__init__.py` | 81 | 3 | 96% |
-| `dist_py_module/pro/read_template.py` | 45 | 2 | 96% |
-| `dist_py_module/pro/write_template.py` | 54 | 4 | 93% |
-| **Total** | 250 | 23 | 91% |
+| `dist_py_module/__init__.py` | 68 | 12 | 82%|
+| `dist_py_module/pro/__init__.py` | 79 | 1 | 99%|
+| `dist_py_module/pro/read_template.py` | 43 | 0 | 100%|
+| `dist_py_module/pro/write_template.py` | 52 | 2 | 96%|
+| **Total** | 242 | 15 | 94% |
 
 ### Docs
 
@@ -162,7 +162,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2017 - 2024 by [vroncevic.github.io/dist_py_module](https://vroncevic.github.io/dist_py_module)
+Copyright (C) 2017 - 2025 by [vroncevic.github.io/dist_py_module](https://vroncevic.github.io/dist_py_module)
 
 **dist_py_module** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 3.x or,
