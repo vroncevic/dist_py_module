@@ -6,7 +6,6 @@ on:
       - 'dist_py_module/**'
       - 'MANIFEST.in'
       - 'pyproject.toml'
-      - 'setup.cfg'
       - 'setup.py'
   pull_request:
     branches: [ master ]
@@ -14,7 +13,6 @@ on:
       - 'dist_py_module/**'
       - 'MANIFEST.in'
       - 'pyproject.toml'
-      - 'setup.cfg'
       - 'setup.py'
 jobs:
   deploy:
