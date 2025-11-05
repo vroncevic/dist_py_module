@@ -15,4 +15,5 @@ python3 -m coverage xml -o dist_py_module_coverage.xml
 python3 -m coverage json -o dist_py_module_coverage.json
 python3 -m coverage report --format=markdown -m
 python3 ats_coverage.py -n dist_py_module
+rm htmlcov/.gitignore
 echo "Done"

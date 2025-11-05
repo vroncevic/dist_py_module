@@ -1,4 +1,4 @@
-# Copyright 2017 - 2025 Vladimir Roncevic <elektron.ronca@gmail.com>
+# Copyright 2017 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -39,7 +39,6 @@ RUN rm -f get-pip.py
 RUN mkdir /dist_py_module/
 RUN mkdir /tests/
 COPY dist_py_module /dist_py_module/
-COPY setup.cfg /
 COPY pyproject.toml /
 COPY MANIFEST.in /
 COPY setup.py /
@@ -53,7 +52,6 @@ RUN python3 -m build -s --no-isolation --wheel
 RUN pip3 install /dist/dist_py_module-*-py3-none-any.whl
 RUN rm -rf /dist_py_module/
 RUN rm -rf dist/ tests/
-RUN rm -f setup.cfg
 RUN rm -f pyproject.toml
 RUN rm -f MANIFEST.in
 RUN rm -f setup.py
