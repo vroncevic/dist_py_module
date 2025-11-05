@@ -4,7 +4,7 @@
 modules
     write_template.py
 Copyright
-    Copyright (C) 2017 - 2025 Vladimir Roncevic <elektron.ronca@gmail.com>
+    Copyright (C) 2017 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     dist_py_modules is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
     Free Software Foundation, either version 3 of the License, or
@@ -36,10 +36,10 @@ except ImportError as ats_error_message:  # pragma: no cover
     sys.exit(f'\n{__file__}\n{ats_error_message}\n')  # pragma: no cover
 
 __author__: str = 'Vladimir Roncevic'
-__copyright__: str = '(C) 2025, https://vroncevic.github.io/dist_py_modules'
+__copyright__: str = '(C) 2026, https://vroncevic.github.io/dist_py_modules'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/vroncevic/dist_py_modules/blob/dev/LICENSE'
-__version__: str = '3.0.8'
+__version__: str = '3.0.9'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'

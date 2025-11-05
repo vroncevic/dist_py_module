@@ -162,7 +162,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2017 - 2025 by [vroncevic.github.io/dist_py_module](https://vroncevic.github.io/dist_py_module)
+Copyright (C) 2017 - 2026 by [vroncevic.github.io/dist_py_module](https://vroncevic.github.io/dist_py_module)
 
 **dist_py_module** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 3.x or,
