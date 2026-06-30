@@ -24,6 +24,7 @@ other information that should be provided before the modules are installed.
 - [Dependencies](#dependencies)
 - [Tool structure](#tool-structure)
 - [Code coverage](#code-coverage)
+- [Usage](#usage)
 - [Docs](#docs)
 - [Contributing](#contributing)
 - [Copyright and licence](#copyright-and-licence)
@@ -108,42 +109,98 @@ You can use Dockerfile to create image/container.
 
 Generator structure
 
+<details>
+<summary><b>Click to expand framework structure</b></summary>
+
 ```bash
     dist_py_module/
-          ├── conf/
-          │   ├── dist_py_module.cfg
-          │   ├── dist_py_module.logo
-          │   ├── dist_py_module_util.cfg
-          │   ├── project.yaml
-          │   └── template/
-          │       ├── MANIFEST.template
-          │       ├── pyproject.template
-          │       ├── setup_package.template
-          │       ├── setup.template
-          │       └── setup_tool.template
-          ├── __init__.py
-          ├── log/
-          │   └── dist_py_module.log
-          ├── pro/
-          │   ├── __init__.py
-          │   ├── read_template.py
-          │   └── write_template.py
-          ├── py.typed
-          └── run/
-              └── dist_py_module_run.py
-    
-    6 directories, 16 files
+         ├── application/
+         │   ├── __init__.py
+         │   ├── service.py
+         │   └── service_bundle.py
+         ├── dist_py_module_bundle.py
+         ├── domain/
+         │   ├── __init__.py
+         │   ├── models.py
+         │   └── ports/
+         │       ├── ifile_gen.py
+         │       ├── ifile_writer.py
+         │       ├── __init__.py
+         │       └── itemplate_provider.py
+         ├── engine.py
+         ├── infrastructure/
+         │   ├── cli.py
+         │   ├── cli_bundle.py
+         │   ├── config/
+         │   │   ├── dist_py_module.cfg
+         │   │   └── dist_py_module.logo
+         │   ├── file_writer.py
+         │   ├── gen_setup_command.py
+         │   ├── icli.py
+         │   ├── icli_command.py
+         │   ├── __init__.py
+         │   ├── template_provider.py
+         │   └── templates/
+         │       └── setup.template
+         └── __init__.py
+
+     7 directories, 23 files
 ```
+</details>
 
 ### Code coverage
 
+<details>
+<summary><b>Click to expand code coverage</b></summary>
+
 | Name | Stmts | Miss | Cover |
 |------|-------|------|-------|
-| `dist_py_module/__init__.py` | 68 | 12 | 82%|
-| `dist_py_module/pro/__init__.py` | 79 | 1 | 99%|
-| `dist_py_module/pro/read_template.py` | 43 | 0 | 100%|
-| `dist_py_module/pro/write_template.py` | 52 | 2 | 96%|
-| **Total** | 242 | 15 | 94% |
+| `dist_py_module/__init__.py` | 8 | 0 | 100%|
+| `dist_py_module/application/__init__.py` | 8 | 0 | 100%|
+| `dist_py_module/application/service.py` | 35 | 0 | 100%|
+| `dist_py_module/application/service_bundle.py` | 29 | 0 | 100%|
+| `dist_py_module/dist_py_module_bundle.py` | 41 | 0 | 100%|
+| `dist_py_module/domain/__init__.py` | 8 | 0 | 100%|
+| `dist_py_module/domain/models.py` | 18 | 0 | 100%|
+| `dist_py_module/domain/ports/__init__.py` | 8 | 0 | 100%|
+| `dist_py_module/domain/ports/ifile_gen.py` | 11 | 0 | 100%|
+| `dist_py_module/domain/ports/ifile_writer.py` | 10 | 0 | 100%|
+| `dist_py_module/domain/ports/itemplate_provider.py` | 10 | 0 | 100%|
+| `dist_py_module/engine.py` | 64 | 0 | 100%|
+| `dist_py_module/infrastructure/__init__.py` | 8 | 0 | 100%|
+| `dist_py_module/infrastructure/cli.py` | 36 | 0 | 100%|
+| `dist_py_module/infrastructure/cli_bundle.py` | 33 | 0 | 100%|
+| `dist_py_module/infrastructure/file_writer.py` | 30 | 0 | 100%|
+| `dist_py_module/infrastructure/gen_setup_command.py` | 35 | 0 | 100%|
+| `dist_py_module/infrastructure/icli.py` | 11 | 0 | 100%|
+| `dist_py_module/infrastructure/icli_command.py` | 14 | 0 | 100%|
+| `dist_py_module/infrastructure/template_provider.py` | 29 | 0 | 100%|
+| **Total** | 446 | 0 | 100% |
+
+</details>
+
+### Usage
+
+Install package
+
+```bash
+pip3 install dist_py_module
+```
+
+Prepare main entry point by downloading [main.py](https://raw.githubusercontent.com/vroncevic/dist_py_module/master/main.py) or create your own.
+
+
+```bash
+wget -O main.py https://raw.githubusercontent.com/vroncevic/dist_py_module/master/main.py
+```
+
+Running tool for creating new distributing py module
+
+```bash
+mkdir -p demo/mytool/
+
+python3 main.py setup --package-name "dist_py_module" --version "3.1.0" --description "Package for distributing Python packages." --author "Vladimir Roncevic" --email "elektron.ronca@gmail.com" --github "vroncevic" --license "GNU General Public License (GPL)" --with-readme "True"
+```
 
 ### Docs
 
