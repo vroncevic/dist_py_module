@@ -82,29 +82,61 @@ Code structure
 .. code-block:: bash
 
     dist_py_module/
-          ├── conf/
-          │   ├── dist_py_module.cfg
-          │   ├── dist_py_module.logo
-          │   ├── dist_py_module_util.cfg
-          │   ├── project.yaml
-          │   └── template/
-          │       ├── MANIFEST.template
-          │       ├── pyproject.template
-          │       ├── setup_package.template
-          │       ├── setup.template
-          │       └── setup_tool.template
-          ├── __init__.py
-          ├── log/
-          │   └── dist_py_module.log
-          ├── pro/
-          │   ├── __init__.py
-          │   ├── read_template.py
-          │   └── write_template.py
-          ├── py.typed
-          └── run/
-              └── dist_py_module_run.py
-    
-    6 directories, 16 files
+         ├── application/
+         │   ├── __init__.py
+         │   ├── service.py
+         │   └── service_bundle.py
+         ├── dist_py_module_bundle.py
+         ├── domain/
+         │   ├── __init__.py
+         │   ├── models.py
+         │   └── ports/
+         │       ├── ifile_gen.py
+         │       ├── ifile_writer.py
+         │       ├── __init__.py
+         │       └── itemplate_provider.py
+         ├── engine.py
+         ├── infrastructure/
+         │   ├── cli.py
+         │   ├── cli_bundle.py
+         │   ├── config/
+         │   │   ├── dist_py_module.cfg
+         │   │   └── dist_py_module.logo
+         │   ├── file_writer.py
+         │   ├── gen_setup_command.py
+         │   ├── icli.py
+         │   ├── icli_command.py
+         │   ├── __init__.py
+         │   ├── template_provider.py
+         │   └── templates/
+         │       └── setup.template
+         └── __init__.py
+     7 directories, 23 files
+
+Usage
+-----
+
+Install package
+
+.. code-block:: bash
+
+    pip3 install dist_py_module
+
+Prepare main entry point by downloading `main.py`_.
+
+.. _main.py: https://raw.githubusercontent.com/vroncevic/dist_py_module/master/main.py
+
+.. code-block:: bash
+
+    wget -O main.py https://raw.githubusercontent.com/vroncevic/dist_py_module/master/main.py
+
+Running tool for creating new distributing py module
+
+.. code-block:: bash
+
+    mkdir -p demo/mytool/
+
+    python3 main.py setup --package-name "dist_py_module" --version "3.1.0" --description "Package for distributing Python packages." --author "Vladimir Roncevic" --email "elektron.ronca@gmail.com" --github "vroncevic" --license "GNU General Public License (GPL)" --with-readme "True"
 
 Copyright and licence
 -----------------------

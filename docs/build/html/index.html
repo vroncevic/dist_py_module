@@ -54,13 +54,21 @@ other information that should be provided before the tool is installed.</p>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">dist_py_module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dist_py_module.html">dist_py_module package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dist_py_module.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="dist_py_module.pro.html">dist_py_module.pro package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dist_py_module.application.html">dist_py_module.application package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dist_py_module.domain.html">dist_py_module.domain package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dist_py_module.infrastructure.html">dist_py_module.infrastructure package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="dist_py_module.html#module-dist_py_module">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="dist_py_module.html#dist_py_module.DistPyModule"><code class="docutils literal notranslate"><span class="pre">DistPyModule</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dist_py_module.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dist_py_module.dist_py_module_bundle.html">dist_py_module.dist_py_module_bundle module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dist_py_module.engine.html">dist_py_module.engine module</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="dist_py_module.html#module-dist_py_module">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main.html#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -101,29 +109,53 @@ pip3<span class="w"> </span>install<span class="w"> </span>dist-py-module
 <p><strong>dist_py_module</strong> is based on OOP.</p>
 <p>Code structure</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dist_py_module/
-<span class="w">      </span>├──<span class="w"> </span>conf/
-<span class="w">      </span>│<span class="w">   </span>├──<span class="w"> </span>dist_py_module.cfg
-<span class="w">      </span>│<span class="w">   </span>├──<span class="w"> </span>dist_py_module.logo
-<span class="w">      </span>│<span class="w">   </span>├──<span class="w"> </span>dist_py_module_util.cfg
-<span class="w">      </span>│<span class="w">   </span>├──<span class="w"> </span>project.yaml
-<span class="w">      </span>│<span class="w">   </span>└──<span class="w"> </span>template/
-<span class="w">      </span>│<span class="w">       </span>├──<span class="w"> </span>MANIFEST.template
-<span class="w">      </span>│<span class="w">       </span>├──<span class="w"> </span>pyproject.template
-<span class="w">      </span>│<span class="w">       </span>├──<span class="w"> </span>setup_package.template
-<span class="w">      </span>│<span class="w">       </span>├──<span class="w"> </span>setup.template
-<span class="w">      </span>│<span class="w">       </span>└──<span class="w"> </span>setup_tool.template
-<span class="w">      </span>├──<span class="w"> </span>__init__.py
-<span class="w">      </span>├──<span class="w"> </span>log/
-<span class="w">      </span>│<span class="w">   </span>└──<span class="w"> </span>dist_py_module.log
-<span class="w">      </span>├──<span class="w"> </span>pro/
-<span class="w">      </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
-<span class="w">      </span>│<span class="w">   </span>├──<span class="w"> </span>read_template.py
-<span class="w">      </span>│<span class="w">   </span>└──<span class="w"> </span>write_template.py
-<span class="w">      </span>├──<span class="w"> </span>py.typed
-<span class="w">      </span>└──<span class="w"> </span>run/
-<span class="w">          </span>└──<span class="w"> </span>dist_py_module_run.py
+<span class="w">     </span>├──<span class="w"> </span>application/
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>service.py
+<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>service_bundle.py
+<span class="w">     </span>├──<span class="w"> </span>dist_py_module_bundle.py
+<span class="w">     </span>├──<span class="w"> </span>domain/
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>models.py
+<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>ports/
+<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>ifile_gen.py
+<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>ifile_writer.py
+<span class="w">     </span>│<span class="w">       </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">       </span>└──<span class="w"> </span>itemplate_provider.py
+<span class="w">     </span>├──<span class="w"> </span>engine.py
+<span class="w">     </span>├──<span class="w"> </span>infrastructure/
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>cli.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>cli_bundle.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>config/
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>dist_py_module.cfg
+<span class="w">     </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>dist_py_module.logo
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>file_writer.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>gen_setup_command.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>icli.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>icli_command.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">     </span>│<span class="w">   </span>├──<span class="w"> </span>template_provider.py
+<span class="w">     </span>│<span class="w">   </span>└──<span class="w"> </span>templates/
+<span class="w">     </span>│<span class="w">       </span>└──<span class="w"> </span>setup.template
+<span class="w">     </span>└──<span class="w"> </span>__init__.py
+<span class="w"> </span><span class="m">7</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">23</span><span class="w"> </span>files
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h1>
+<p>Install package</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>dist_py_module
+</pre></div>
+</div>
+<p>Prepare main entry point by downloading <a class="reference external" href="https://raw.githubusercontent.com/vroncevic/dist_py_module/master/main.py">main.py</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>-O<span class="w"> </span>main.py<span class="w"> </span>https://raw.githubusercontent.com/vroncevic/dist_py_module/master/main.py
+</pre></div>
+</div>
+<p>Running tool for creating new distributing py module</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>demo/mytool/
 
-<span class="m">6</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">16</span><span class="w"> </span>files
+python3<span class="w"> </span>main.py<span class="w"> </span>setup<span class="w"> </span>--package-name<span class="w"> </span><span class="s2">&quot;dist_py_module&quot;</span><span class="w"> </span>--version<span class="w"> </span><span class="s2">&quot;3.1.0&quot;</span><span class="w"> </span>--description<span class="w"> </span><span class="s2">&quot;Package for distributing Python packages.&quot;</span><span class="w"> </span>--author<span class="w"> </span><span class="s2">&quot;Vladimir Roncevic&quot;</span><span class="w"> </span>--email<span class="w"> </span><span class="s2">&quot;elektron.ronca@gmail.com&quot;</span><span class="w"> </span>--github<span class="w"> </span><span class="s2">&quot;vroncevic&quot;</span><span class="w"> </span>--license<span class="w"> </span><span class="s2">&quot;GNU General Public License (GPL)&quot;</span><span class="w"> </span>--with-readme<span class="w"> </span><span class="s2">&quot;True&quot;</span>
 </pre></div>
 </div>
 </section>
@@ -161,6 +193,7 @@ at your option, any later version of Python 3 you may have available.</p>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li><a class="reference internal" href="#tool-structure">Tool structure</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#copyright-and-licence">Copyright and licence</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
