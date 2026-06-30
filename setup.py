@@ -20,7 +20,8 @@ Info
     Defines setup for dist_py_module package.
 '''
 
-from os.path import abspath, dirname, join
+from os import walk
+from os.path import abspath, dirname, join, relpath
 from setuptools import setup, find_packages
 
 __author__: str = 'Vladimir Roncevic'
@@ -35,14 +36,34 @@ __status__: str = 'Updated'
 THIS_DIR: str = abspath(dirname(__file__))
 long_description: str | None = None
 
-if True:
-    with open(join(THIS_DIR, 'README.md'), encoding='utf-8') as readme:
-        long_description = readme.read()
+with open(join(THIS_DIR, 'README.md'), encoding='utf-8') as readme:
+    long_description = readme.read()
 
 PROGRAMMING_LANG: str = 'Programming Language :: Python ::'
 VERSIONS: list[str] = ['3.12', '3.13', '3.14']
 SUPPORTED_PY_VERSIONS: list[str] = [f'{PROGRAMMING_LANG} {VERSION}' for VERSION in VERSIONS]
 PYP_CLASSIFIERS: list[str] = SUPPORTED_PY_VERSIONS
+
+def find_package_data(pkg: str) -> list[str]:
+    '''
+        Finds all files in package to include in package_data.
+
+        :param pkg: Package folder name.
+        :type pkg: <str>
+        :return: List of package files relative to the package folder.
+        :rtype: <list[str]>
+        :exceptions: None.
+    '''
+    package_data: list[str] = []
+    for root, dirs, files in walk(pkg):
+        dirs[:] = [d for d in dirs if d != '__pycache__']
+        for file in files:
+            if file.endswith('.pyc') or file == '.editorconfig':
+                continue
+            full_path: str = join(root, file)
+            rel_path: str = relpath(full_path, pkg)
+            package_data.append(rel_path)
+    return package_data
 
 setup(
     name='dist_py_module',
@@ -57,7 +78,7 @@ setup(
     keywords='dist_py_module, TODO',
     platforms='POSIX',
     classifiers=PYP_CLASSIFIERS,
-    packages=find_packages(exclude=['tests', 'tests.*']),
+    packages=find_packages(exclude=['tests', 'tests.*', '*.*.pyc', '*.pyo']),
     install_requires=['ats-utilities'],
-    package_data={'dist_py_module': ['py.typed']}
+    package_data={'dist_py_module': find_package_data('dist_py_module')}
 )

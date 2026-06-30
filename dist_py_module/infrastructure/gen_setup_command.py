@@ -120,11 +120,6 @@ class GenSetupCommand(ICLICommand):
                 name="--license",
                 help_text="License",
                 default="GNU General Public License (GPL)"
-            ),
-            CommandOption(
-                name="--with-readme",
-                help_text="With README file",
-                default="False"
             )
         ]
 

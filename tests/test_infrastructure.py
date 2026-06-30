@@ -230,7 +230,7 @@ class TestInfrastructure(unittest.TestCase):
         cmd: GenSetupCommand = GenSetupCommand()
         self.assertEqual(cmd.name, "setup")
         self.assertEqual(cmd.help_text, "Generate setup files")
-        self.assertEqual(len(cmd.options), 8)
+        self.assertEqual(len(cmd.options), 7)
         self.assertIsNotNone(str(cmd))
         self.assertIsNotNone(repr(cmd))
         self.assertIsInstance(str(cmd), str)
@@ -246,8 +246,7 @@ class TestInfrastructure(unittest.TestCase):
             "author": "test_author",
             "email": "test_email",
             "github": "test_github",
-            "license": "test_license",
-            "with_readme": "True"
+            "license": "test_license"
         }
         cmd.execute(params, mock_service)
 
@@ -262,7 +261,6 @@ class TestInfrastructure(unittest.TestCase):
                 "email": "test_email",
                 "github": "test_github",
                 "license": "test_license",
-                "with_readme": "True",
                 "year": str(date.today().year)
             }
         )
