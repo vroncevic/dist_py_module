@@ -142,9 +142,10 @@ Generator structure
          │   ├── template_provider.py
          │   └── templates/
          │       └── setup.template
-         └── __init__.py
+         ├── __init__.py
+         └── py.typed
 
-     7 directories, 23 files
+     7 directories, 24 files
 ```
 </details>
 
@@ -157,8 +158,8 @@ Generator structure
 |------|-------|------|-------|
 | `dist_py_module/__init__.py` | 8 | 0 | 100%|
 | `dist_py_module/application/__init__.py` | 8 | 0 | 100%|
-| `dist_py_module/application/service.py` | 35 | 0 | 100%|
-| `dist_py_module/application/service_bundle.py` | 29 | 0 | 100%|
+| `dist_py_module/application/service.py` | 30 | 0 | 100%|
+| `dist_py_module/application/service_bundle.py` | 28 | 0 | 100%|
 | `dist_py_module/dist_py_module_bundle.py` | 41 | 0 | 100%|
 | `dist_py_module/domain/__init__.py` | 8 | 0 | 100%|
 | `dist_py_module/domain/models.py` | 18 | 0 | 100%|
@@ -166,7 +167,7 @@ Generator structure
 | `dist_py_module/domain/ports/ifile_gen.py` | 11 | 0 | 100%|
 | `dist_py_module/domain/ports/ifile_writer.py` | 10 | 0 | 100%|
 | `dist_py_module/domain/ports/itemplate_provider.py` | 10 | 0 | 100%|
-| `dist_py_module/engine.py` | 64 | 0 | 100%|
+| `dist_py_module/engine.py` | 69 | 0 | 100%|
 | `dist_py_module/infrastructure/__init__.py` | 8 | 0 | 100%|
 | `dist_py_module/infrastructure/cli.py` | 36 | 0 | 100%|
 | `dist_py_module/infrastructure/cli_bundle.py` | 33 | 0 | 100%|
@@ -175,7 +176,7 @@ Generator structure
 | `dist_py_module/infrastructure/icli.py` | 11 | 0 | 100%|
 | `dist_py_module/infrastructure/icli_command.py` | 14 | 0 | 100%|
 | `dist_py_module/infrastructure/template_provider.py` | 29 | 0 | 100%|
-| **Total** | 446 | 0 | 100% |
+| **Total** | 445 | 0 | 100% |
 
 </details>
 
@@ -199,7 +200,7 @@ Running tool for creating new distributing py module
 ```bash
 mkdir -p demo/mytool/
 
-python3 main.py setup --package-name "dist_py_module" --version "3.1.0" --description "Package for distributing Python packages." --author "Vladimir Roncevic" --email "elektron.ronca@gmail.com" --github "vroncevic" --license "GNU General Public License (GPL)" --with-readme "True"
+python3 main.py setup --package-name "dist_py_module" --version "3.1.1" --description "Package for distributing Python packages." --author "Vladimir Roncevic" --email "elektron.ronca@gmail.com" --github "vroncevic" --license "GNU General Public License (GPL)" --with-readme "True"
 ```
 
 ### Docs

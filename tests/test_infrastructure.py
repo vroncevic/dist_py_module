@@ -44,7 +44,7 @@ __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://vroncevic.github.io/dist_py_module'
 __credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__: str = '3.1.0'
+__version__: str = '3.1.1'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Development'
@@ -159,7 +159,7 @@ class TestInfrastructure(unittest.TestCase):
         context: ContextBundle = ContextBundle(checker=Checker(), reporter=Reporter(), verbose=False)
         params: dict[str, str] = {
             'ats_name': 'test_cli',
-            'ats_version': '3.1.0',
+            'ats_version': '3.1.1',
             'ats_licence': 'MIT',
             'ats_build_date': '2026-06-22'
         }
@@ -241,7 +241,7 @@ class TestInfrastructure(unittest.TestCase):
         mock_service: MagicMock = MagicMock(spec=IFileGen)
         params: dict[str, str] = {
             "package_name": "test_pkg",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "description": "test_desc",
             "author": "test_author",
             "email": "test_email",
@@ -255,7 +255,7 @@ class TestInfrastructure(unittest.TestCase):
             target_filename="setup.py",
             cli_params={
                 "package_name": "test_pkg",
-                "version": "3.1.0",
+                "version": "3.1.1",
                 "description": "test_desc",
                 "author": "test_author",
                 "email": "test_email",
