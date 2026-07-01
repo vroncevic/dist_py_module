@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   dist_py_module
-# @version v3.1.0
+# @version v3.1.1
 # @date    Sun Jun 30 09:25:12 2026
 # @company None, free software to use 2026
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>

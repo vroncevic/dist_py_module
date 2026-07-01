@@ -43,7 +43,7 @@ __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://vroncevic.github.io/dist_py_module'
 __credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__: str = '3.1.0'
+__version__: str = '3.1.1'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Development'
@@ -60,7 +60,7 @@ class DistPyModule(Base):
                 | _cli - Adapter for command line user interface.
             :methods:
                 | __init__ - Initializes the DistPyModule engine with adapters and services.
-                | run - Starts the dist_py_module.
+                | process - Starts DistPyModule via CLI adapter.
     '''
 
     _info_file: str = 'infrastructure/config/dist_py_module.cfg'
@@ -112,7 +112,7 @@ class DistPyModule(Base):
             ])
             self._reporter.success(["✅ dist_py_module: engine initialized successfully."])
 
-        except ATSValueError as exc:
+        except (ATSValueError, ValueError) as exc:
             self._reporter.error([f'❌ dist_py_module: {exc}'])
         except Exception as exc:
             self._reporter.error([f'❌ dist_py_module unexpected exception: {exc}'])
@@ -120,22 +120,28 @@ class DistPyModule(Base):
     @override
     def process(self) -> None:
         '''
-            Starts the CLI adapter to run the tool command.
+            Starts DistPyModule via CLI adapter.
 
             :exceptions: None.
         '''
         result: dict[str, Any] = {}
 
-        if self.is_initialized():
-            self._reporter.success(["🔥 Starting execution command..."])
-            result = self._cli.run()
-            self._reporter.success(["✅ Execution finished!"])
+        try:
+            if self.is_initialized():
+                self._reporter.success(["🔥 Starting execution command..."])
+                result = self._cli.run()
+                self._reporter.success(["✅ Execution finished!"])
 
-            if result.get("returncode") != 0:
-                self._reporter.error([f'❌ dist_py_module: {result.get("stderr")}'])
-                self._reporter.error([f'❌ dist_py_module: exiting with error.'])
+                if result.get("returncode") != 0:
+                    self._reporter.error([f'❌ dist_py_module: {result.get("stderr")}'])
+                    self._reporter.error([f'❌ dist_py_module: exiting with error.'])
+                else:
+                    self._reporter.success([f'✅ dist_py_module: {result.get("stdout") or 'done!'}'])
+                    self._reporter.success([f'✅ dist_py_module: exiting successfully.'])
             else:
-                self._reporter.success([f'✅ dist_py_module: {result.get("stdout") or 'done!'}'])
-                self._reporter.success([f'✅ dist_py_module: exiting successfully.'])
-        else:
-            self._reporter.error([f'❌ dist_py_module: engine not initialized.'])
+                self._reporter.error([f'❌ dist_py_module: engine not initialized.'])
+
+        except (ATSValueError, ValueError) as exc:
+            self._reporter.error([f'❌ dist_py_module: {exc}'])
+        except Exception as exc:
+            self._reporter.error([f'❌ dist_py_module unexpected exception: {exc}'])

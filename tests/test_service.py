@@ -20,7 +20,6 @@ Info
 '''
 
 import unittest
-from typing import Dict
 from dist_py_module.domain.ports.itemplate_provider import ITemplateProvider
 from dist_py_module.domain.ports.ifile_writer import IFileWriter
 from dist_py_module.application.service_bundle import ServiceBundle
@@ -30,7 +29,7 @@ __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://vroncevic.github.io/dist_py_module'
 __credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__: str = '3.1.0'
+__version__: str = '3.1.1'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Development'
@@ -48,7 +47,7 @@ class MockTemplateProvider(ITemplateProvider):
                 | get_template_by_name - Retrieves raw template.
     '''
 
-    def __init__(self, templates: Dict[str, str]):
+    def __init__(self, templates: dict[str, str]):
         '''
             Initializes MockTemplateProvider.
 
@@ -112,7 +111,7 @@ class MockFileWriter(IFileWriter):
 
             :exceptions: None.
         '''
-        self.written_files: Dict[str, str] = {}
+        self.written_files: dict[str, str] = {}
 
     def write_file(self, filepath: str, content: str) -> None:
         '''
@@ -245,7 +244,7 @@ class TestService(unittest.TestCase):
         self.assertEqual(bundle1.template_provider, provider1)
         self.assertEqual(bundle1.file_writer, writer1)
 
-        d: Dict[str, MockTemplateProvider | MockFileWriter] = bundle1.to_dict()
+        d: dict[str, MockTemplateProvider | MockFileWriter] = bundle1.to_dict()
         self.assertEqual(d["template_provider"], provider1)
         self.assertEqual(d["file_writer"], writer1)
 
