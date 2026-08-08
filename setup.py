@@ -48,21 +48,23 @@ def find_package_data(pkg: str) -> list[str]:
     '''
         Finds all files in package to include in package_data.
 
-        :param pkg: Package folder name.
-        :type pkg: <str>
-        :return: List of package files relative to the package folder.
-        :rtype: <list[str]>
+        :param pkg: The package folder name.
+        :return: The list of package files relative to the package folder.
         :exceptions: None.
     '''
     package_data: list[str] = []
+
     for root, dirs, files in walk(pkg):
         dirs[:] = [d for d in dirs if d != '__pycache__']
+
         for file in files:
             if file.endswith('.pyc') or file == '.editorconfig':
                 continue
+
             full_path: str = join(root, file)
             rel_path: str = relpath(full_path, pkg)
             package_data.append(rel_path)
+
     return package_data
 
 setup(
