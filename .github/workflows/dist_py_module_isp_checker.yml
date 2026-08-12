@@ -1,0 +1,29 @@
+name: dist_py_module_isp_checker
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'dist_py_module/**/*.py'
+      - 'setup.py'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - 'dist_py_module/**/*.py'
+      - 'setup.py'
+
+jobs:
+  isp_gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Check Interface Segregation Principle violations
+        run: |
+          python3 gates/gates/isp_checker.py dist_py_module
