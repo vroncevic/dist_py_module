@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="main module" href="main.html" />
-    <link rel="prev" title="dist_py_module.dist_py_module_bundle module" href="dist_py_module.dist_py_module_bundle.html" /> 
+    <link rel="prev" title="dist_py_module.setup.validator module" href="dist_py_module.setup.validator.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -31,7 +31,7 @@
           <a href="main.html" title="main module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="dist_py_module.dist_py_module_bundle.html" title="dist_py_module.dist_py_module_bundle module"
+          <a href="dist_py_module.setup.validator.html" title="dist_py_module.setup.validator module"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">dist_py_module https://github.com/vroncevic/dist_py_module/releases documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >dist_py_module</a> &#187;</li>
@@ -62,48 +62,57 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along
 with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
 </dd>
-<dt>Info</dt><dd><p>Main engine orchestrator class for Task Code Generator CLI.</p>
+<dt>Info</dt><dd><p>Engine orchestrating the initialization and execution of dist_py_module.</p>
 </dd>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="dist_py_module.engine.DistPyModule">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dist_py_module.engine.</span></span><span class="sig-name descname"><span class="pre">DistPyModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_bundle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="dist_py_module.dist_py_module_bundle.html#dist_py_module.dist_py_module_bundle.DistPyModuleBundle" title="dist_py_module.dist_py_module_bundle.DistPyModuleBundle"><span class="pre">DistPyModuleBundle</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/engine.html#DistPyModule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dist_py_module.engine.DistPyModule" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dist_py_module.engine.</span></span><span class="sig-name descname"><span class="pre">DistPyModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bundle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="dist_py_module.setup.bundle.html#dist_py_module.setup.bundle.DistPyModuleBundle" title="dist_py_module.setup.bundle.DistPyModuleBundle"><span class="pre">DistPyModuleBundle</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dist_py_module/engine.html#DistPyModule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dist_py_module.engine.DistPyModule" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Engine orchestrating the initialization and execution of DistPyModule.</p>
+<p>Engine orchestrating the initialization and execution of dist_py_module.</p>
 <p>It defines:</p>
 <blockquote>
 <div><dl class="field-list">
 <dt class="field-odd">attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="line-block">
-<div class="line">_info_file - Path to the info file.</div>
-<div class="line">_cli - Adapter for command line user interface.</div>
+<div class="line">_is_initialized - The flag indicating whether the dist_py_module engine is initialized.</div>
+<div class="line">_logger - The logger for logging messages during initialization and execution.</div>
+<div class="line">_cli - The adapter for the command line interface.</div>
 </div>
 </dd>
 <dt class="field-even">methods<span class="colon">:</span></dt>
 <dd class="field-even"><div class="line-block">
-<div class="line">__init__ - Initializes the DistPyModule engine with adapters and services.</div>
-<div class="line">process - Starts DistPyModule via CLI adapter.</div>
+<div class="line">__init__ - Initializes the dist_py_module engine with adapters and services.</div>
+<div class="line">process - Processes the dist_py_module commands.</div>
 </div>
 </dd>
 </dl>
 </div></blockquote>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="dist_py_module.engine.DistPyModule._abc_impl">
-<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#dist_py_module.engine.DistPyModule._abc_impl" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dist_py_module.engine.DistPyModule._cli">
+<span class="sig-name descname"><span class="pre">_cli</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="dist_py_module.infrastructure.cli.icli.html#dist_py_module.infrastructure.cli.icli.ICLI" title="dist_py_module.infrastructure.cli.icli.ICLI"><span class="pre">ICLI</span></a></em><a class="headerlink" href="#dist_py_module.engine.DistPyModule._cli" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="dist_py_module.engine.DistPyModule._info_file">
-<span class="sig-name descname"><span class="pre">_info_file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'infrastructure/config/dist_py_module.cfg'</span></em><a class="headerlink" href="#dist_py_module.engine.DistPyModule._info_file" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dist_py_module.engine.DistPyModule._is_initialized">
+<span class="sig-name descname"><span class="pre">_is_initialized</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#dist_py_module.engine.DistPyModule._is_initialized" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dist_py_module.engine.DistPyModule._logger">
+<span class="sig-name descname"><span class="pre">_logger</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ILogger</span></em><a class="headerlink" href="#dist_py_module.engine.DistPyModule._logger" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="dist_py_module.engine.DistPyModule.process">
-<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/dist_py_module/engine.html#DistPyModule.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dist_py_module.engine.DistPyModule.process" title="Link to this definition">¶</a></dt>
-<dd><p>Starts DistPyModule via CLI adapter.</p>
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/dist_py_module/engine.html#DistPyModule.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dist_py_module.engine.DistPyModule.process" title="Link to this definition">¶</a></dt>
+<dd><p>Processes the dist_py_module commands.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Exceptions<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if successful, False otherwise.</p>
+</dd>
+<dt class="field-even">Exceptions<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -124,8 +133,9 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
     <ul>
 <li><a class="reference internal" href="#">dist_py_module.engine module</a><ul>
 <li><a class="reference internal" href="#dist_py_module.engine.DistPyModule"><code class="docutils literal notranslate"><span class="pre">DistPyModule</span></code></a><ul>
-<li><a class="reference internal" href="#dist_py_module.engine.DistPyModule._abc_impl"><code class="docutils literal notranslate"><span class="pre">DistPyModule._abc_impl</span></code></a></li>
-<li><a class="reference internal" href="#dist_py_module.engine.DistPyModule._info_file"><code class="docutils literal notranslate"><span class="pre">DistPyModule._info_file</span></code></a></li>
+<li><a class="reference internal" href="#dist_py_module.engine.DistPyModule._cli"><code class="docutils literal notranslate"><span class="pre">DistPyModule._cli</span></code></a></li>
+<li><a class="reference internal" href="#dist_py_module.engine.DistPyModule._is_initialized"><code class="docutils literal notranslate"><span class="pre">DistPyModule._is_initialized</span></code></a></li>
+<li><a class="reference internal" href="#dist_py_module.engine.DistPyModule._logger"><code class="docutils literal notranslate"><span class="pre">DistPyModule._logger</span></code></a></li>
 <li><a class="reference internal" href="#dist_py_module.engine.DistPyModule.process"><code class="docutils literal notranslate"><span class="pre">DistPyModule.process()</span></code></a></li>
 </ul>
 </li>
@@ -136,8 +146,8 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="dist_py_module.dist_py_module_bundle.html"
-                          title="previous chapter">dist_py_module.dist_py_module_bundle module</a></p>
+    <p class="topless"><a href="dist_py_module.setup.validator.html"
+                          title="previous chapter">dist_py_module.setup.validator module</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -178,7 +188,7 @@ with this program. If not, see &lt;<a class="reference external" href="http://ww
           <a href="main.html" title="main module"
              >next</a> |</li>
         <li class="right" >
-          <a href="dist_py_module.dist_py_module_bundle.html" title="dist_py_module.dist_py_module_bundle module"
+          <a href="dist_py_module.setup.validator.html" title="dist_py_module.setup.validator module"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">dist_py_module https://github.com/vroncevic/dist_py_module/releases documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >dist_py_module</a> &#187;</li>

@@ -1,19 +1,22 @@
 dist\_py\_module.infrastructure package
 =======================================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   dist_py_module.infrastructure.cli
+   dist_py_module.infrastructure.command
+
 Submodules
 ----------
 
 .. toctree::
    :maxdepth: 4
 
-   dist_py_module.infrastructure.cli
-   dist_py_module.infrastructure.cli_bundle
-   dist_py_module.infrastructure.file_writer
-   dist_py_module.infrastructure.gen_setup_command
-   dist_py_module.infrastructure.icli
-   dist_py_module.infrastructure.icli_command
-   dist_py_module.infrastructure.template_provider
+   dist_py_module.infrastructure.subprocessor
 
 Module contents
 ---------------

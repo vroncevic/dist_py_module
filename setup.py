@@ -28,7 +28,7 @@ __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://vroncevic.github.io/dist_py_module'
 __credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'GNU General Public License (GPL)'
-__version__: str = '3.1.1'
+__version__: str = '3.1.2'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
@@ -48,26 +48,28 @@ def find_package_data(pkg: str) -> list[str]:
     '''
         Finds all files in package to include in package_data.
 
-        :param pkg: Package folder name.
-        :type pkg: <str>
-        :return: List of package files relative to the package folder.
-        :rtype: <list[str]>
+        :param pkg: The package folder name.
+        :return: The list of package files relative to the package folder.
         :exceptions: None.
     '''
     package_data: list[str] = []
+
     for root, dirs, files in walk(pkg):
         dirs[:] = [d for d in dirs if d != '__pycache__']
+
         for file in files:
             if file.endswith('.pyc') or file == '.editorconfig':
                 continue
+
             full_path: str = join(root, file)
             rel_path: str = relpath(full_path, pkg)
             package_data.append(rel_path)
+
     return package_data
 
 setup(
     name='dist_py_module',
-    version='3.1.1',
+    version='3.1.2',
     description='Package for distributing Python packages.',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',

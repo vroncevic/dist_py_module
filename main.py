@@ -19,27 +19,40 @@ Info
     Main entry point for Task Code Generator CLI.
 '''
 
+from __future__ import annotations
+
+from sys import exit
+
 from dist_py_module.engine import DistPyModule
+from dist_py_module.setup.factory import DistPyModuleBundleFactory
 
-__author__: str = 'Vladimir Roncevic'
-__copyright__: str = '(C) 2026, https://vroncevic.github.io/dist_py_module'
-__credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
-__license__: str = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__: str = '3.1.1'
-__maintainer__: str = 'Vladimir Roncevic'
-__email__: str = 'elektron.ronca@gmail.com'
-__status__: str = 'Development'
+__author__ = 'Vladimir Roncevic'
+__copyright__ = '(C) 2026, https://vroncevic.github.io/dist_py_module'
+__credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
+__license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
+__version__ = '3.1.2'
+__maintainer__ = 'Vladimir Roncevic'
+__email__ = 'elektron.ronca@gmail.com'
+__status__ = 'Updated'
 
 
-def main() -> None:
+def main() -> bool:
     '''
-        Bootstraps and runs the DistPyModule application with required adapters.
+        Bootstraps and runs the dist_py_module with required adapters.
 
+        :return: True if successful, False otherwise.
         :exceptions: None
     '''
-    dist_py_module = DistPyModule()
-    dist_py_module.process()
+    dist_py_module: DistPyModule = DistPyModule(DistPyModuleBundleFactory.create_bundle())
+
+    return dist_py_module.process()
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    '''
+        Entry point for dist_py_module execution.
+
+        :exit code: 0 if successful, 1 otherwise.
+        :exceptions: None
+    '''
+    exit(0 if main() else 1)

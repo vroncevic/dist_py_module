@@ -16,132 +16,123 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Main engine orchestrator class for Task Code Generator CLI.
+    Engine orchestrating the initialization and execution of dist_py_module.
 '''
 
-from typing import Any, override
-from os.path import dirname, realpath
-from ats_utilities.base.engine import Base
-from ats_utilities.base.component_bundle import BaseComponentBundle
-from ats_utilities.option.ioption_parser import IOptionManager
-from ats_utilities.exceptions.ats_value_error import ATSValueError
-from dist_py_module.dist_py_module_bundle import DistPyModuleBundle
-from dist_py_module.domain.ports.itemplate_provider import ITemplateProvider
-from dist_py_module.infrastructure.template_provider import TemplateProvider
-from dist_py_module.domain.ports.ifile_writer import IFileWriter
-from dist_py_module.infrastructure.file_writer import FileWriter
-from dist_py_module.domain.ports.ifile_gen import IFileGen
-from dist_py_module.application.service import FileGen
-from dist_py_module.application.service_bundle import ServiceBundle
-from dist_py_module.infrastructure.icli_command import ICLICommand
-from dist_py_module.infrastructure.cli_bundle import CLIBundle
-from dist_py_module.infrastructure.gen_setup_command import GenSetupCommand
-from dist_py_module.infrastructure.icli import ICLI
-from dist_py_module.infrastructure.cli import CLI
+from __future__ import annotations
 
-__author__: str = 'Vladimir Roncevic'
-__copyright__: str = '(C) 2026, https://vroncevic.github.io/dist_py_module'
-__credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
-__license__: str = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__: str = '3.1.1'
-__maintainer__: str = 'Vladimir Roncevic'
-__email__: str = 'elektron.ronca@gmail.com'
-__status__: str = 'Development'
+from collections.abc import Mapping
+from logging import INFO, ERROR
+from sys import stdout
+
+from ats_utilities.base.engine import Base
+from ats_utilities.logger.ilogger import ILogger
+from ats_utilities.exceptions import ATSValueError, ATSTypeError
+
+from dist_py_module.setup.bundle import DistPyModuleBundle
+from dist_py_module.setup.validator import DistPyModuleBundleValidator
+from dist_py_module.infrastructure.cli.icli import ICLI
+
+__author__ = 'Vladimir Roncevic'
+__copyright__ = '(C) 2026, https://vroncevic.github.io/dist_py_module'
+__credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
+__license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
+__version__ = '3.1.2'
+__maintainer__ = 'Vladimir Roncevic'
+__email__ = 'elektron.ronca@gmail.com'
+__status__ = 'Updated'
 
 
 class DistPyModule(Base):
     '''
-        Engine orchestrating the initialization and execution of DistPyModule.
+        Engine orchestrating the initialization and execution of dist_py_module.
 
         It defines:
 
             :attributes:
-                | _info_file - Path to the info file.
-                | _cli - Adapter for command line user interface.
+                | _is_initialized - The flag indicating whether the dist_py_module engine is initialized.
+                | _logger - The logger for logging messages during initialization and execution.
+                | _cli - The adapter for the command line interface.
             :methods:
-                | __init__ - Initializes the DistPyModule engine with adapters and services.
-                | process - Starts DistPyModule via CLI adapter.
+                | __init__ - Initializes the dist_py_module engine with adapters and services.
+                | process - Processes the dist_py_module commands.
     '''
 
-    _info_file: str = 'infrastructure/config/dist_py_module.cfg'
+    _is_initialized: bool
+    _logger: ILogger
+    _cli: ICLI
 
-    def __init__(self, component_bundle: DistPyModuleBundle | None = None) -> None:
+    def __init__(self, bundle: DistPyModuleBundle) -> None:
         '''
-            Initializes the DistPyModule engine with adapters and services.
+            Initializes the dist_py_module engine with adapters and services.
 
-            :param component_bundle: DistPyModule bundle containing adapters and services | None.
-            :type component_bundle: <DistPyModuleBundle | None>
+            :param bundle: dist_py_module bundle containing adapters and services.
             :exceptions: None.
         '''
-        current_dir: str = dirname(realpath(__file__))
-        super().__init__(BaseComponentBundle(info_file=f'{current_dir}/{self._info_file}'))
+        self._is_initialized = False
 
         try:
-            if not self._is_initialized:
-                raise ATSValueError(f'failed to initialize engine with {current_dir}/{self._info_file}')
+            DistPyModuleBundleValidator.validate(bundle)
+
+            # Initialize base engine
+            super().__init__(bundle.base)
 
             # Mark as not initialized (waiting for other components to be initialized)
             self._is_initialized = False
 
-            # Use provided component bundle or use default adapters
-            bundle: DistPyModuleBundle = component_bundle or DistPyModuleBundle()
-
-            # Initialization of secondary adapters (Infrastructure)
-            template_provider: ITemplateProvider = bundle.template_provider or TemplateProvider()
-            file_writer: IFileWriter = bundle.file_writer or FileWriter()
-
-            # Initialization of option manager adapter (Adapter for options parsing)
-            parser: IOptionManager = bundle.parser or self._options_parser
-
-            # Injecting adapters into the application service (Orchestration)
-            service_bundle: ServiceBundle = ServiceBundle(
-                template_provider=template_provider, file_writer=file_writer
-            )
-            service: IFileGen = bundle.service or FileGen(service_bundle)
-
-            # Setting up CLI command strategies (Command strategies for CLI)
-            commands: list[ICLICommand] = [GenSetupCommand()]
-
-            # Setting up primary adapter (CLI interface)
-            cli_bundle: CLIBundle = CLIBundle(service=service, parser=parser, commands=commands)
-            self._cli: ICLI = bundle.cli or CLI(cli_bundle)
+            # Setting up primary inbound adapter (CLI interface)
+            self._cli = bundle.cli
 
             # Mark as initialized (all components initialized)
             self._is_initialized = all([
-               component.is_initialized() for component in [template_provider, file_writer, service, self._cli] if component
+                component.is_initialized() for component in [
+                    bundle.base.option_manager,
+                    bundle.service,
+                    bundle.subprocessor,
+                    self._cli
+                ] if component
             ])
-            self._reporter.success(["✅ dist_py_module: engine initialized successfully."])
 
-        except (ATSValueError, ValueError) as exc:
-            self._reporter.error([f'❌ dist_py_module: {exc}'])
+            # Setting up logger for tool engine
+            self._logger = self.get_context().logger
+            self._logger.write_log(INFO, '✅ dist_py_module: engine initialized successfully!')
+
+        except (ATSValueError, ATSTypeError) as exc:
+            stdout.write(f'❌ dist_py_module: {exc}!\n')
+
         except Exception as exc:
-            self._reporter.error([f'❌ dist_py_module unexpected exception: {exc}'])
+            stdout.write(f'❌ dist_py_module unexpected exception: {exc}!\n')
 
-    @override
-    def process(self) -> None:
+    def process(self) -> bool:
         '''
-            Starts DistPyModule via CLI adapter.
+            Processes the dist_py_module commands.
 
+            :return: True if successful, False otherwise.
             :exceptions: None.
         '''
-        result: dict[str, Any] = {}
+        result: Mapping[str, object] = {}
 
         try:
             if self.is_initialized():
-                self._reporter.success(["🔥 Starting execution command..."])
+                self._logger.write_log(INFO, '🔥 Starting execution command...')
                 result = self._cli.run()
-                self._reporter.success(["✅ Execution finished!"])
+                self._logger.write_log(INFO, '✅ Execution finished!')
 
                 if result.get("returncode") != 0:
-                    self._reporter.error([f'❌ dist_py_module: {result.get("stderr")}'])
-                    self._reporter.error([f'❌ dist_py_module: exiting with error.'])
+                    self._logger.write_log(ERROR, f'❌ dist_py_module: {result.get("stderr") or "failed!"}')
+                    return False
                 else:
-                    self._reporter.success([f'✅ dist_py_module: {result.get("stdout") or 'done!'}'])
-                    self._reporter.success([f'✅ dist_py_module: exiting successfully.'])
+                    self._logger.write_log(INFO, '✅ dist_py_module: done!')
+                    self._logger.write_log(INFO, '✅ dist_py_module: exiting successfully!')
+                    return True
             else:
-                self._reporter.error([f'❌ dist_py_module: engine not initialized.'])
+                self._logger.write_log(ERROR, '❌ dist_py_module: engine not initialized!')
+                return False
 
-        except (ATSValueError, ValueError) as exc:
-            self._reporter.error([f'❌ dist_py_module: {exc}'])
+        except (ATSValueError, ATSTypeError) as exc:
+            self._logger.write_log(ERROR, f'❌ dist_py_module: {exc}!')
+            return False
+
         except Exception as exc:
-            self._reporter.error([f'❌ dist_py_module unexpected exception: {exc}'])
+            self._logger.write_log(ERROR, f'❌ dist_py_module unexpected exception: {exc}!')
+            return False

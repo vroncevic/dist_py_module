@@ -1,0 +1,29 @@
+name: dist_py_module_interface_checker
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'dist_py_module/**/*.py'
+      - 'setup.py'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - 'dist_py_module/**/*.py'
+      - 'setup.py'
+
+jobs:
+  interface_gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Verify that each concrete class implements a valid interface
+        run: |
+          python3 gates/gates/interfaces_checker.py dist_py_module
