@@ -47,7 +47,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.1.2'
+__version__ = '3.1.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -63,6 +63,7 @@ class DistPyModuleBundleFactory:
                 | _info_file - Path to the dist_py_module info file.
             :methods:
                 | create_bundle - Creates the dist_py_module bundle with optional pre-configured options.
+                | get_version - Returns the factory version.
     '''
 
     _info_file: str = 'dist_py_module/infrastructure/config/dist_py_module.cfg'
@@ -129,3 +130,13 @@ class DistPyModuleBundleFactory:
                 cli=cli
             )
         )
+
+    @classmethod
+    def get_version(cls) -> str:
+        '''
+            Returns the factory version.
+
+            :return: The factory version.
+            :exceptions: None.
+        '''
+        return __version__
