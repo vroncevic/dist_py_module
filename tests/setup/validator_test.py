@@ -4,7 +4,7 @@
 Module
     validator_test.py
 Info
-    Unit tests for ARMPicomBundleValidator class.
+    Unit tests for DistPyModuleBundleValidator class.
 '''
 
 from __future__ import annotations
@@ -124,3 +124,21 @@ class TestDistPyModuleBundleValidator(unittest.TestCase):
                 cli="invalid"
             )
             DistPyModuleBundleValidator.validate(bundle)
+
+    def test_is_valid_success(self) -> None:
+        mock_base = Mock(spec=BaseBundle)
+        dummy_service = DummyService()
+        dummy_subprocessor = DummySubProcessor()
+        dummy_cli = DummyCLI()
+
+        bundle = DistPyModuleBundle(
+            base=mock_base,
+            service=dummy_service,
+            subprocessor=dummy_subprocessor,
+            cli=dummy_cli
+        )
+        self.assertTrue(DistPyModuleBundleValidator.is_valid(bundle))
+
+    def test_is_valid_failure(self) -> None:
+        self.assertFalse(DistPyModuleBundleValidator.is_valid(None))
+        self.assertFalse(DistPyModuleBundleValidator.is_valid("invalid"))

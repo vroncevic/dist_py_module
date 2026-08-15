@@ -4,7 +4,7 @@
 Module
     registry_test.py
 Info
-    Unit tests for ARMPicomBundleRegistry class.
+    Unit tests for DistPyModuleBundleRegistry class.
 '''
 
 from __future__ import annotations
@@ -70,3 +70,6 @@ class TestDistPyModuleBundleRegistry(unittest.TestCase):
     def test_create_bundle_invalid_dependencies(self) -> None:
         with self.assertRaises(Exception):
             DistPyModuleBundleRegistry.create_bundle(None)
+
+    def test_get_version(self) -> None:
+        self.assertEqual(DistPyModuleBundleRegistry.get_version(), '3.1.3')

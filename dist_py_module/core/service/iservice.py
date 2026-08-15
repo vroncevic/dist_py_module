@@ -28,7 +28,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.1.2'
+__version__ = '3.1.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -54,7 +54,6 @@ class IService[ServiceParamsType, ExecuteResultType](Protocol):
             :param params: The parameters for the service execution.
             :return: The result of the execution.
         '''
-        pass
 
     def is_initialized(self) -> bool:
         '''
@@ -62,4 +61,3 @@ class IService[ServiceParamsType, ExecuteResultType](Protocol):
 
             :return: True if the service is initialized, False otherwise.
         '''
-        pass

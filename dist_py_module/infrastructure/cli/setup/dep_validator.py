@@ -22,6 +22,7 @@ Info
 from __future__ import annotations
 
 from collections.abc import Mapping
+from ats_utilities.exceptions import ATSValueError, ATSTypeError
 
 from ats_utilities.validation.check_type import istype
 from ats_utilities.validation.check_value import not_none
@@ -33,7 +34,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.1.2'
+__version__ = '3.1.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -47,6 +48,7 @@ class CLIBundleDependenciesValidator:
 
             :methods:
                 | validate - Validates the CLI bundle dependencies.
+                | is_valid - Checks if the CLI bundle dependencies is valid.
     '''
 
     @classmethod
@@ -75,3 +77,18 @@ class CLIBundleDependenciesValidator:
 
             not_none(attribute, ctx, msg_attr_name_none)
             istype(attribute, expected_type, ctx, msg_attr_name_istype)
+
+    @classmethod
+    def is_valid(cls, dependencies: CLIBundleDependencies) -> bool:
+        '''
+            Checks if the CLI bundle dependencies is valid.
+
+            :param dependencies: The CLI bundle dependencies to be checked.
+            :return: True if valid, False otherwise.
+        '''
+        try:
+            cls.validate(dependencies)
+            return True
+
+        except (ATSValueError, ATSTypeError):
+            return False

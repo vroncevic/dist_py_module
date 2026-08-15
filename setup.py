@@ -28,7 +28,7 @@ __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://vroncevic.github.io/dist_py_module'
 __credits__: list[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'GNU General Public License (GPL)'
-__version__: str = '3.1.2'
+__version__: str = '3.1.3'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
@@ -69,7 +69,7 @@ def find_package_data(pkg: str) -> list[str]:
 
 setup(
     name='dist_py_module',
-    version='3.1.2',
+    version='3.1.3',
     description='Package for distributing Python packages.',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',

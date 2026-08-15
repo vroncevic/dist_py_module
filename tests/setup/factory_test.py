@@ -4,7 +4,7 @@
 Module
     factory_test.py
 Info
-    Unit tests for ARMPicomBundleFactory class.
+    Unit tests for DistPyModuleBundleFactory class.
 '''
 
 from __future__ import annotations
@@ -30,3 +30,6 @@ class TestDistPyModuleBundleFactory(unittest.TestCase):
         options = {'info_file': 123}
         with self.assertRaises(Exception):
             DistPyModuleBundleFactory.create_bundle(options)
+
+    def test_get_version(self) -> None:
+        self.assertEqual(DistPyModuleBundleFactory.get_version(), '3.1.3')
