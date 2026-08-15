@@ -187,7 +187,7 @@ Running tool for creating new Python setup.py file
 
 More documentation and info at
 
-* `dist_py_module.readthedocs.io <https://gen-dist_py_module.readthedocs.io>`_
+* `dist-py-module.readthedocs.io <https://dist-py-module.readthedocs.io>`_
 * `www.python.org <https://www.python.org/>`_
 
 👥 Contributing
