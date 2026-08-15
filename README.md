@@ -258,11 +258,11 @@ python3 main.py setup --package-name "my-pkg" --version "1.0.0" --description "M
 
 ### 📚 Docs
 
-[![Documentation Status](https://readthedocs.org/projects/gen-dist_py_module/badge/?version=latest)](https://gen-dist_py_module.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/dist-py-module/badge/?version=latest)](https://dist-py-module.readthedocs.io)
 
 More documentation and info at
 
-* [dist_py_module.readthedocs.io](https://gen-dist_py_module.readthedocs.io)
+* [dist-py-module.readthedocs.io](https://dist-py-module.readthedocs.io)
 * [www.python.org](https://www.python.org/)
 
 ### 👥 Contributing
