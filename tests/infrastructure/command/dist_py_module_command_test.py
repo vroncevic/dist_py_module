@@ -62,3 +62,8 @@ class TestDistPyModuleCommand(unittest.TestCase):
         definition = DistPyModuleCommandDefinition()
         executor = DistPyModuleCommandExecutor(definition)
         self.assertTrue(isinstance(str(executor), str))
+
+    def test_executor_get_definition(self) -> None:
+        definition = DistPyModuleCommandDefinition()
+        executor = DistPyModuleCommandExecutor(definition)
+        self.assertEqual(executor.get_definition(), definition)

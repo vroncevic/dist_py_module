@@ -5,12 +5,12 @@ permissions:
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
     paths:
       - 'dist_py_module/**/*.py'
       - 'setup.py'
   pull_request:
-    branches: [ master ]
+    branches: [ master, main ]
     paths:
       - 'dist_py_module/**/*.py'
       - 'setup.py'

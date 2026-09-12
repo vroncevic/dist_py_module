@@ -16,6 +16,6 @@ from dist_py_module.core.model.project_setup import ProjectSetup
 
 class TestProjectSetup(unittest.TestCase):
     def test_project_setup_initialization(self) -> None:
-        chip_config = {'key': 'value'}
-        setup = ProjectSetup(chip_config=chip_config)
-        self.assertEqual(setup.chip_config, chip_config)
+        dist_config = {'key': 'value'}
+        setup = ProjectSetup(dist_config=dist_config)
+        self.assertEqual(setup.dist_config, dist_config)

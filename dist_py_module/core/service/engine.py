@@ -30,7 +30,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2026, https://vroncevic.github.io/dist_py_module'
 __credits__ = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/dist_py_module/blob/dev/LICENSE'
-__version__ = '3.1.3'
+__version__ = '3.1.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -49,7 +49,7 @@ class Service:
                 | is_initialized - Checks if the service is initialized.
     '''
 
-    subprocessor: ISubProcessor
+    _subprocessor: ISubProcessor
 
     def __init__(self, subprocessor: ISubProcessor) -> None:
         '''

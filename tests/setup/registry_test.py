@@ -72,4 +72,4 @@ class TestDistPyModuleBundleRegistry(unittest.TestCase):
             DistPyModuleBundleRegistry.create_bundle(None)
 
     def test_get_version(self) -> None:
-        self.assertEqual(DistPyModuleBundleRegistry.get_version(), '3.1.3')
+        self.assertEqual(DistPyModuleBundleRegistry.get_version(), '3.1.4')
